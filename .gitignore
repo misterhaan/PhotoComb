@@ -1,0 +1,7 @@
+/obj
+/.vs
+/build
+/installer/*.msi
+/installer/*.wixpdb
+/installer/bin
+/installer/obj

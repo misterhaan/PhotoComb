@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoComb", "PhotoComb.csproj", "{5EDF26CF-FDE1-42A6-B682-4469E61D1C8B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8093E58B-470D-4E33-8AD3-B46D676A21B7}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "PhotoComb_x64", "installer\PhotoComb_x64.wixproj", "{4559873F-4F9F-48ED-9028-1906A9263864}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5EDF26CF-FDE1-42A6-B682-4469E61D1C8B} = {5EDF26CF-FDE1-42A6-B682-4469E61D1C8B}
+	EndProjectSection
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "PhotoComb_x86", "installer\PhotoComb_x86.wixproj", "{D68E629E-FC52-42EC-90AF-1E2410A18481}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5EDF26CF-FDE1-42A6-B682-4469E61D1C8B} = {5EDF26CF-FDE1-42A6-B682-4469E61D1C8B}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5EDF26CF-FDE1-42A6-B682-4469E61D1C8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EDF26CF-FDE1-42A6-B682-4469E61D1C8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EDF26CF-FDE1-42A6-B682-4469E61D1C8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EDF26CF-FDE1-42A6-B682-4469E61D1C8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4559873F-4F9F-48ED-9028-1906A9263864}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{4559873F-4F9F-48ED-9028-1906A9263864}.Release|Any CPU.ActiveCfg = Release|x64
+		{4559873F-4F9F-48ED-9028-1906A9263864}.Release|Any CPU.Build.0 = Release|x64
+		{D68E629E-FC52-42EC-90AF-1E2410A18481}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{D68E629E-FC52-42EC-90AF-1E2410A18481}.Release|Any CPU.ActiveCfg = Release|x86
+		{D68E629E-FC52-42EC-90AF-1E2410A18481}.Release|Any CPU.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
