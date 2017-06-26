@@ -47,7 +47,8 @@ namespace au.Applications.PhotoComb {
 		public string Nickname { get { return _txtCameraName.Text; } }
 
 		/// <summary>
-		/// Camera model selected in the dropdown.
+		/// Camera model selected in the dropdown.  Only meaningful when the dialog
+		/// was created with FileGroupType.CameraModel.
 		/// </summary>
 		public string CameraModel { get { return _cbModel.Text; } }
 

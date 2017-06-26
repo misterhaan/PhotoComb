@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoComb", "PhotoComb.csproj", "{5EDF26CF-FDE1-42A6-B682-4469E61D1C8B}"
 EndProject
@@ -10,12 +10,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "PhotoComb_x64", "installer\PhotoComb_x64.wixproj", "{4559873F-4F9F-48ED-9028-1906A9263864}"
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "PhotoComb_x64", "installer\PhotoComb_x64.wixproj", "{66364DB9-09EA-4826-804A-008AAB1962EA}"
 	ProjectSection(ProjectDependencies) = postProject
 		{5EDF26CF-FDE1-42A6-B682-4469E61D1C8B} = {5EDF26CF-FDE1-42A6-B682-4469E61D1C8B}
 	EndProjectSection
 EndProject
-Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "PhotoComb_x86", "installer\PhotoComb_x86.wixproj", "{D68E629E-FC52-42EC-90AF-1E2410A18481}"
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "PhotoComb_x86", "installer\PhotoComb_x86.wixproj", "{643B9997-CC74-4687-AE5C-9DEE7F4766BF}"
 	ProjectSection(ProjectDependencies) = postProject
 		{5EDF26CF-FDE1-42A6-B682-4469E61D1C8B} = {5EDF26CF-FDE1-42A6-B682-4469E61D1C8B}
 	EndProjectSection
@@ -30,12 +30,12 @@ Global
 		{5EDF26CF-FDE1-42A6-B682-4469E61D1C8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EDF26CF-FDE1-42A6-B682-4469E61D1C8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EDF26CF-FDE1-42A6-B682-4469E61D1C8B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4559873F-4F9F-48ED-9028-1906A9263864}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{4559873F-4F9F-48ED-9028-1906A9263864}.Release|Any CPU.ActiveCfg = Release|x64
-		{4559873F-4F9F-48ED-9028-1906A9263864}.Release|Any CPU.Build.0 = Release|x64
-		{D68E629E-FC52-42EC-90AF-1E2410A18481}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{D68E629E-FC52-42EC-90AF-1E2410A18481}.Release|Any CPU.ActiveCfg = Release|x86
-		{D68E629E-FC52-42EC-90AF-1E2410A18481}.Release|Any CPU.Build.0 = Release|x86
+		{66364DB9-09EA-4826-804A-008AAB1962EA}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{66364DB9-09EA-4826-804A-008AAB1962EA}.Release|Any CPU.ActiveCfg = Release|x64
+		{66364DB9-09EA-4826-804A-008AAB1962EA}.Release|Any CPU.Build.0 = Release|x64
+		{643B9997-CC74-4687-AE5C-9DEE7F4766BF}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{643B9997-CC74-4687-AE5C-9DEE7F4766BF}.Release|Any CPU.ActiveCfg = Release|x86
+		{643B9997-CC74-4687-AE5C-9DEE7F4766BF}.Release|Any CPU.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

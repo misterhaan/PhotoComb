@@ -5,3 +5,8 @@
 /installer/*.wixpdb
 /installer/bin
 /installer/obj
+/img/camera24.png
+/img/live-photo.png
+/img/photo24.png
+/img/settings18.png
+/img/warning24.png
