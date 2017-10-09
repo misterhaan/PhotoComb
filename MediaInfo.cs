@@ -80,12 +80,13 @@ namespace au.Applications.PhotoComb {
 		}
 
 		/// <summary>
-		/// Look up the camera model from the QuickTime field (MOV) or
-		/// the encoding application (AVI).
+		/// Look up the camera model from the QuickTime field (MOV) or the encoding
+		/// application (AVI).  If that's not there, then try @inf which Fuji seems
+		/// to use.
 		/// </summary>
 		/// <returns>Camera model name, or null if not present.</returns>
 		public string GetCameraModel() {
-			return GetGeneral("com.apple.quicktime.model", "Encoded_Application");
+			return GetGeneral("com.apple.quicktime.model", "Encoded_Application", "@inf");
 		}
 
 		/// <summary>

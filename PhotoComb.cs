@@ -129,9 +129,9 @@ namespace au.Applications.PhotoComb {
 					Tag = cfi
 				};
 				_lv.Items.Add(lvi);
-				if(!_byModel.ContainsKey(cfi.Model))
-					_byModel.Add(cfi.Model, new List<ListViewItem>());
-				_byModel[cfi.Model].Add(lvi);
+				if(!_byModel.ContainsKey(cfi.Model ?? ""))
+					_byModel.Add(cfi.Model ?? "", new List<ListViewItem>());
+				_byModel[cfi.Model ?? ""].Add(lvi);
 			}
 			_lv.EndUpdate();
 			_settings.LastSourceDir = _lblFolder.Text = path;
@@ -186,10 +186,10 @@ namespace au.Applications.PhotoComb {
 						items = _byModel[cnd.CameraModel].ToArray();
 					foreach(ListViewItem lvi in items)
 						if(lvi.Tag is CameraFileInfo cfi) {
-							if(_byModel.ContainsKey(cfi.Model)) {
-								_byModel[cfi.Model].Remove(lvi);
-								if(_byModel[cfi.Model].Count < 1)
-									_byModel.Remove(cfi.Model);
+							if(_byModel.ContainsKey(cfi.Model ?? "")) {
+								_byModel[cfi.Model ?? ""].Remove(lvi);
+								if(_byModel[cfi.Model ?? ""].Count < 1)
+									_byModel.Remove(cfi.Model ?? "");
 							}
 							cfi.Model = cnd.Nickname;
 							lvi.SubItems[_colNewName.Index].Text = NewName(cfi);
