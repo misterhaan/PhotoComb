@@ -3,11 +3,18 @@ Photo Combine renames photos from multiple cameras to avoid filename conflicts a
 
 ## Revision History
 
+### 1.1.0
+* Add minutes and days options for adjusting time taken, since sometimes people don’t set the date on their cameras
+
 ### 1.0.0
 * Rearrange main form
 * Read video file metadata via MediaInfo
 * Allow adjusting time taken
 * Update to Visual Studio 2017
+
+#### 1.0.1
+* fix crash when video camera model isn’t found
+* find camera model for videos from fuji cameras
 
 ### 0.1.0
 * Initial release.

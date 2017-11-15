@@ -43,7 +43,11 @@ namespace au.Applications.PhotoComb {
 		/// <summary>
 		/// Time offset to adjust time taken by (will be added to time taken).
 		/// </summary>
-		public TimeSpan Offset { get { return TimeSpan.FromHours((double)_numOffset.Value); } }
+		public TimeSpan Offset { get {
+				return TimeSpan.FromMinutes((double)_numOffsetMinutes.Value)
+					+ TimeSpan.FromHours((double)_numOffsetHours.Value)
+					+ TimeSpan.FromDays((double)_numOffsetDays.Value);
+		} }
 
 		/// <summary>
 		/// Camera model selected in the dropdown.  Only meaningful when the dialog

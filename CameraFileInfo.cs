@@ -73,7 +73,7 @@ namespace au.Applications.PhotoComb {
 			get {
 				string id = _file.Name.Substring(0, _file.Name.Length - _file.Extension.Length);
 				// default camera filenames 
-				if(id.StartsWith("IMG_") || id.StartsWith("MVI_"))
+				if(id.StartsWith("IMG_") || id.StartsWith("MVI_") || id.StartsWith("DSC"))
 					return id.Substring(4);
 				// photo combine filename pattern (also contains date/time taken and camera nickname)
 				if(Regex.IsMatch(id, @"^[0-9]{8}-[0-9]{6}-.+-[^-]+$")) {
