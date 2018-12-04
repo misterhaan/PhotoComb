@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Media.Imaging;
 
@@ -44,6 +45,7 @@ namespace au.Applications.PhotoComb {
 		public CameraFileInfo(FileInfo file) {
 			_file = file;
 			switch(_file.Extension.ToLowerInvariant()) {
+				case ".mp4":
 				case ".avi":
 				case ".mov":
 					GetVideoMetadata();
@@ -73,14 +75,27 @@ namespace au.Applications.PhotoComb {
 			get {
 				string id = _file.Name.Substring(0, _file.Name.Length - _file.Extension.Length);
 				// default camera filenames 
-				if(id.StartsWith("IMG_") || id.StartsWith("MVI_") || id.StartsWith("DSC"))
+				if((id.StartsWith("IMG_") || id.StartsWith("MVI_") || id.StartsWith("DSC")) && id.Length <= 12)
 					return id.Substring(4);
 				// photo combine filename pattern (also contains date/time taken and camera nickname)
 				if(Regex.IsMatch(id, @"^[0-9]{8}-[0-9]{6}-.+-[^-]+$")) {
 					string[] parts = id.Split('-');
 					return parts[parts.Length - 1];
 				}
-				return id;
+				// android motion photo export format
+				if(Regex.IsMatch(id, @"^(MV)?IMG_[0-9]{8}_[0-9]{6}(_[0-9]+)?_exported_[0-9]+_[0-9]+$")) {
+					string[] parts = id.Split('_');
+					return parts[parts.Length - 2];
+				}
+				// multiple photos in same second adds a counter after the time portion of the filename
+				if(Regex.IsMatch(id, @"^(MV)?IMG_[0-9]{8}_[0-9]{6}_[0-9]+")) {
+					string[] parts = id.Split('_');
+					return parts[3];
+				}
+				// couldn't find an ID, so consider using the entire filename
+				if(id.Length <= 12 || id.Count(char.IsLetter) * 2 > id.Length)
+					return id;
+				return "";
 			}
 		}
 

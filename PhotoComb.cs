@@ -146,7 +146,10 @@ namespace au.Applications.PhotoComb {
 		/// <returns>New name for the specified file</returns>
 		private string NewName(CameraFileInfo cfi) {
 			// TODO:  support custom format
-			return string.Format("{0:yyyyMMdd-HHmmss}-{1}-{2}.{3}", cfi.Taken, cfi.Model, cfi.ID, cfi.Extension);
+			string id = cfi.ID;
+			if(!string.IsNullOrEmpty(id))
+				id = "-" + id;
+			return string.Format("{0:yyyyMMdd-HHmmss}-{1}{2}.{3}", cfi.Taken, cfi.Model, id, cfi.Extension);
 		}
 
 		/// <summary>
