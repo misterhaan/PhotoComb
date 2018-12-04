@@ -5,8 +5,8 @@ Photo Combine renames photos from multiple cameras to avoid filename conflicts a
 
 ### 1.1.1
 * Support photos and videos from Google Pixel 3 phones
-** Recognize mp4 files as video
-** Handle filename patterns without sequential IDs
+	* Recognize mp4 files as video
+	* Handle filename patterns with date/time instead of sequential IDs
 
 ### 1.1.0
 * Add minutes and days options for adjusting time taken, since sometimes people don’t set the date on their cameras
