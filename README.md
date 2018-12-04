@@ -3,6 +3,11 @@ Photo Combine renames photos from multiple cameras to avoid filename conflicts a
 
 ## Revision History
 
+### 1.1.1
+* Support photos and videos from Google Pixel 3 phones
+** Recognize mp4 files as video
+** Handle filename patterns without sequential IDs
+
 ### 1.1.0
 * Add minutes and days options for adjusting time taken, since sometimes people don’t set the date on their cameras
 
@@ -13,8 +18,8 @@ Photo Combine renames photos from multiple cameras to avoid filename conflicts a
 * Update to Visual Studio 2017
 
 #### 1.0.1
-* fix crash when video camera model isn’t found
-* find camera model for videos from fuji cameras
+* Fix crash when video camera model isn’t found
+* Find camera model for videos from Fuji cameras
 
 ### 0.1.0
 * Initial release.

@@ -113,7 +113,7 @@
 			this._txtCopyright.Size = new System.Drawing.Size(300, 51);
 			this._txtCopyright.TabIndex = 6;
 			this._txtCopyright.TabStop = false;
-			this._txtCopyright.Text = "© 2015 - 2017 the analog underground.\r\nThis program may be distributed freely to " +
+			this._txtCopyright.Text = "© 2014 - 2018 the analog underground.\r\nThis program may be distributed freely to " +
     "anyone.\r\nSource code and updates are available at:";
 			// 
 			// _lnkURL
@@ -160,6 +160,7 @@
 			this.MinimizeBox = false;
 			this.Name = "AboutPhotoComb";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.Load += new System.EventHandler(this.AboutMythClient_Load);
 			this.panel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this._picIcon)).EndInit();
 			this.ResumeLayout(false);
