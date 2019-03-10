@@ -3,13 +3,20 @@ Photo Combine renames photos from multiple cameras to avoid filename conflicts a
 
 ## Revision History
 
-### 1.1.1
-* Support photos and videos from Google Pixel 3 phones
-	* Recognize mp4 files as video
-	* Handle filename patterns with date/time instead of sequential IDs
+### 2.0.0
+* Add settings for filename format and which extensions are videos or photos
+* Use file copy dialog for export
+* Configuration file changed (previous configuration ignored)
+* Major refactor into multiple assemblies
+* Add unit tests
 
 ### 1.1.0
 * Add minutes and days options for adjusting time taken, since sometimes people don’t set the date on their cameras
+
+#### 1.1.1
+* Support photos and videos from Google Pixel 3 phones
+	* Recognize mp4 files as video
+	* Handle filename patterns with date/time instead of sequential IDs
 
 ### 1.0.0
 * Rearrange main form

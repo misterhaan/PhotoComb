@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>au.Applications.PhotoComb</RootNamespace>
     <AssemblyName>PhotoComb</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -23,119 +23,62 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>build\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <!-- default AllowedReferenceRelatedFileExtensions is .pdb; .xml and I've removed xml -->
+    <AllowedReferenceRelatedFileExtensions>.pdb</AllowedReferenceRelatedFileExtensions>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>au.Applications.PhotoComb.PhotoComb</StartupObject>
+    <StartupObject>au.Applications.PhotoComb.PhotoCombApplication</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Photo.ico</ApplicationIcon>
   </PropertyGroup>
-  <PropertyGroup>
-    <ExternalBin>bin32</ExternalBin>
-    <ExternalBin Condition="'$(PROCESSOR_ARCHITECTURE)'=='AMD64' or '$(PROCESSOR_ARCHITEW6432)'=='AMD64'">bin64</ExternalBin>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="au.util.io, Version=4.0.0.0, Culture=neutral, PublicKeyToken=57531b787f745070, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\au.util.io\v4.0_4.0.0.0__57531b787f745070\au.util.io.dll</HintPath>
+    <Reference Include="au.Settings">
+      <HintPath>bin\au.Settings.dll</HintPath>
     </Reference>
-    <Reference Include="PresentationCore" />
     <Reference Include="System" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.XML" />
-    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutPhotoComb.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AboutPhotoComb.Designer.cs">
-      <DependentUpon>AboutPhotoComb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CameraFileInfo.cs" />
-    <Compile Include="CameraNameDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CameraNameDialog.Designer.cs">
-      <DependentUpon>CameraNameDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DisplaySettings.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="MaterialIcons.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MaterialIcons.resx</DependentUpon>
-    </Compile>
-    <Compile Include="MediaInfo.cs" />
-    <Compile Include="PCSettings.cs" />
-    <Compile Include="PCTypes.cs" />
-    <Compile Include="PhotoComb.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PhotoComb.Designer.cs">
-      <DependentUpon>PhotoComb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CameraDirectoryInfo.cs" />
+    <Compile Include="PhotoCombApplication.cs" />
+    <Compile Include="Properties\AssemblyInfo.Common.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Strings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.resx</DependentUpon>
-    </Compile>
-    <Compile Include="TimespanDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TimespanDialog.Designer.cs">
-      <DependentUpon>TimespanDialog.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AboutPhotoComb.resx">
-      <DependentUpon>AboutPhotoComb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CameraNameDialog.resx">
-      <DependentUpon>CameraNameDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MaterialIcons.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>MaterialIcons.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PhotoComb.resx">
-      <DependentUpon>PhotoComb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Strings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TimespanDialog.resx">
-      <DependentUpon>TimespanDialog.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\PhotoComb\$(ExternalBin)\MediaInfo.dll">
-      <Link>MediaInfo.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Visible>false</Visible>
-    </Content>
     <Content Include="Photo.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Logic\PhotoComb.Logic.csproj">
+      <Project>{8daaa2a6-04cb-41cd-b8ee-784b51ba1a95}</Project>
+      <Name>PhotoComb.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="Logic\Types\PhotoComb.Logic.Types.csproj">
+      <Project>{374B3ABE-96EB-4AC6-B66D-B7946FCB56CC}</Project>
+      <Name>PhotoComb.Logic.Types</Name>
+    </ProjectReference>
+    <ProjectReference Include="Settings\PhotoComb.Settings.csproj">
+      <Project>{7EBCEB80-6931-43A0-BF12-CB41833EBC40}</Project>
+      <Name>PhotoComb.Settings</Name>
+    </ProjectReference>
+    <ProjectReference Include="Settings\Types\PhotoComb.Settings.Types.csproj">
+      <Project>{03B879E5-E4F3-4427-9D9B-27A38098FBC4}</Project>
+      <Name>PhotoComb.Settings.Types</Name>
+    </ProjectReference>
+    <ProjectReference Include="UI\PhotoComb.UI.csproj">
+      <Project>{AEA97071-3B4C-4AC3-8EE0-ABA1E7D589E1}</Project>
+      <Name>PhotoComb.UI</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

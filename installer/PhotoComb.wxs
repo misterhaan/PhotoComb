@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="windows-1252"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<?define BuildFolder = "..\build\Release" ?>
 	<?if $(var.Platform) = x64 ?>
 	<?define PlatformProgramFilesFolder = "ProgramFiles64Folder" ?>
-	<?define ExternalBinFolder = "bin64" ?>
+	<?define ExternalBinFolder = "..\bin\64" ?>
 	<?else ?>
 	<?define PlatformProgramFilesFolder = "ProgramFilesFolder" ?>
-	<?define ExternalBinFolder = "bin32" ?>
+	<?define ExternalBinFolder = "..\bin\32" ?>
 	<?endif ?>
 
-	<Product Name="Photo Combine" Id="*" UpgradeCode="B1DD71E9-85D7-479F-9EAB-2DCEACDE6BC8" Language="1033" Codepage="1252" Version="1.1.1" Manufacturer="the analog underground">
+	<Product Name="Photo Combine" Id="*" UpgradeCode="B1DD71E9-85D7-479F-9EAB-2DCEACDE6BC8" Language="1033" Codepage="1252" Version="2.0.0" Manufacturer="the analog underground">
 		<Package Id="*" Keywords="photo, camera, picture, organize" Description="Renames digital photos from multiple cameras for easier organization." Comments="the analog underground only releases free software" Manufacturer="the analog underground" InstallerVersion="200" Languages="1033" Compressed="yes" SummaryCodepage="1252" Platform="$(var.Platform)" />
 
 		<MajorUpgrade Schedule="afterInstallInitialize" DowngradeErrorMessage="A later version of [ProductName] is already installed. Setup will now exit." />
 		<Upgrade Id="8B035E15-98BC-4208-8F7D-B1CC37A1D8DD">
-			<UpgradeVersion Minimum="0.0.0" IncludeMinimum="yes" Maximum="1.1.1" IncludeMaximum="no" Property="OLDERVERSIONBEINGUPGRADED"/>
-			<UpgradeVersion Minimum="1.1.1" OnlyDetect="yes" Property="NEWERVERSIONDETECTED"/>
+			<UpgradeVersion Minimum="0.0.0" IncludeMinimum="yes" Maximum="2.0.0" IncludeMaximum="no" Property="OLDERVERSIONBEINGUPGRADED"/>
+			<UpgradeVersion Minimum="2.0.0" OnlyDetect="yes" Property="NEWERVERSIONDETECTED"/>
 		</Upgrade>
 		<Condition Message="A later version of [ProductName] is already installed. Setup will now exit">
 			NOT NEWERVERSIONDETECTED OR Installed
@@ -33,15 +34,44 @@
 		</Directory>
 
 		<DirectoryRef Id="INSTALLDIR">
-			<Component Id="photocombcomponent" Guid="7AA5DB3C-94AC-49BC-8941-F50032C2629A">
-				<File Id="PhotoComb.exe" Name="PhotoComb.exe" DiskId="1" Source="..\build\Release\PhotoComb.exe" />
+			<Component Id="photocombexe" Guid="7AA5DB3C-94AC-49BC-8941-F50032C2629A">
+				<File Id="PhotoComb.exe" Name="PhotoComb.exe" DiskId="1" Source="$(var.BuildFolder)\PhotoComb.exe" />
+			</Component>
+			<Component Id="auApplicationsPhotoCombLogicdll" Guid="2A1D5CA6-1467-46AD-A116-2B71FC004C5B">
+				<File Id="au.Applications.PhotoComb.Logic.dll" Name="au.Applications.PhotoComb.Logic.dll" DiskId="1" Source="$(var.BuildFolder)\au.Applications.PhotoComb.Logic.dll" />
+			</Component>
+			<Component Id="auApplicationsPhotoCombLogicTypesdll" Guid="61393AE2-50B9-4298-B394-8988DAE89FC1">
+				<File Id="au.Applications.PhotoComb.Logic.Types.dll" Name="au.Applications.PhotoComb.Logic.Types.dll" DiskId="1" Source="$(var.BuildFolder)\au.Applications.PhotoComb.Logic.Types.dll" />
+			</Component>
+			<Component Id="auApplicationsPhotoCombSettingsdll" Guid="0CFD2F0E-AC90-4010-A769-95CFE37E8F08">
+				<File Id="au.Applications.PhotoComb.Settings.dll" Name="au.Applications.PhotoComb.Settings.dll" DiskId="1" Source="$(var.BuildFolder)\au.Applications.PhotoComb.Settings.dll" />
+			</Component>
+			<Component Id="auApplicationsPhotoCombSettingsTypesdll" Guid="340DD0AC-6E63-4AE2-94DE-0A94C180F28E">
+				<File Id="au.Applications.PhotoComb.Settings.Types.dll" Name="au.Applications.PhotoComb.Settings.Types.dll" DiskId="1" Source="$(var.BuildFolder)\au.Applications.PhotoComb.Settings.Types.dll" />
+			</Component>
+			<Component Id="auApplicationsPhotoCombUIdll" Guid="50C87E31-5D69-45B0-99A1-C588A1D738D9">
+				<File Id="au.Applications.PhotoComb.UI.dll" Name="au.Applications.PhotoComb.UI.dll" DiskId="1" Source="$(var.BuildFolder)\au.Applications.PhotoComb.UI.dll" />
+			</Component>
+			<Component Id="auIOFilesCameradll" Guid="24E267E0-D62F-474A-87A6-F8F66D069B7B">
+				<File Id="au.IO.Files.Camera.dll" Name="au.IO.Files.Camera.dll" DiskId="1" Source="$(var.BuildFolder)\au.IO.Files.Camera.dll" />
+			</Component>
+			<Component Id="auIOFilesCameraTypesdll" Guid="DBDD3E6C-ED7B-41CA-B10D-EB2FD7F191C6">
+				<File Id="au.IO.Files.Camera.Types.dll" Name="au.IO.Files.Camera.Types.dll" DiskId="1" Source="$(var.BuildFolder)\au.IO.Files.Camera.Types.dll" />
+			</Component>
+			<Component Id="auIOFilesFileOperationdll" Guid="A2F30D5F-414D-4035-AB88-905AF0656DF8">
+				<File Id="au.IO.Files.FileOperation.dll" Name="au.IO.Files.FileOperation.dll" DiskId="1" Source="$(var.BuildFolder)\au.IO.Files.FileOperation.dll" />
+			</Component>
+			<Component Id="auSettingsdll" Guid="B32FE277-3668-4F20-A905-FDE9038E3420">
+				<File Id="au.Settings.dll" Name="au.Settings.dll" DiskId="1" Source="$(var.BuildFolder)\au.Settings.dll" />
+			</Component>
+			<Component Id="auSettingsTypesdll" Guid="C25C22DF-8331-42EA-BB7F-262C95C232AB">
+				<File Id="au.Settings.Types.dll" Name="au.Settings.Types.dll" DiskId="1" Source="$(var.BuildFolder)\au.Settings.Types.dll" />
 			</Component>
 			<Component Id="mediainfodll" Guid="FC9054A9-557D-405C-BBC1-B9C51A85AAE6">
-				<File Id="MediaInfo.dll" Name="MediaInfo.dll" DiskId="1" Source="..\$(var.ExternalBinFolder)\MediaInfo.dll" />
+				<File Id="MediaInfo.dll" Name="MediaInfo.dll" DiskId="1" Source="$(var.ExternalBinFolder)\MediaInfo.dll" />
 			</Component>
-			<Component Id="auiocomponent" Guid="47A670B5-F960-4FAF-A894-B3B3BFFE22B9">
-				<File Id="au.util.io.dll" Name="au.util.io.dll" DiskId="1" Source="..\build\Release\au.util.io.dll" Assembly=".net" KeyPath="yes" />
-			</Component>
+
+
 		</DirectoryRef>
 
 		<DirectoryRef Id="ProgramMenuDir">
@@ -61,8 +91,17 @@
 
 		<Feature Id="Binaries" Level="1" Title="Photo Combine" Description="Binary files needed to run Photo Combine" ConfigurableDirectory="INSTALLDIR">
 			<Feature Id="photocombfeat" Title="PhotoComb" Description="The actual application along with libraries (required to run the application)" Level="1">
-				<ComponentRef Id="photocombcomponent" />
-				<ComponentRef Id="auiocomponent" />
+				<ComponentRef Id="photocombexe" />
+				<ComponentRef Id="auApplicationsPhotoCombLogicdll" />
+				<ComponentRef Id="auApplicationsPhotoCombLogicTypesdll" />
+				<ComponentRef Id="auApplicationsPhotoCombSettingsdll" />
+				<ComponentRef Id="auApplicationsPhotoCombSettingsTypesdll" />
+				<ComponentRef Id="auApplicationsPhotoCombUIdll" />
+				<ComponentRef Id="auIOFilesCameradll" />
+				<ComponentRef Id="auIOFilesCameraTypesdll" />
+				<ComponentRef Id="auIOFilesFileOperationdll" />
+				<ComponentRef Id="auSettingsdll" />
+				<ComponentRef Id="auSettingsTypesdll" />
 				<ComponentRef Id="mediainfodll" />
 			</Feature>
 			<Feature Id="photocombshortcuts" Level="1" Title="Shortcuts" Description="Shortcuts for launching Photo Combine">
@@ -663,9 +702,9 @@
 		<Property Id="ALLUSERS" Value="1" />
 		<Property Id="INSTALLLEVEL">3</Property>
 
-		<Property Id="ARPHELPLINK">http://www.track7.org/analogu/net/photocomb/</Property>
-		<Property Id="ARPURLINFOABOUT">http://www.track7.org/analogu/net/photocomb/</Property>
-		<Property Id="ARPURLUPDATEINFO">http://www.track7.org/analogu/net/photocomb/</Property>
+		<Property Id="ARPHELPLINK">http://www.track7.org/code/vs/photocomb/</Property>
+		<Property Id="ARPURLINFOABOUT">http://www.track7.org/code/vs/photocomb/</Property>
+		<Property Id="ARPURLUPDATEINFO">http://www.track7.org/code/vs/photocomb/</Property>
 		<Property Id='ARPPRODUCTICON'>photo.ico</Property>
 
 		<Property Id="DialogBitmap">dialogbmp</Property>
