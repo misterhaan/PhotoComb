@@ -8,6 +8,7 @@ Photo Combine renames photos from multiple cameras to avoid filename conflicts a
 * Use file copy dialog for export
 * Configuration file changed (previous configuration ignored)
 * Major refactor into multiple assemblies
+* Update to .NET 4.5
 * Add unit tests
 
 ### 1.1.0
