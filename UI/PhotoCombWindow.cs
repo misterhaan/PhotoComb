@@ -68,9 +68,8 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void PhotoComb_Shown(object sender, EventArgs e) {
-			ChooseFolder();
-		}
+		private void PhotoComb_Shown(object sender, EventArgs e)
+			=> ChooseFolder();
 
 		/// <summary>
 		/// Update the display size setting when it changes.
@@ -228,7 +227,8 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="fileGroupType">Group of files to copy.</param>
 		private void CopyFiles(FileGroupType fileGroupType) {
-			if(fileGroupType == FileGroupType.CameraModel) throw new ArgumentOutOfRangeException(nameof(fileGroupType), "Copy by camera model is not supported.");
+			if(fileGroupType == FileGroupType.CameraModel)
+				throw new ArgumentOutOfRangeException(nameof(fileGroupType), "Copy by camera model is not supported.");
 			if(_fbdExport.ShowDialog(this) == DialogResult.OK) {
 				_settings.LastDestDir = _fbdExport.SelectedPath;
 				switch(fileGroupType) {
@@ -248,18 +248,16 @@ namespace au.Applications.PhotoComb.UI {
 		/// Copy all files and change their names.
 		/// </summary>
 		/// <param name="destPath">Full path to the directory the files should be copied to.</param>
-		private void CopyFiles(string destPath) {
-			CopyFiles(destPath, _files.Files);
-		}
+		private void CopyFiles(string destPath)
+			=> CopyFiles(destPath, _files.Files);
 
 		/// <summary>
 		/// Copy the specified files and change their names.
 		/// </summary>
 		/// <param name="destPath">Full path to the directory the files should be copied to.</param>
 		/// <param name="filenames">List of filenames to copy.</param>
-		private void CopyFiles(string destPath, IEnumerable<string> filenames) {
-			CopyFiles(destPath, _files.GetFilesFromNames(filenames));
-		}
+		private void CopyFiles(string destPath, IEnumerable<string> filenames)
+			=> CopyFiles(destPath, _files.GetFilesFromNames(filenames));
 
 		/// <summary>
 		/// Copy the specified files and change their names.
@@ -281,9 +279,8 @@ namespace au.Applications.PhotoComb.UI {
 		/// Gets the filenames of all checked files.
 		/// </summary>
 		/// <returns>Filenames of checked files.</returns>
-		private IEnumerable<string> GetCheckedFilenames() {
-			return GetCheckedFilenames(false);
-		}
+		private IEnumerable<string> GetCheckedFilenames()
+			=> GetCheckedFilenames(false);
 
 		/// <summary>
 		/// Gets the filenames of all checked files.
@@ -304,9 +301,8 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Checked for file / folder data being dragged</param>
-		private void PhotoComb_DragEnter(object sender, DragEventArgs e) {
-			e.Effect = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.Copy : DragDropEffects.None;
-		}
+		private void PhotoComb_DragEnter(object sender, DragEventArgs e)
+			=> e.Effect = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.Copy : DragDropEffects.None;
 
 		/// <summary>
 		/// Switch to the folder that was dropped on the form, or the folder
@@ -327,9 +323,8 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void folder_Click(object sender, EventArgs e) {
-			ChooseFolder();
-		}
+		private void folder_Click(object sender, EventArgs e)
+			=> ChooseFolder();
 
 		/// <summary>
 		/// Enable or disable buttons that act on the selection based on whether
@@ -337,117 +332,104 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _lv_ItemChecked(object sender, ItemCheckedEventArgs e) {
-			_tsTimestampSelected.Enabled = _tsModelSelected.Enabled = _tsRenameSelected.Enabled = _tsExportSelected.Enabled = _lv.CheckedItems.Count > 0;
-		}
+		private void _lv_ItemChecked(object sender, ItemCheckedEventArgs e)
+			=> _tsTimestampSelected.Enabled = _tsModelSelected.Enabled = _tsRenameSelected.Enabled = _tsExportSelected.Enabled = _lv.CheckedItems.Count > 0;
 
 		/// <summary>
 		/// Re-scan the current folder in case changes have been made.
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _tsRescan_Click(object sender, EventArgs e) {
-			ScanFolder(_lblFolder.Text);
-		}
+		private void _tsRescan_Click(object sender, EventArgs e)
+			=> ScanFolder(_lblFolder.Text);
 
 		/// <summary>
 		/// Change the time taken for all files that have a time taken.
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _tsTimestampAll_Click(object sender, EventArgs e) {
-			AdjustTimeTaken(FileGroupType.All);
-		}
+		private void _tsTimestampAll_Click(object sender, EventArgs e)
+			=> AdjustTimeTaken(FileGroupType.All);
 
 		/// <summary>
 		/// Change the time taken for checked files that have a time taken.
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _tsTimestampSelected_Click(object sender, EventArgs e) {
-			AdjustTimeTaken(FileGroupType.Checked);
-		}
+		private void _tsTimestampSelected_Click(object sender, EventArgs e)
+			=> AdjustTimeTaken(FileGroupType.Checked);
 
 		/// <summary>
 		/// Change the time taken for files that were taken by a chosen camera model.
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _tsTimestampCamera_Click(object sender, EventArgs e) {
-			AdjustTimeTaken(FileGroupType.CameraModel);
-		}
+		private void _tsTimestampCamera_Click(object sender, EventArgs e)
+			=> AdjustTimeTaken(FileGroupType.CameraModel);
 
 		/// <summary>
 		/// Change the camera model name for all files.
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _tsModelAll_Click(object sender, EventArgs e) {
-			ChangeCameraName(FileGroupType.All);
-		}
+		private void _tsModelAll_Click(object sender, EventArgs e)
+			=> ChangeCameraName(FileGroupType.All);
 
 		/// <summary>
 		/// Change the camera model name for checked files.
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _tsModelSelected_Click(object sender, EventArgs e) {
-			ChangeCameraName(FileGroupType.Checked);
-		}
+		private void _tsModelSelected_Click(object sender, EventArgs e)
+			=> ChangeCameraName(FileGroupType.Checked);
 
 		/// <summary>
 		/// Change the camera model name for files that were taken by a chosen camera model.
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _tsModelCamera_Click(object sender, EventArgs e) {
-			ChangeCameraName(FileGroupType.CameraModel);
-		}
+		private void _tsModelCamera_Click(object sender, EventArgs e)
+			=> ChangeCameraName(FileGroupType.CameraModel);
 
 		/// <summary>
 		/// Rename all the files in place.
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _tsRenameAll_Click(object sender, EventArgs e) {
-			RenameFiles(FileGroupType.All);
-		}
+		private void _tsRenameAll_Click(object sender, EventArgs e)
+			=> RenameFiles(FileGroupType.All);
 
 		/// <summary>
 		/// Rename checked files in place.
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _tsRenameSelected_Click(object sender, EventArgs e) {
-			RenameFiles(FileGroupType.Checked);
-		}
+		private void _tsRenameSelected_Click(object sender, EventArgs e)
+			=> RenameFiles(FileGroupType.Checked);
 
 		/// <summary>
 		/// Copy all files to a new location with updated names.
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _tsExportAll_Click(object sender, EventArgs e) {
-			CopyFiles(FileGroupType.All);
-		}
+		private void _tsExportAll_Click(object sender, EventArgs e)
+			=> CopyFiles(FileGroupType.All);
 
 		/// <summary>
 		/// Copy checked files to a new location with updated names.
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _tsExportSelected_Click(object sender, EventArgs e) {
-			CopyFiles(FileGroupType.Checked);
-		}
+		private void _tsExportSelected_Click(object sender, EventArgs e)
+			=> CopyFiles(FileGroupType.Checked);
 
 		/// <summary>
 		/// Show the main menu when clicking on the menu image.
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _pbMenu_Click(object sender, EventArgs e) {
-			_cmnuMain.Show(_pbMenu, -_cmnuMain.Width + _pbMenu.Width, _pbMenu.Height);
-		}
+		private void _pbMenu_Click(object sender, EventArgs e)
+			=> _cmnuMain.Show(_pbMenu, -_cmnuMain.Width + _pbMenu.Width, _pbMenu.Height);
 
 		/// <summary>
 		/// Show settings window.
@@ -455,8 +437,9 @@ namespace au.Applications.PhotoComb.UI {
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void _cmnuMainSettings_Click(object sender, EventArgs e) {
-			if(new SettingsWindow(_settings).ShowDialog(this) == DialogResult.OK)
-				RefreshData();
+			using(SettingsWindow settingsWindow = new SettingsWindow(_settings))
+				if(settingsWindow.ShowDialog(this) == DialogResult.OK)
+					RefreshData();
 		}
 
 		/// <summary>
@@ -465,7 +448,8 @@ namespace au.Applications.PhotoComb.UI {
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
 		private void _cmnuMainAbout_Click(object sender, EventArgs e) {
-			new AboutPhotoCombWindow().ShowDialog(this);
+			using(AboutPhotoCombWindow about = new AboutPhotoCombWindow())
+				about.ShowDialog(this);
 		}
 		#endregion event handlers
 	}
