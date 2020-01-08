@@ -113,7 +113,7 @@
 			this._txtCopyright.Size = new System.Drawing.Size(300, 51);
 			this._txtCopyright.TabIndex = 6;
 			this._txtCopyright.TabStop = false;
-			this._txtCopyright.Text = "© 2014 - 2019 the analog underground.\r\nThis program may be distributed freely to " +
+			this._txtCopyright.Text = "© 2014 - 2020 the analog underground.\r\nThis program may be distributed freely to " +
 		"anyone.\r\nSource code and updates are available at:";
 			// 
 			// _lnkURL
