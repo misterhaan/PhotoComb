@@ -34,6 +34,9 @@
     <AllowedReferenceRelatedFileExtensions>.pdb</AllowedReferenceRelatedFileExtensions>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\Properties\AssemblyInfo.Common.cs">
+      <Link>Properties\AssemblyInfo.Common.cs</Link>
+    </Compile>
     <Compile Include="CameraFileCollection.cs" />
     <Compile Include="Messages.Designer.cs">
       <AutoGen>True</AutoGen>
