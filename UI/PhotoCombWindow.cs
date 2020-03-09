@@ -7,6 +7,7 @@ using au.Applications.PhotoComb.Logic.Types;
 using au.Applications.PhotoComb.Settings.Types;
 using au.IO.Files.Camera.Types;
 using au.IO.Files.FileOperation;
+using au.UI.LatestVersion;
 
 namespace au.Applications.PhotoComb.UI {
 	/// <summary>
@@ -22,6 +23,11 @@ namespace au.Applications.PhotoComb.UI {
 		private readonly IPhotoCombSettings _settings;
 
 		/// <summary>
+		/// Update checker.
+		/// </summary>
+		private readonly VersionManager _versionManager;
+
+		/// <summary>
 		/// Collection of camera files the application is currently working with.
 		/// </summary>
 		private readonly ICameraFileCollection _files;
@@ -30,8 +36,9 @@ namespace au.Applications.PhotoComb.UI {
 		/// <summary>
 		/// Create a new Photo Combine main form.
 		/// </summary>
-		public PhotoCombWindow(IPhotoCombSettings settings, ICameraFileCollection fileCollection) {
+		public PhotoCombWindow(IPhotoCombSettings settings, VersionManager versionManager, ICameraFileCollection fileCollection) {
 			_settings = settings;
+			_versionManager = versionManager;
 			_files = fileCollection;
 			InitializeComponent();
 			// these icons must match up with CameraFileType (same number and order)
@@ -68,8 +75,10 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void PhotoComb_Shown(object sender, EventArgs e)
-			=> ChooseFolder();
+		private async void PhotoComb_Shown(object sender, EventArgs e) {
+			ChooseFolder();
+			await _versionManager.PromptForUpdate(this);
+		}
 
 		/// <summary>
 		/// Update the display size setting when it changes.
@@ -441,6 +450,14 @@ namespace au.Applications.PhotoComb.UI {
 				if(settingsWindow.ShowDialog(this) == DialogResult.OK)
 					RefreshData();
 		}
+
+		/// <summary>
+		/// Check for update and display the results.
+		/// </summary>
+		/// <param name="sender">Not used</param>
+		/// <param name="e">Not used</param>
+		private async void _cmnuMainCheckUpdate_Click(object sender, EventArgs e)
+			=> await _versionManager.PromptForUpdate(this, true);
 
 		/// <summary>
 		/// Show about window.

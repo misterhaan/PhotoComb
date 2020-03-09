@@ -160,6 +160,9 @@
   <data name="Time18" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>img\time18.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Update18" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>img\update.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Video16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>img\video16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

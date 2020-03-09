@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using au.Applications.PhotoComb.Logic;
 using au.Applications.PhotoComb.Settings;
 using au.Applications.PhotoComb.UI;
+using au.UI.LatestVersion;
 
 namespace au.Applications.PhotoComb {
 	internal static class PhotoCombApplication {
@@ -13,9 +14,10 @@ namespace au.Applications.PhotoComb {
 
 			SettingsManager settingsManager = new SettingsManager();
 			PhotoCombSettings settings = settingsManager.Settings;
+			VersionManager versionManager = new VersionManager("misterhaan", "PhotoComb");
 			CameraFileCollection cameraFileCollection = new CameraFileCollection(settings);
 
-			Application.Run(new PhotoCombWindow(settings, cameraFileCollection));
+			Application.Run(new PhotoCombWindow(settings, versionManager, cameraFileCollection));
 
 			settingsManager.Save();
 		}

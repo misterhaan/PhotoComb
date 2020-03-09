@@ -44,8 +44,17 @@
     <ApplicationIcon>Photo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="au.IO.Web.API.GitHub">
+      <HintPath>bin\au.IO.Web.API.GitHub.dll</HintPath>
+    </Reference>
+    <Reference Include="au.IO.Web.API.GitHub.Types">
+      <HintPath>bin\au.IO.Web.API.GitHub.Types.dll</HintPath>
+    </Reference>
     <Reference Include="au.Settings">
       <HintPath>bin\au.Settings.dll</HintPath>
+    </Reference>
+    <Reference Include="au.UI.LatestVersion">
+      <HintPath>bin\au.UI.LatestVersion.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Windows.Forms" />

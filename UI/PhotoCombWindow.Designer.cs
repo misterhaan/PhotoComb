@@ -27,13 +27,15 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PhotoCombWindow));
 			this._pnlStatus = new System.Windows.Forms.Panel();
 			this._lblFolder = new System.Windows.Forms.Label();
-			this._pbFolder = new System.Windows.Forms.PictureBox();
-			this._pbMenu = new System.Windows.Forms.PictureBox();
 			this._cmnuMain = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this._cmnuMainFolder = new System.Windows.Forms.ToolStripMenuItem();
-			this._cmnuMainAbout = new System.Windows.Forms.ToolStripMenuItem();
-			this._cmnuMainSettings = new System.Windows.Forms.ToolStripMenuItem();
 			this._ts = new System.Windows.Forms.ToolStrip();
+			this._lv = new System.Windows.Forms.ListView();
+			this._colOldName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this._colNewName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this._colMessage = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this._il = new System.Windows.Forms.ImageList(this.components);
+			this._fbdOpen = new System.Windows.Forms.FolderBrowserDialog();
+			this._fbdExport = new System.Windows.Forms.FolderBrowserDialog();
 			this._tsRescan = new System.Windows.Forms.ToolStripButton();
 			this._tsTimestamp = new System.Windows.Forms.ToolStripSplitButton();
 			this._tsTimestampAll = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,18 +51,17 @@
 			this._tsExport = new System.Windows.Forms.ToolStripSplitButton();
 			this._tsExportAll = new System.Windows.Forms.ToolStripMenuItem();
 			this._tsExportSelected = new System.Windows.Forms.ToolStripMenuItem();
-			this._lv = new System.Windows.Forms.ListView();
-			this._colOldName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this._colNewName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this._colMessage = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-			this._il = new System.Windows.Forms.ImageList(this.components);
-			this._fbdOpen = new System.Windows.Forms.FolderBrowserDialog();
-			this._fbdExport = new System.Windows.Forms.FolderBrowserDialog();
+			this._pbFolder = new System.Windows.Forms.PictureBox();
+			this._pbMenu = new System.Windows.Forms.PictureBox();
+			this._cmnuMainFolder = new System.Windows.Forms.ToolStripMenuItem();
+			this._cmnuMainSettings = new System.Windows.Forms.ToolStripMenuItem();
+			this._cmnuMainCheckUpdate = new System.Windows.Forms.ToolStripMenuItem();
+			this._cmnuMainAbout = new System.Windows.Forms.ToolStripMenuItem();
 			this._pnlStatus.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this._pbFolder)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this._pbMenu)).BeginInit();
 			this._cmnuMain.SuspendLayout();
 			this._ts.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this._pbFolder)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this._pbMenu)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// _pnlStatus
@@ -90,67 +91,15 @@
 			this._lblFolder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this._lblFolder.DoubleClick += new System.EventHandler(this.folder_Click);
 			// 
-			// _pbFolder
-			// 
-			this._pbFolder.Anchor = System.Windows.Forms.AnchorStyles.Left;
-			this._pbFolder.Image = global::au.Applications.PhotoComb.UI.MaterialIcons.Folder24;
-			this._pbFolder.Location = new System.Drawing.Point(4, 4);
-			this._pbFolder.Margin = new System.Windows.Forms.Padding(4, 4, 0, 4);
-			this._pbFolder.Name = "_pbFolder";
-			this._pbFolder.Size = new System.Drawing.Size(32, 32);
-			this._pbFolder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-			this._pbFolder.TabIndex = 8;
-			this._pbFolder.TabStop = false;
-			this._pbFolder.Click += new System.EventHandler(this.folder_Click);
-			// 
-			// _pbMenu
-			// 
-			this._pbMenu.Anchor = System.Windows.Forms.AnchorStyles.Right;
-			this._pbMenu.ContextMenuStrip = this._cmnuMain;
-			this._pbMenu.Image = global::au.Applications.PhotoComb.UI.MaterialIcons.Menu24;
-			this._pbMenu.Location = new System.Drawing.Point(716, 4);
-			this._pbMenu.Margin = new System.Windows.Forms.Padding(0, 4, 4, 4);
-			this._pbMenu.Name = "_pbMenu";
-			this._pbMenu.Size = new System.Drawing.Size(32, 32);
-			this._pbMenu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-			this._pbMenu.TabIndex = 7;
-			this._pbMenu.TabStop = false;
-			this._pbMenu.Click += new System.EventHandler(this._pbMenu_Click);
-			// 
 			// _cmnuMain
 			// 
 			this._cmnuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._cmnuMainFolder,
-            this._cmnuMainAbout,
-            this._cmnuMainSettings});
+            this._cmnuMainSettings,
+            this._cmnuMainCheckUpdate,
+            this._cmnuMainAbout});
 			this._cmnuMain.Name = "_cmnuMain";
-			this._cmnuMain.Size = new System.Drawing.Size(162, 76);
-			// 
-			// _cmnuMainFolder
-			// 
-			this._cmnuMainFolder.Image = global::au.Applications.PhotoComb.UI.MaterialIcons.Folder18;
-			this._cmnuMainFolder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-			this._cmnuMainFolder.Name = "_cmnuMainFolder";
-			this._cmnuMainFolder.Size = new System.Drawing.Size(161, 24);
-			this._cmnuMainFolder.Text = "Choose &Folder...";
-			this._cmnuMainFolder.Click += new System.EventHandler(this.folder_Click);
-			// 
-			// _cmnuMainAbout
-			// 
-			this._cmnuMainAbout.Image = global::au.Applications.PhotoComb.UI.MaterialIcons.About18;
-			this._cmnuMainAbout.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-			this._cmnuMainAbout.Name = "_cmnuMainAbout";
-			this._cmnuMainAbout.Size = new System.Drawing.Size(161, 24);
-			this._cmnuMainAbout.Text = "&About";
-			this._cmnuMainAbout.Click += new System.EventHandler(this._cmnuMainAbout_Click);
-			// 
-			// _cmnuMainSettings
-			// 
-			this._cmnuMainSettings.Image = global::au.Applications.PhotoComb.UI.MaterialIcons.Settings18;
-			this._cmnuMainSettings.Name = "_cmnuMainSettings";
-			this._cmnuMainSettings.Size = new System.Drawing.Size(161, 24);
-			this._cmnuMainSettings.Text = "&Settings...";
-			this._cmnuMainSettings.Click += new System.EventHandler(this._cmnuMainSettings_Click);
+			this._cmnuMain.Size = new System.Drawing.Size(183, 122);
 			// 
 			// _ts
 			// 
@@ -166,6 +115,57 @@
 			this._ts.Padding = new System.Windows.Forms.Padding(6, 0, 1, 0);
 			this._ts.Size = new System.Drawing.Size(752, 25);
 			this._ts.TabIndex = 12;
+			// 
+			// _lv
+			// 
+			this._lv.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this._lv.CheckBoxes = true;
+			this._lv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this._colOldName,
+            this._colNewName,
+            this._colMessage});
+			this._lv.Dock = System.Windows.Forms.DockStyle.Fill;
+			this._lv.FullRowSelect = true;
+			this._lv.HideSelection = false;
+			this._lv.Location = new System.Drawing.Point(0, 65);
+			this._lv.Name = "_lv";
+			this._lv.Size = new System.Drawing.Size(752, 376);
+			this._lv.SmallImageList = this._il;
+			this._lv.Sorting = System.Windows.Forms.SortOrder.Ascending;
+			this._lv.TabIndex = 13;
+			this._lv.UseCompatibleStateImageBehavior = false;
+			this._lv.View = System.Windows.Forms.View.Details;
+			this._lv.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this._lv_ItemChecked);
+			// 
+			// _colOldName
+			// 
+			this._colOldName.Text = "Original";
+			this._colOldName.Width = 150;
+			// 
+			// _colNewName
+			// 
+			this._colNewName.Text = "New";
+			this._colNewName.Width = 240;
+			// 
+			// _colMessage
+			// 
+			this._colMessage.Text = "Message";
+			this._colMessage.Width = 300;
+			// 
+			// _il
+			// 
+			this._il.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+			this._il.ImageSize = new System.Drawing.Size(16, 16);
+			this._il.TransparentColor = System.Drawing.Color.Transparent;
+			// 
+			// _fbdOpen
+			// 
+			this._fbdOpen.Description = "Choose a folder with photos that need to be renamed.";
+			this._fbdOpen.ShowNewFolderButton = false;
+			// 
+			// _fbdExport
+			// 
+			this._fbdExport.Description = "Choose a folder to copy files into using the new names.";
 			// 
 			// _tsRescan
 			// 
@@ -189,7 +189,7 @@
 			this._tsTimestamp.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this._tsTimestamp.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this._tsTimestamp.Name = "_tsTimestamp";
-			this._tsTimestamp.Size = new System.Drawing.Size(114, 22);
+			this._tsTimestamp.Size = new System.Drawing.Size(113, 22);
 			this._tsTimestamp.Text = "Adjust &Time...";
 			this._tsTimestamp.ToolTipText = "Adjust time taken for all files in the folder";
 			this._tsTimestamp.ButtonClick += new System.EventHandler(this._tsTimestampAll_Click);
@@ -318,7 +318,7 @@
 			this._tsExport.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
 			this._tsExport.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this._tsExport.Name = "_tsExport";
-			this._tsExport.Size = new System.Drawing.Size(83, 22);
+			this._tsExport.Size = new System.Drawing.Size(84, 22);
 			this._tsExport.Text = "E&xport...";
 			this._tsExport.ButtonClick += new System.EventHandler(this._tsExportAll_Click);
 			// 
@@ -342,56 +342,66 @@
 			this._tsExportSelected.Text = "Chec&ked...";
 			this._tsExportSelected.Click += new System.EventHandler(this._tsExportSelected_Click);
 			// 
-			// _lv
+			// _pbFolder
 			// 
-			this._lv.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this._lv.CheckBoxes = true;
-			this._lv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this._colOldName,
-            this._colNewName,
-            this._colMessage});
-			this._lv.Dock = System.Windows.Forms.DockStyle.Fill;
-			this._lv.FullRowSelect = true;
-			this._lv.HideSelection = false;
-			this._lv.Location = new System.Drawing.Point(0, 65);
-			this._lv.Name = "_lv";
-			this._lv.Size = new System.Drawing.Size(752, 376);
-			this._lv.SmallImageList = this._il;
-			this._lv.Sorting = System.Windows.Forms.SortOrder.Ascending;
-			this._lv.TabIndex = 13;
-			this._lv.UseCompatibleStateImageBehavior = false;
-			this._lv.View = System.Windows.Forms.View.Details;
-			this._lv.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this._lv_ItemChecked);
+			this._pbFolder.Anchor = System.Windows.Forms.AnchorStyles.Left;
+			this._pbFolder.Image = global::au.Applications.PhotoComb.UI.MaterialIcons.Folder24;
+			this._pbFolder.Location = new System.Drawing.Point(4, 4);
+			this._pbFolder.Margin = new System.Windows.Forms.Padding(4, 4, 0, 4);
+			this._pbFolder.Name = "_pbFolder";
+			this._pbFolder.Size = new System.Drawing.Size(32, 32);
+			this._pbFolder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+			this._pbFolder.TabIndex = 8;
+			this._pbFolder.TabStop = false;
+			this._pbFolder.Click += new System.EventHandler(this.folder_Click);
 			// 
-			// _colOldName
+			// _pbMenu
 			// 
-			this._colOldName.Text = "Original";
-			this._colOldName.Width = 150;
+			this._pbMenu.Anchor = System.Windows.Forms.AnchorStyles.Right;
+			this._pbMenu.ContextMenuStrip = this._cmnuMain;
+			this._pbMenu.Image = global::au.Applications.PhotoComb.UI.MaterialIcons.Menu24;
+			this._pbMenu.Location = new System.Drawing.Point(716, 4);
+			this._pbMenu.Margin = new System.Windows.Forms.Padding(0, 4, 4, 4);
+			this._pbMenu.Name = "_pbMenu";
+			this._pbMenu.Size = new System.Drawing.Size(32, 32);
+			this._pbMenu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+			this._pbMenu.TabIndex = 7;
+			this._pbMenu.TabStop = false;
+			this._pbMenu.Click += new System.EventHandler(this._pbMenu_Click);
 			// 
-			// _colNewName
+			// _cmnuMainFolder
 			// 
-			this._colNewName.Text = "New";
-			this._colNewName.Width = 240;
+			this._cmnuMainFolder.Image = global::au.Applications.PhotoComb.UI.MaterialIcons.Folder18;
+			this._cmnuMainFolder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+			this._cmnuMainFolder.Name = "_cmnuMainFolder";
+			this._cmnuMainFolder.Size = new System.Drawing.Size(182, 24);
+			this._cmnuMainFolder.Text = "Choose &Folder...";
+			this._cmnuMainFolder.Click += new System.EventHandler(this.folder_Click);
 			// 
-			// _colMessage
+			// _cmnuMainSettings
 			// 
-			this._colMessage.Text = "Message";
-			this._colMessage.Width = 300;
+			this._cmnuMainSettings.Image = global::au.Applications.PhotoComb.UI.MaterialIcons.Settings18;
+			this._cmnuMainSettings.Name = "_cmnuMainSettings";
+			this._cmnuMainSettings.Size = new System.Drawing.Size(182, 24);
+			this._cmnuMainSettings.Text = "&Settings...";
+			this._cmnuMainSettings.Click += new System.EventHandler(this._cmnuMainSettings_Click);
 			// 
-			// _il
+			// _cmnuMainCheckUpdate
 			// 
-			this._il.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-			this._il.ImageSize = new System.Drawing.Size(16, 16);
-			this._il.TransparentColor = System.Drawing.Color.Transparent;
+			this._cmnuMainCheckUpdate.Image = global::au.Applications.PhotoComb.UI.MaterialIcons.Update18;
+			this._cmnuMainCheckUpdate.Name = "_cmnuMainCheckUpdate";
+			this._cmnuMainCheckUpdate.Size = new System.Drawing.Size(182, 24);
+			this._cmnuMainCheckUpdate.Text = "Check for &Update...";
+			this._cmnuMainCheckUpdate.Click += new System.EventHandler(this._cmnuMainCheckUpdate_Click);
 			// 
-			// _fbdOpen
+			// _cmnuMainAbout
 			// 
-			this._fbdOpen.Description = "Choose a folder with photos that need to be renamed.";
-			this._fbdOpen.ShowNewFolderButton = false;
-			// 
-			// _fbdExport
-			// 
-			this._fbdExport.Description = "Choose a folder to copy files into using the new names.";
+			this._cmnuMainAbout.Image = global::au.Applications.PhotoComb.UI.MaterialIcons.About18;
+			this._cmnuMainAbout.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+			this._cmnuMainAbout.Name = "_cmnuMainAbout";
+			this._cmnuMainAbout.Size = new System.Drawing.Size(182, 24);
+			this._cmnuMainAbout.Text = "&About";
+			this._cmnuMainAbout.Click += new System.EventHandler(this._cmnuMainAbout_Click);
 			// 
 			// PhotoCombWindow
 			// 
@@ -410,11 +420,11 @@
 			this.DragDrop += new System.Windows.Forms.DragEventHandler(this.PhotoComb_DragDrop);
 			this.DragEnter += new System.Windows.Forms.DragEventHandler(this.PhotoComb_DragEnter);
 			this._pnlStatus.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this._pbFolder)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this._pbMenu)).EndInit();
 			this._cmnuMain.ResumeLayout(false);
 			this._ts.ResumeLayout(false);
 			this._ts.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this._pbFolder)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this._pbMenu)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -453,5 +463,6 @@
 		private System.Windows.Forms.FolderBrowserDialog _fbdExport;
 		private System.Windows.Forms.ToolStripMenuItem _cmnuMainFolder;
 		private System.Windows.Forms.ToolStripMenuItem _cmnuMainSettings;
+		private System.Windows.Forms.ToolStripMenuItem _cmnuMainCheckUpdate;
 	}
 }
