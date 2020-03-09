@@ -78,19 +78,16 @@ namespace au.IO.Files.Camera {
 		}
 
 		/// <inheritdoc />
-		public void RenameToSortable() {
-			_file.MoveTo(Path.Combine(_file.DirectoryName, SortableName));
-		}
+		public void RenameToSortable()
+			=> _file.MoveTo(Path.Combine(_file.DirectoryName, SortableName));
 
 		/// <inheritdoc />
-		public void CopyTo(string destFileName) {
-			_file.CopyTo(destFileName);
-		}
+		public void CopyTo(string destFileName)
+			=> _file.CopyTo(destFileName);
 
 		/// <inheritdoc />
-		internal FileStream Open(FileMode mode, FileAccess access, FileShare share) {
-			return _file.Open(mode, access, share);
-		}
+		internal FileStream Open(FileMode mode, FileAccess access, FileShare share)
+			=> _file.Open(mode, access, share);
 
 		/// <summary>
 		/// Get the unique part of the filename.  Often a sequential number.
@@ -99,6 +96,7 @@ namespace au.IO.Files.Camera {
 		private string GetId() {
 			string id = Name.Substring(0, Name.Length - _file.Extension.Length);
 
+#pragma warning disable IDE0046
 			// default camera filenames 
 			if((id.StartsWith("IMG_") || id.StartsWith("MVI_") || id.StartsWith("DSC")) && id.Length <= 12)
 				return id.Substring(4);
@@ -121,13 +119,14 @@ namespace au.IO.Files.Camera {
 			if(id.Length <= 12 || id.Count(char.IsLetter) * 2 > id.Length)
 				return id;
 			return "";
+#pragma warning restore IDE0046
 		}
 
 		/// <summary>
 		/// Asynchronous metadata lookup.
 		/// </summary>
 		private async Task LookupMetadataAsync(MetadataLookupFactory metadataFactory) {
-			CameraFileMetadata metadata = await metadataFactory.Build(this).GetAsync();
+			CameraFileMetadata metadata = await metadataFactory.Build(this).GetAsync().ConfigureAwait(false);
 			if(metadata.Failed) {
 				ErrorMessage = metadata.Message;
 				Exception = metadata.Exception;
@@ -140,28 +139,23 @@ namespace au.IO.Files.Camera {
 		/// </summary>
 		/// <param name="obj">Another object to compare.</param>
 		/// <returns>Whether the objects reference the same file.</returns>
-		public override bool Equals(object obj) {
-			if(obj is ICameraFileInfo cfi)
-				return Equals(cfi);
-			return false;
-		}
+		public override bool Equals(object obj)
+			=> obj is ICameraFileInfo cfi ? Equals(cfi) : false;
 
 		/// <summary>
 		/// Returns the hash code for this CameraFileInfo.
 		/// </summary>
 		/// <returns>Hash code for this CameraFileInfo.</returns>
-		public override int GetHashCode() {
-			return FullName.GetHashCode();
-		}
+		public override int GetHashCode()
+			=> FullName.GetHashCode();
 
 		/// <summary>
 		/// Indicates whether the current object references the same file as another.
 		/// </summary>
 		/// <param name="other">Another object to compare.</param>
 		/// <returns>Whether the objects reference the same file.</returns>
-		public bool Equals(ICameraFileInfo other) {
-			return FullName == other?.FullName;
-		}
+		public bool Equals(ICameraFileInfo other)
+			=> FullName == other?.FullName;
 
 		/// <summary>
 		/// Equality operator for CameraFileInfo.
@@ -169,9 +163,8 @@ namespace au.IO.Files.Camera {
 		/// <param name="cfi1">Object to compare.</param>
 		/// <param name="cfi2">Another object to compare.</param>
 		/// <returns>Whether the objects reference the same file.</returns>
-		public static bool operator ==(CameraFileInfo cfi1, ICameraFileInfo cfi2) {
-			return cfi1.Equals(cfi2);
-		}
+		public static bool operator ==(CameraFileInfo cfi1, ICameraFileInfo cfi2)
+			=> cfi1.Equals(cfi2);
 
 
 		/// <summary>
@@ -180,8 +173,7 @@ namespace au.IO.Files.Camera {
 		/// <param name="cfi1">Object to compare.</param>
 		/// <param name="cfi2">Another object to compare.</param>
 		/// <returns>Whether the objects reference the same file.</returns>
-		public static bool operator !=(CameraFileInfo cfi1, ICameraFileInfo cfi2) {
-			return !cfi1.Equals(cfi2);
-		}
+		public static bool operator !=(CameraFileInfo cfi1, ICameraFileInfo cfi2)
+			=> !cfi1.Equals(cfi2);
 	}
 }

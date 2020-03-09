@@ -57,9 +57,7 @@ namespace au.IO.Files.Camera.MetadataLookup.Tests {
 				new HashSet<string>(new string[] { "mp4", "mov", "avi" }, StringComparer.OrdinalIgnoreCase));
 		}
 
-		private CameraFileInfo GetCameraFileInfo(string filePath, MetadataLookupFactory factory) {
-
-			return new CameraFileInfo(new FileInfo(filePath), A.Fake<IFilenameFormatSettings>(), factory);
-		}
+		private CameraFileInfo GetCameraFileInfo(string filePath, MetadataLookupFactory factory)
+			=> new CameraFileInfo(new FileInfo(filePath), A.Fake<IFilenameFormatSettings>(), factory);
 	}
 }
