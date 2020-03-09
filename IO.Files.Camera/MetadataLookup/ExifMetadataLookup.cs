@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using au.IO.Files.Camera.Types;
 
@@ -16,8 +15,7 @@ namespace au.IO.Files.Camera.MetadataLookup {
 		internal ExifMetadataLookup(CameraFileInfo file) : base(file) { }
 
 		/// <inheritdoc />
-		internal override async Task<CameraFileMetadata> GetAsync() {
-			await Task.Yield();
+		protected override CameraFileMetadata Get() {
 			try {
 				using(FileStream stream = _file.Open(FileMode.Open, FileAccess.Read, FileShare.Read))
 					try {

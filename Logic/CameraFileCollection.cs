@@ -20,12 +20,12 @@ namespace au.Applications.PhotoComb.Logic {
 		/// <summary>
 		/// Camera files indexed by filename.
 		/// </summary>
-		private Dictionary<string, ICameraFileInfo> _filenameIndex = new Dictionary<string, ICameraFileInfo>(StringComparer.OrdinalIgnoreCase);
+		private readonly Dictionary<string, ICameraFileInfo> _filenameIndex = new Dictionary<string, ICameraFileInfo>(StringComparer.OrdinalIgnoreCase);
 
 		/// <summary>
 		/// Camera files grouped by camera model.
 		/// </summary>
-		private Dictionary<string, List<ICameraFileInfo>> _modelIndex = new Dictionary<string, List<ICameraFileInfo>>();
+		private readonly Dictionary<string, List<ICameraFileInfo>> _modelIndex = new Dictionary<string, List<ICameraFileInfo>>();
 
 		/// <summary>
 		/// Create a camera file collection.
@@ -42,9 +42,8 @@ namespace au.Applications.PhotoComb.Logic {
 		public IEnumerable<ICameraFileInfo> Files => _filenameIndex.Values;
 
 		/// <inheritdoc />
-		public IEnumerable<ICameraFileInfo> GetFilesFromNames(IEnumerable<string> filenames) {
-			return filenames.Select(filename => _filenameIndex[filename]);
-		}
+		public IEnumerable<ICameraFileInfo> GetFilesFromNames(IEnumerable<string> filenames)
+			=> filenames.Select(filename => _filenameIndex[filename]);
 
 		#region Initialization
 		/// <inheritdoc />
@@ -65,7 +64,7 @@ namespace au.Applications.PhotoComb.Logic {
 		/// <param name="cfi">Camera file to await and update.</param>
 		/// <returns></returns>
 		private async Task UpdateModelIndexAsync(ICameraFileInfo cfi) {
-			await cfi.LookupMetadata;
+			await cfi.LookupMetadata.ConfigureAwait(false);
 			if(_filenameIndex.ContainsKey(cfi.Name))  // it's possible for metadata lookup to finish after the application switched to a different folder
 				lock(_modelIndex) {
 					string model = cfi.CameraNameOverride ?? cfi.Metadata.Model ?? "";
@@ -79,19 +78,16 @@ namespace au.Applications.PhotoComb.Logic {
 
 		#region Time Correction
 		/// <inheritdoc />
-		public void ApplyTimeCorrection(TimeSpan correction) {
-			ApplyTimeCorrection(correction, _filenameIndex.Values);
-		}
+		public void ApplyTimeCorrection(TimeSpan correction)
+			=> ApplyTimeCorrection(correction, _filenameIndex.Values);
 
 		/// <inheritdoc />
-		public void ApplyTimeCorrection(TimeSpan correction, string model) {
-			ApplyTimeCorrection(correction, _modelIndex[model]);
-		}
+		public void ApplyTimeCorrection(TimeSpan correction, string model)
+			=> ApplyTimeCorrection(correction, _modelIndex[model]);
 
 		/// <inheritdoc />
-		public void ApplyTimeCorrection(TimeSpan correction, IEnumerable<string> filenames) {
-			ApplyTimeCorrection(correction, GetFilesFromNames(filenames));
-		}
+		public void ApplyTimeCorrection(TimeSpan correction, IEnumerable<string> filenames)
+			=> ApplyTimeCorrection(correction, GetFilesFromNames(filenames));
 
 		/// <summary>
 		/// Correct the time taken by the specified amount for the specified files.
@@ -165,14 +161,12 @@ namespace au.Applications.PhotoComb.Logic {
 
 		#region Rename Files
 		/// <inheritdoc />
-		public void RenameFilesToSortable() {
-			RenameFilesToSortable(_filenameIndex.Values.ToArray());  // needs to make a copy first so we can change _filenameIndex
-		}
+		public void RenameFilesToSortable()
+			=> RenameFilesToSortable(_filenameIndex.Values.ToArray());  // needs to make a copy first so we can change _filenameIndex
 
 		/// <inheritdoc />
-		public void RenameFilesToSortable(IEnumerable<string> filenames) {
-			RenameFilesToSortable(GetFilesFromNames(filenames));
-		}
+		public void RenameFilesToSortable(IEnumerable<string> filenames)
+			=> RenameFilesToSortable(GetFilesFromNames(filenames));
 
 		/// <summary>
 		/// Renames the specified files to their sortable names.

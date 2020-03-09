@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using au.IO.Files.Camera.Types;
 
 namespace au.IO.Files.Camera.MetadataLookup {
@@ -14,8 +13,7 @@ namespace au.IO.Files.Camera.MetadataLookup {
 		internal MediaInfoMetadataLookup(CameraFileInfo file) : base(file) { }
 
 		/// <inheritdoc />
-		internal override async Task<CameraFileMetadata> GetAsync() {
-			await Task.Yield();
+		protected override CameraFileMetadata Get() {
 			using(MediaInfo mediaInfo = new MediaInfo())
 				try {
 					mediaInfo.Open(_file.FullName);

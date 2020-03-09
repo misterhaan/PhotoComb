@@ -3,6 +3,10 @@ Photo Combine renames photos from multiple cameras to avoid filename conflicts a
 
 ## Revision History
 
+### (next)
+* Update checking
+* Better threading
+
 ### 2.0.0
 * Add settings for filename format and which extensions are videos or photos
 * Use file copy dialog for export

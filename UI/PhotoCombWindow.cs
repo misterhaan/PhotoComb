@@ -75,10 +75,11 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private async void PhotoComb_Shown(object sender, EventArgs e) {
-			ChooseFolder();
-			await _versionManager.PromptForUpdate(this);
-		}
+		private async void PhotoComb_Shown(object sender, EventArgs e)
+			=> await Task.WhenAll(
+					ChooseFolder(),
+					_versionManager.PromptForUpdate(this)
+				).ConfigureAwait(false);
 
 		/// <summary>
 		/// Update the display size setting when it changes.
@@ -104,28 +105,30 @@ namespace au.Applications.PhotoComb.UI {
 		/// <summary>
 		/// Prompt for selection of a folder to scan.
 		/// </summary>
-		private void ChooseFolder() {
+		private async Task ChooseFolder() {
 			if(_fbdOpen.ShowDialog(this) == DialogResult.OK)
-				ScanFolder(_fbdOpen.SelectedPath);
+				await ScanFolder(_fbdOpen.SelectedPath).ConfigureAwait(false);
 		}
 
 		/// <summary>
 		/// Scans the specified folder path.
 		/// </summary>
 		/// <param name="path">Full folder path to scan</param>
-		private void ScanFolder(string path) {
+		private async Task ScanFolder(string path) {
 			_lv.Items.Clear();
 			_lblFolder.Text = Labels.Loading;
 			_lv.BeginUpdate();
+			List<Task> metadataTasks = new List<Task>();
 			foreach(ICameraFileInfo cfi in _files.ScanDirectory(path)) {
 				ListViewItem lvi = new ListViewItem(new string[] { cfi.Name, cfi.SortableName, cfi.ErrorMessage }, (int)cfi.Metadata.Type);
-				Task.Run(() => UpdateWithMetadataAsync(lvi, cfi));
+				metadataTasks.Add(UpdateWithMetadataAsync(lvi, cfi));
 				_lv.Items.Add(lvi);
 			}
 			_lv.EndUpdate();
 			_settings.LastSourceDir = _lblFolder.Text = path;
 			_tsTimestamp.Enabled = _tsModel.Enabled = _tsRename.Enabled = _tsExport.Enabled = _lv.Items.Count > 0;
 			_tsTimestampCamera.Visible = _tsModelCamera.Visible = _files.CameraNames.Count > 0;
+			await Task.WhenAll(metadataTasks).ConfigureAwait(false);
 		}
 
 		/// <summary>
@@ -153,12 +156,10 @@ namespace au.Applications.PhotoComb.UI {
 		/// <param name="cfi">Data for list item</param>
 		/// <returns></returns>
 		private async Task UpdateWithMetadataAsync(ListViewItem lvi, ICameraFileInfo cfi) {
-			await cfi.LookupMetadata;
-			BeginInvoke(new MethodInvoker(() => {
-				lvi.SubItems[_colNewName.Index].Text = cfi.SortableName;
-				lvi.SubItems[_colMessage.Index].Text = cfi.ErrorMessage;
-				lvi.ImageIndex = (int)cfi.Metadata.Type;
-			}));
+			await cfi.LookupMetadata.ConfigureAwait(true);
+			lvi.SubItems[_colNewName.Index].Text = cfi.SortableName;
+			lvi.SubItems[_colMessage.Index].Text = cfi.ErrorMessage;
+			lvi.ImageIndex = (int)cfi.Metadata.Type;
 		}
 
 		/// <summary>
@@ -319,11 +320,11 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">The first foldername or the containing folder of the first filename will be used</param>
-		private void PhotoComb_DragDrop(object sender, DragEventArgs e) {
+		private async void PhotoComb_DragDrop(object sender, DragEventArgs e) {
 			if(e.Data.GetDataPresent(DataFormats.FileDrop)) {
 				string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
 				if(files.Length > 0)
-					ScanFolder(Directory.Exists(files[0]) ? files[0] : Path.GetDirectoryName(files[0]));
+					await ScanFolder(Directory.Exists(files[0]) ? files[0] : Path.GetDirectoryName(files[0])).ConfigureAwait(false);
 			}
 		}
 
@@ -332,8 +333,8 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void folder_Click(object sender, EventArgs e)
-			=> ChooseFolder();
+		private async void folder_Click(object sender, EventArgs e)
+			=> await ChooseFolder().ConfigureAwait(false);
 
 		/// <summary>
 		/// Enable or disable buttons that act on the selection based on whether
@@ -349,8 +350,8 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _tsRescan_Click(object sender, EventArgs e)
-			=> ScanFolder(_lblFolder.Text);
+		private async void _tsRescan_Click(object sender, EventArgs e)
+			=> await ScanFolder(_lblFolder.Text).ConfigureAwait(false);
 
 		/// <summary>
 		/// Change the time taken for all files that have a time taken.
@@ -457,7 +458,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
 		private async void _cmnuMainCheckUpdate_Click(object sender, EventArgs e)
-			=> await _versionManager.PromptForUpdate(this, true);
+			=> await _versionManager.PromptForUpdate(this, true).ConfigureAwait(false);
 
 		/// <summary>
 		/// Show about window.

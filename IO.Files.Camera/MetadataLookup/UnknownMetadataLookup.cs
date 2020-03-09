@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace au.IO.Files.Camera.MetadataLookup {
+﻿namespace au.IO.Files.Camera.MetadataLookup {
 	/// <summary>
 	/// Files with extensions not mapped to an actual lookup use this instead of doing metadata lookup.
 	/// </summary>
@@ -12,8 +10,7 @@ namespace au.IO.Files.Camera.MetadataLookup {
 		internal UnknownMetadataLookup(CameraFileInfo file) : base(file) { }
 
 		/// <inheritdoc />
-		internal override Task<CameraFileMetadata> GetAsync() {
-			return Task.FromResult(CameraFileMetadata.Unknown);
-		}
+		protected override CameraFileMetadata Get()
+			=> CameraFileMetadata.Unknown;
 	}
 }
