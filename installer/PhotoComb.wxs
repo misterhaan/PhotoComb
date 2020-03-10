@@ -61,11 +61,26 @@
 			<Component Id="auIOFilesFileOperationdll" Guid="A2F30D5F-414D-4035-AB88-905AF0656DF8">
 				<File Id="au.IO.Files.FileOperation.dll" Name="au.IO.Files.FileOperation.dll" DiskId="1" Source="$(var.BuildFolder)\au.IO.Files.FileOperation.dll" />
 			</Component>
+			<Component Id="auIOWebAPIGitHubdll" Guid="1963B795-F0D1-4E56-8126-0317BA3F536E">
+				<File Id="au.IO.Web.API.GitHub.dll" Name="au.IO.Web.API.GitHub.dll" DiskId="1" Source="$(var.BuildFolder)\au.IO.Web.API.GitHub.dll" />
+			</Component>
+			<Component Id="auIOWebAPIGitHubTypesdll" Guid="66E699D8-ACFB-4918-B4BF-DEA74F4A1F53">
+				<File Id="au.IO.Web.API.GitHub.Types.dll" Name="au.IO.Web.API.GitHub.Types.dll" DiskId="1" Source="$(var.BuildFolder)\au.IO.Web.API.GitHub.Types.dll" />
+			</Component>
 			<Component Id="auSettingsdll" Guid="B32FE277-3668-4F20-A905-FDE9038E3420">
 				<File Id="au.Settings.dll" Name="au.Settings.dll" DiskId="1" Source="$(var.BuildFolder)\au.Settings.dll" />
 			</Component>
 			<Component Id="auSettingsTypesdll" Guid="C25C22DF-8331-42EA-BB7F-262C95C232AB">
 				<File Id="au.Settings.Types.dll" Name="au.Settings.Types.dll" DiskId="1" Source="$(var.BuildFolder)\au.Settings.Types.dll" />
+			</Component>
+			<Component Id="auUILatestVersiondll" Guid="C145F1C3-2A3F-44B4-AC51-D612E85B0CC1">
+				<File Id="au.UI.LatestVersion.dll" Name="au.UI.LatestVersion.dll" DiskId="1" Source="$(var.BuildFolder)\au.UI.LatestVersion.dll" />
+			</Component>
+			<Component Id="auUITaskDialogdll" Guid="ADA370E6-A05B-44AE-A3F6-FB39FC898AAB">
+				<File Id="au.UI.TaskDialog.dll" Name="au.UI.TaskDialog.dll" DiskId="1" Source="$(var.BuildFolder)\au.UI.TaskDialog.dll" />
+			</Component>
+			<Component Id="NewtonsoftJsondll" Guid="36177B21-C1D1-4F97-A111-1B064B8EB589">
+				<File Id="Newtonsoft.Json.dll" Name="Newtonsoft.Json.dll" DiskId="1" Source="$(var.BuildFolder)\Newtonsoft.Json.dll" />
 			</Component>
 			<Component Id="mediainfodll" Guid="FC9054A9-557D-405C-BBC1-B9C51A85AAE6">
 				<File Id="MediaInfo.dll" Name="MediaInfo.dll" DiskId="1" Source="$(var.ExternalBinFolder)\MediaInfo.dll" />
@@ -100,8 +115,13 @@
 				<ComponentRef Id="auIOFilesCameradll" />
 				<ComponentRef Id="auIOFilesCameraTypesdll" />
 				<ComponentRef Id="auIOFilesFileOperationdll" />
+				<ComponentRef Id="auIOWebAPIGitHubdll" />
+				<ComponentRef Id="auIOWebAPIGitHubTypesdll" />
 				<ComponentRef Id="auSettingsdll" />
 				<ComponentRef Id="auSettingsTypesdll" />
+				<ComponentRef Id="auUILatestVersiondll" />
+				<ComponentRef Id="auUITaskDialogdll" />
+				<ComponentRef Id="NewtonsoftJsondll" />
 				<ComponentRef Id="mediainfodll" />
 			</Feature>
 			<Feature Id="photocombshortcuts" Level="1" Title="Shortcuts" Description="Shortcuts for launching Photo Combine">
@@ -145,6 +165,7 @@
 				</Control>
 				<Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="[ButtonText_Cancel]">
 					<Publish Event="EndDialog" Value="Exit">1</Publish>
+					<Publish Event="DoAction" Value="LaunchApplication">RESTART = 1 and NOT Installed</Publish>
 				</Control>
 			</Dialog>
 
@@ -711,6 +732,8 @@
 		<Property Id="BannerBitmap">bannerbmp</Property>
 		<Property Id="TypicalSetupIcon">typicalico</Property>
 		<Property Id="CustomSetupIcon">customico</Property>
+
+		<CustomAction Id="LaunchApplication" Directory="INSTALLDIR" ExeCommand="[#PhotoComb.exe]" Return="asyncNoWait" Impersonate="yes" />
 
 		<Icon Id="photo.ico" SourceFile="../Photo.ico" />
 		<Binary Id="dialogbmp" SourceFile="dialog.bmp" />
