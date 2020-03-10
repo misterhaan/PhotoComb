@@ -3,7 +3,7 @@ Photo Combine renames photos from multiple cameras to avoid filename conflicts a
 
 ## Revision History
 
-### (next)
+### 2.1.0
 * Update checking
 * Better threading
 
