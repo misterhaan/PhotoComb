@@ -92,9 +92,8 @@ namespace au.IO.Files.Camera.Tests {
 		}
 
 		private static class ExtensionAssert {
-			public static void HasExtension(string expectedExtension, string actualFilename, string message) {
-				HasExtension(expectedExtension, new FileInfo(actualFilename), message);
-			}
+			public static void HasExtension(string expectedExtension, string actualFilename, string message)
+				=> HasExtension(expectedExtension, new FileInfo(actualFilename), message);
 
 			private static void HasExtension(string expectedExtension, FileInfo actualFile, string message) {
 				string actualExtension = actualFile.Extension.TrimStart('.');
