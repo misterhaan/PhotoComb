@@ -22,7 +22,7 @@ namespace au.IO.Files.Camera.MetadataLookup {
 		/// Get metadata for the file.
 		/// </summary>
 		/// <returns>Metadata</returns>
-		internal async Task<CameraFileMetadata> GetAsync()
+		internal virtual async Task<CameraFileMetadata> GetAsync()
 			=> await Task.Run(Get).ConfigureAwait(false);
 
 		/// <summary>
