@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace au.Applications.PhotoComb.UI {
@@ -12,14 +13,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		public AboutPhotoCombWindow() {
 			InitializeComponent();
-		}
-
-		/// <summary>
-		/// Show the version on the form.
-		/// </summary>
-		/// <param name="sender">Not used</param>
-		/// <param name="e">Not used</param>
-		private void AboutMythClient_Load(object sender, EventArgs e) {
+			_txtCopyright.Text = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location).LegalCopyright + _txtCopyright.Text;
 			_lblVersion.Text += Application.ProductVersion;
 		}
 
@@ -28,8 +22,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _lnkURL_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-			Process.Start(_lnkURL.Text);
-		}
+		private void _lnkURL_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+			=> Process.Start(_lnkURL.Text);
 	}
 }

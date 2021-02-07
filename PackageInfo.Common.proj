@@ -1,0 +1,12 @@
+﻿<Project>
+	<PropertyGroup>
+		<Company>the analog underground</Company>
+		<Authors>misterhaan</Authors>
+		<Copyright>© 2014 - 2021 the analog underground</Copyright>
+		<Product>Photo Combine</Product>
+		<PackageProjectUrl>https://www.track7.org/code/vs/photocomb</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/misterhaan/PhotoComb</RepositoryUrl>
+		<Version>3.0.0</Version>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	</PropertyGroup>
+</Project>

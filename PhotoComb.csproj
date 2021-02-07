@@ -1,93 +1,74 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5EDF26CF-FDE1-42A6-B682-4469E61D1C8B}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>au.Applications.PhotoComb</RootNamespace>
-    <AssemblyName>PhotoComb</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>build\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>build\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-    <!-- default AllowedReferenceRelatedFileExtensions is .pdb; .xml and I've removed xml -->
-    <AllowedReferenceRelatedFileExtensions>.pdb</AllowedReferenceRelatedFileExtensions>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject>au.Applications.PhotoComb.PhotoCombApplication</StartupObject>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>Photo.ico</ApplicationIcon>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="au.IO.Web.API.GitHub">
-      <HintPath>bin\au.IO.Web.API.GitHub.dll</HintPath>
-    </Reference>
-    <Reference Include="au.IO.Web.API.GitHub.Types">
-      <HintPath>bin\au.IO.Web.API.GitHub.Types.dll</HintPath>
-    </Reference>
-    <Reference Include="au.Settings">
-      <HintPath>bin\au.Settings.dll</HintPath>
-    </Reference>
-    <Reference Include="au.UI.LatestVersion">
-      <HintPath>bin\au.UI.LatestVersion.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Windows.Forms" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="PhotoCombApplication.cs" />
-    <Compile Include="Properties\AssemblyInfo.Common.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Photo.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Logic\PhotoComb.Logic.csproj">
-      <Project>{8daaa2a6-04cb-41cd-b8ee-784b51ba1a95}</Project>
-      <Name>PhotoComb.Logic</Name>
-    </ProjectReference>
-    <ProjectReference Include="Logic\Types\PhotoComb.Logic.Types.csproj">
-      <Project>{374B3ABE-96EB-4AC6-B66D-B7946FCB56CC}</Project>
-      <Name>PhotoComb.Logic.Types</Name>
-    </ProjectReference>
-    <ProjectReference Include="Settings\PhotoComb.Settings.csproj">
-      <Project>{7EBCEB80-6931-43A0-BF12-CB41833EBC40}</Project>
-      <Name>PhotoComb.Settings</Name>
-    </ProjectReference>
-    <ProjectReference Include="Settings\Types\PhotoComb.Settings.Types.csproj">
-      <Project>{03B879E5-E4F3-4427-9D9B-27A38098FBC4}</Project>
-      <Name>PhotoComb.Settings.Types</Name>
-    </ProjectReference>
-    <ProjectReference Include="UI\PhotoComb.UI.csproj">
-      <Project>{AEA97071-3B4C-4AC3-8EE0-ABA1E7D589E1}</Project>
-      <Name>PhotoComb.UI</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net5.0-windows</TargetFramework>
+		<RootNamespace>au.Applications.PhotoComb</RootNamespace>
+		<UseWindowsForms>true</UseWindowsForms>
+		<Description>Renames digital photos from multiple cameras for easier organization</Description>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageIcon>Photo.ico</PackageIcon>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<OutputPath>build\Debug\</OutputPath>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<OutputPath>build\Release\</OutputPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="installer\**" />
+	  <Compile Remove="IO.Files.Camera\**" />
+	  <Compile Remove="Logic\**" />
+	  <Compile Remove="ref\**" />
+	  <Compile Remove="Settings\**" />
+	  <Compile Remove="UI\**" />
+	  <EmbeddedResource Remove="installer\**" />
+	  <EmbeddedResource Remove="IO.Files.Camera\**" />
+	  <EmbeddedResource Remove="Logic\**" />
+	  <EmbeddedResource Remove="ref\**" />
+	  <EmbeddedResource Remove="Settings\**" />
+	  <EmbeddedResource Remove="UI\**" />
+	  <None Remove="installer\**" />
+	  <None Remove="IO.Files.Camera\**" />
+	  <None Remove="Logic\**" />
+	  <None Remove="ref\**" />
+	  <None Remove="Settings\**" />
+	  <None Remove="UI\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="LICENSE">
+	    <Pack>True</Pack>
+	    <PackagePath></PackagePath>
+	  </None>
+	  <None Include="Photo.ico">
+	    <Pack>True</Pack>
+	    <PackagePath></PackagePath>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="Logic\PhotoComb.Logic.csproj" />
+	  <ProjectReference Include="Settings\PhotoComb.Settings.csproj" />
+	  <ProjectReference Include="UI\PhotoComb.UI.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="au.Settings">
+	    <HintPath>ref\au.Settings.dll</HintPath>
+	  </Reference>
+	  <Reference Include="au.UI.LatestVersion">
+	    <HintPath>ref\au.UI.LatestVersion.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+	<Import Project="PackageInfo.Common.proj" />
 </Project>

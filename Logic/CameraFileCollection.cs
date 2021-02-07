@@ -93,7 +93,7 @@ namespace au.Applications.PhotoComb.Logic {
 		/// Correct the time taken by the specified amount for the specified files.
 		/// </summary>
 		/// <param name="correction">Amount of time to add to the time taken.</param>
-		private void ApplyTimeCorrection(TimeSpan correction, IEnumerable<ICameraFileInfo> files) {
+		private static void ApplyTimeCorrection(TimeSpan correction, IEnumerable<ICameraFileInfo> files) {
 			foreach(ICameraFileInfo file in files)
 				file.TimeCorrection += correction;
 		}

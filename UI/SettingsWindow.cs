@@ -36,7 +36,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// <summary>
 		/// Settings to edit.
 		/// </summary>
-		private IPhotoCombSettings _settings;
+		private readonly IPhotoCombSettings _settings;
 
 		/// <summary>
 		/// Default constructor.
@@ -77,11 +77,12 @@ namespace au.Applications.PhotoComb.UI {
 		/// Convenience property for setting and reading date separator in the UI.
 		/// </summary>
 		private string DateSeparator {
-			get {
-				if(_radDateSeparatorDash.Checked) return _sepDash;
-				if(_radDateSeparatorPeriod.Checked) return _sepPeriod;
-				return _sepNone;
-			}
+			get
+				=> _radDateSeparatorDash.Checked
+					? _sepDash
+					: _radDateSeparatorPeriod.Checked
+						? _sepPeriod
+						: _sepNone;
 			set {
 				switch(value) {
 					case _sepDash:
@@ -101,11 +102,12 @@ namespace au.Applications.PhotoComb.UI {
 		/// Convenience property for setting and reading time separator in the UI.
 		/// </summary>
 		private string TimeSeparator {
-			get {
-				if(_radTimeSeparatorDash.Checked) return _sepDash;
-				if(_radTimeSeparatorPeriod.Checked) return _sepPeriod;
-				return _sepNone;
-			}
+			get
+				=> _radTimeSeparatorDash.Checked
+					? _sepDash
+					: _radTimeSeparatorPeriod.Checked
+						? _sepPeriod
+						: _sepNone;
 			set {
 				switch(value) {
 					case _sepDash:
@@ -125,11 +127,12 @@ namespace au.Applications.PhotoComb.UI {
 		/// Convenience property for setting and reading overall separator in the UI.
 		/// </summary>
 		private string OverallSeparator {
-			get {
-				if(_radOverallSeparatorUnderscore.Checked) return _sepUnderscore;
-				if(_radOverallSeparatorPeriod.Checked) return _sepPeriod;
-				return _sepDash;
-			}
+			get
+				=> _radOverallSeparatorUnderscore.Checked
+					? _sepUnderscore
+					: _radOverallSeparatorPeriod.Checked
+						? _sepPeriod
+						: _sepDash;
 			set {
 				switch(value) {
 					case _sepUnderscore:
@@ -191,21 +194,17 @@ namespace au.Applications.PhotoComb.UI {
 		}
 
 		#region Event Handlers
-		private void _btnOk_Click(object sender, EventArgs e) {
-			SaveSettings();
-		}
+		private void _btnOk_Click(object sender, EventArgs e)
+			=> SaveSettings();
 
-		private void _radDateSeparator_CheckedChanged(object sender, EventArgs e) {
-			UpdateOverallSeparatorLabels();
-		}
+		private void _radDateSeparator_CheckedChanged(object sender, EventArgs e)
+			=> UpdateOverallSeparatorLabels();
 
-		private void _radTimeSeparator_CheckedChanged(object sender, EventArgs e) {
-			UpdateOverallSeparatorLabels();
-		}
+		private void _radTimeSeparator_CheckedChanged(object sender, EventArgs e)
+			=> UpdateOverallSeparatorLabels();
 
-		private void _chkExpandJpeg_CheckedChanged(object sender, EventArgs e) {
-			UpdateOverallSeparatorLabels();
-		}
+		private void _chkExpandJpeg_CheckedChanged(object sender, EventArgs e)
+			=> UpdateOverallSeparatorLabels();
 		#endregion Event Handlers
 	}
 }

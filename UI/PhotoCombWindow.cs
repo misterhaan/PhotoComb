@@ -168,23 +168,22 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="fileGroupType">Which type of file group is being updated</param>
 		private void AdjustTimeTaken(FileGroupType fileGroupType) {
-			using(TimespanDialog tsd = new TimespanDialog(fileGroupType)) {
-				if(fileGroupType == FileGroupType.CameraModel)
-					tsd.SetModelList(_files.CameraNames);
-				if(tsd.ShowDialog(this) != DialogResult.Cancel) {
-					switch(fileGroupType) {
-						case FileGroupType.All:
-							_files.ApplyTimeCorrection(tsd.Offset);
-							break;
-						case FileGroupType.CameraModel:
-							_files.ApplyTimeCorrection(tsd.Offset, tsd.CameraModel);
-							break;
-						case FileGroupType.Checked:
-							_files.ApplyTimeCorrection(tsd.Offset, GetCheckedFilenames());
-							break;
-					}
-					RefreshData();
+			using TimespanDialog tsd = new TimespanDialog(fileGroupType);
+			if(fileGroupType == FileGroupType.CameraModel)
+				tsd.SetModelList(_files.CameraNames);
+			if(tsd.ShowDialog(this) != DialogResult.Cancel) {
+				switch(fileGroupType) {
+					case FileGroupType.All:
+						_files.ApplyTimeCorrection(tsd.Offset);
+						break;
+					case FileGroupType.CameraModel:
+						_files.ApplyTimeCorrection(tsd.Offset, tsd.CameraModel);
+						break;
+					case FileGroupType.Checked:
+						_files.ApplyTimeCorrection(tsd.Offset, GetCheckedFilenames());
+						break;
 				}
+				RefreshData();
 			}
 		}
 
@@ -194,23 +193,22 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="fileGroupType">Which type of file group is being updated.</param>
 		private void ChangeCameraName(FileGroupType fileGroupType) {
-			using(CameraNameDialog cnd = new CameraNameDialog(fileGroupType)) {
-				if(fileGroupType == FileGroupType.CameraModel)
-					cnd.SetModelList(_files.CameraNames);
-				if(cnd.ShowDialog(this) != DialogResult.Cancel) {
-					switch(fileGroupType) {
-						case FileGroupType.All:
-							_files.SetCameraNickname(cnd.Nickname);
-							break;
-						case FileGroupType.CameraModel:
-							_files.SetCameraNickname(cnd.Nickname, cnd.CameraModel);
-							break;
-						case FileGroupType.Checked:
-							_files.SetCameraNickname(cnd.Nickname, GetCheckedFilenames());
-							break;
-					}
-					RefreshData();
+			using CameraNameDialog cnd = new CameraNameDialog(fileGroupType);
+			if(fileGroupType == FileGroupType.CameraModel)
+				cnd.SetModelList(_files.CameraNames);
+			if(cnd.ShowDialog(this) != DialogResult.Cancel) {
+				switch(fileGroupType) {
+					case FileGroupType.All:
+						_files.SetCameraNickname(cnd.Nickname);
+						break;
+					case FileGroupType.CameraModel:
+						_files.SetCameraNickname(cnd.Nickname, cnd.CameraModel);
+						break;
+					case FileGroupType.Checked:
+						_files.SetCameraNickname(cnd.Nickname, GetCheckedFilenames());
+						break;
 				}
+				RefreshData();
 			}
 		}
 
@@ -447,9 +445,9 @@ namespace au.Applications.PhotoComb.UI {
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void _cmnuMainSettings_Click(object sender, EventArgs e) {
-			using(SettingsWindow settingsWindow = new SettingsWindow(_settings))
-				if(settingsWindow.ShowDialog(this) == DialogResult.OK)
-					RefreshData();
+			using SettingsWindow settingsWindow = new SettingsWindow(_settings);
+			if(settingsWindow.ShowDialog(this) == DialogResult.OK)
+				RefreshData();
 		}
 
 		/// <summary>
@@ -466,8 +464,8 @@ namespace au.Applications.PhotoComb.UI {
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
 		private void _cmnuMainAbout_Click(object sender, EventArgs e) {
-			using(AboutPhotoCombWindow about = new AboutPhotoCombWindow())
-				about.ShowDialog(this);
+			using AboutPhotoCombWindow about = new AboutPhotoCombWindow();
+			about.ShowDialog(this);
 		}
 		#endregion event handlers
 	}

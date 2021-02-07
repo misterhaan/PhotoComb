@@ -21,11 +21,11 @@ namespace au.IO.Files.Camera.MetadataLookup {
 		/// <param name="file">File whose metadata needs to be looked up.</param>
 		/// <returns>Metadata lookup object.</returns>
 		internal virtual MetadataLookupBase Build(CameraFileInfo file) {
-			if(_videoExtensions.Contains(file.Extension))
-				return new MediaInfoMetadataLookup(file);
-			if(_photoExtensions.Contains(file.Extension))
-				return new ExifMetadataLookup(file);
-			return new UnknownMetadataLookup(file);
+			return _videoExtensions.Contains(file.Extension)
+				? new MediaInfoMetadataLookup(file)
+				: _photoExtensions.Contains(file.Extension)
+					? new ExifMetadataLookup(file)
+					: (MetadataLookupBase)new UnknownMetadataLookup(file);
 		}
 	}
 }

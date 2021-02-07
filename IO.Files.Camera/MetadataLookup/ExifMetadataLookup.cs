@@ -17,18 +17,18 @@ namespace au.IO.Files.Camera.MetadataLookup {
 		/// <inheritdoc />
 		protected override CameraFileMetadata Get() {
 			try {
-				using(FileStream stream = _file.Open(FileMode.Open, FileAccess.Read, FileShare.Read))
+				using FileStream stream = _file.Open(FileMode.Open, FileAccess.Read, FileShare.Read);
+				try {
+					BitmapSource bmp = BitmapFrame.Create(stream);
 					try {
-						BitmapSource bmp = BitmapFrame.Create(stream);
-						try {
-							BitmapMetadata meta = (BitmapMetadata)bmp.Metadata;
-							return CameraFileMetadata.Create(CameraFileType.Photo, meta.CameraModel, meta.DateTaken);
-						} catch(Exception exifException) {
-							return new CameraFileMetadata(Messages.ExifReadError, exifException);
-						}
-					} catch(Exception bmpException) {
-						return new CameraFileMetadata(Messages.ImageReadError, bmpException);
+						BitmapMetadata meta = (BitmapMetadata)bmp.Metadata;
+						return CameraFileMetadata.Create(CameraFileType.Photo, meta.CameraModel, meta.DateTaken);
+					} catch(Exception exifException) {
+						return new CameraFileMetadata(Messages.ExifReadError, exifException);
 					}
+				} catch(Exception bmpException) {
+					return new CameraFileMetadata(Messages.ImageReadError, bmpException);
+				}
 			} catch(Exception fileException) {
 				return new CameraFileMetadata(Messages.FileReadError, fileException);
 			}

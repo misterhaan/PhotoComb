@@ -93,13 +93,13 @@ namespace au.IO.Files.Camera {
 		/// <summary>
 		/// Create the instance for NotLookedUp the first time it's requested.
 		/// </summary>
-		private static readonly Lazy<ICameraFileMetadata> _notLookedUp = new Lazy<ICameraFileMetadata>(() => new _notLookedUpCameraFileMetadata());
+		private static readonly Lazy<ICameraFileMetadata> _notLookedUp = new Lazy<ICameraFileMetadata>(() => new NotLookedUpCameraFileMetadata());
 
 		/// <summary>
 		/// Special-case class for metadata that hasn't been looked up yet.
 		/// </summary>
-		private class _notLookedUpCameraFileMetadata : CameraFileMetadata {
-			internal _notLookedUpCameraFileMetadata() : base(Messages.MetadataNotLookedUp) { }
+		private class NotLookedUpCameraFileMetadata : CameraFileMetadata {
+			internal NotLookedUpCameraFileMetadata() : base(Messages.MetadataNotLookedUp) { }
 		}
 
 		/// <summary>
@@ -110,13 +110,13 @@ namespace au.IO.Files.Camera {
 		/// <summary>
 		/// Create the instance for Unknown the first time it's requested.
 		/// </summary>
-		private static readonly Lazy<CameraFileMetadata> _unknown = new Lazy<CameraFileMetadata>(() => new _unknownCameraFileMetadata());
+		private static readonly Lazy<CameraFileMetadata> _unknown = new Lazy<CameraFileMetadata>(() => new UnknownCameraFileMetadata());
 
 		/// <summary>
 		/// Special-case class for metadata that could not be looked up.
 		/// </summary>
-		private class _unknownCameraFileMetadata : CameraFileMetadata {
-			internal _unknownCameraFileMetadata() : base(Messages.UnknownExtension) { }
+		private class UnknownCameraFileMetadata : CameraFileMetadata {
+			internal UnknownCameraFileMetadata() : base(Messages.UnknownExtension) { }
 		}
 	}
 }

@@ -14,19 +14,19 @@ namespace au.IO.Files.Camera.MetadataLookup {
 
 		/// <inheritdoc />
 		protected override CameraFileMetadata Get() {
-			using(MediaInfo mediaInfo = new MediaInfo())
+			using MediaInfo mediaInfo = new MediaInfo();
+			try {
+				mediaInfo.Open(_file.FullName);
 				try {
-					mediaInfo.Open(_file.FullName);
-					try {
-						return new CameraFileMetadata(CameraFileType.Video, mediaInfo.GetCameraModel(), mediaInfo.GetDateTaken());
-					} catch(Exception infoException) {
-						return new CameraFileMetadata(Messages.MediaInfoReadError, infoException);
-					} finally {
-						mediaInfo.Close();
-					}
-				} catch(Exception videoException) {
-					return new CameraFileMetadata(Messages.VideoReadError, videoException);
+					return new CameraFileMetadata(CameraFileType.Video, mediaInfo.GetCameraModel(), mediaInfo.GetDateTaken());
+				} catch(Exception infoException) {
+					return new CameraFileMetadata(Messages.MediaInfoReadError, infoException);
+				} finally {
+					mediaInfo.Close();
 				}
+			} catch(Exception videoException) {
+				return new CameraFileMetadata(Messages.VideoReadError, videoException);
+			}
 		}
 	}
 }

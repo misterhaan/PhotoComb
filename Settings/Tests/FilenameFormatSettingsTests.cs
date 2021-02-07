@@ -155,16 +155,14 @@ namespace au.Applications.PhotoComb.Settings.Tests {
 			Assert.IsTrue(isMatch, $"{nameof(settings.OutputFormat)} did not match filename {matchingFilename} when expected.");
 		}
 
-		private FilenameFormatSettings GetSettings() {
-			return new FilenameFormatSettings();
-		}
+		private static FilenameFormatSettings GetSettings()
+			=> new FilenameFormatSettings();
 
-		private FilenameFormatSettings GetSettings(string sepDate, string sepTime, string sepOverall) {
-			return new FilenameFormatSettings {
+		private static FilenameFormatSettings GetSettings(string sepDate, string sepTime, string sepOverall)
+			=> new FilenameFormatSettings {
 				DateSeparator = sepDate,
 				TimeSeparator = sepTime,
 				OverallSeparator = sepOverall
 			};
-		}
 	}
 }

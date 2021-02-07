@@ -77,15 +77,13 @@ namespace au.Applications.PhotoComb.Settings {
 		/// <summary>
 		/// Rebuilds <cref>FormatString</cref> because a separator has changed.
 		/// </summary>
-		private void UpdateFormatString() {
-			FormatString = string.Format("{{0:yyyy'{0}'MM'{0}'dd'{2}'HH'{1}'mm'{1}'ss}}{2}{{1}}{{2}}.{{3}}", DateSeparator, TimeSeparator, OverallSeparator);
-		}
+		private void UpdateFormatString()
+			=> FormatString = string.Format("{{0:yyyy'{0}'MM'{0}'dd'{2}'HH'{1}'mm'{1}'ss}}{2}{{1}}{{2}}.{{3}}", DateSeparator, TimeSeparator, OverallSeparator);
 
 		/// <summary>
 		/// Rebuilds <cref>OutputFormat</cref> because a separator has changed.
 		/// </summary>
-		private void UpdateOutputFormat() {
-			OutputFormat = new Regex(string.Format(@"^\d{{4}}{0}\d{{2}}{0}\d{{2}}{2}\d{{2}}{1}\d{{2}}{1}\d{{2}}{2}.+{2}[^{2}]+$", DateSeparator, TimeSeparator, OverallSeparator));
-		}
+		private void UpdateOutputFormat()
+			=> OutputFormat = new Regex(string.Format(@"^\d{{4}}{0}\d{{2}}{0}\d{{2}}{2}\d{{2}}{1}\d{{2}}{1}\d{{2}}{2}.+{2}[^{2}]+$", DateSeparator, TimeSeparator, OverallSeparator));
 	}
 }

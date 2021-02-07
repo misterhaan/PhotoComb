@@ -67,9 +67,8 @@ namespace au.IO.Files.Camera.MetadataLookup {
 		/// to use.  Android M4V videos don't seem to include camera model at all.
 		/// </summary>
 		/// <returns>Camera model name, or null if not present.</returns>
-		public string GetCameraModel() {
-			return GetGeneral("com.apple.quicktime.model", "Encoded_Application", "@inf");
-		}
+		public string GetCameraModel()
+			=> GetGeneral("com.apple.quicktime.model", "Encoded_Application", "@inf");
 
 		/// <summary>
 		/// Look up the date and time this video was taken.
@@ -83,9 +82,9 @@ namespace au.IO.Files.Camera.MetadataLookup {
 			if(DateTime.TryParseExact(taken, "UTC yyyy-MM-dd H:mm:ss", null, DateTimeStyles.AssumeUniversal, out dt))
 				return dt;
 			// from Mastered_Date in Canon AVI videos
-			if(DateTime.TryParseExact(taken, "ddd MMM d H:mm:ss yyyy", null, DateTimeStyles.AssumeLocal, out dt))
-				return dt;
-			return null;
+			return DateTime.TryParseExact(taken, "ddd MMM d H:mm:ss yyyy", null, DateTimeStyles.AssumeLocal, out dt)
+				? (DateTime?)dt
+				: null;
 		}
 
 		/// <summary>
@@ -107,6 +106,7 @@ namespace au.IO.Files.Camera.MetadataLookup {
 				MediaInfo_Delete(_handle);
 				_handle = IntPtr.Zero;
 			}
+			GC.SuppressFinalize(this);
 		}
 
 		/// <summary>

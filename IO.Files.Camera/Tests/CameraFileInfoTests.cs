@@ -18,7 +18,7 @@ namespace au.IO.Files.Camera.Tests {
 		private const string JpegExt = "jpeg";
 		private const string TxtExt = "txt";
 
-		[DataTestMethod]
+		[TestMethod]
 		[DataRow(JpgFilename, JpgExt)]
 		[DataRow(JpegFilename, JpegExt)]
 		[DataRow(TxtFilename, TxtExt)]
@@ -30,7 +30,7 @@ namespace au.IO.Files.Camera.Tests {
 			Assert.AreEqual(expectedExtension, ext, false, "Extension property should be lowercase of the original without the dot.");
 		}
 
-		[DataTestMethod]
+		[TestMethod]
 		[DataRow(JpgFilename)]
 		[DataRow(JpegFilename)]
 		public void SortableName_ExpandJpegTrue_JpegExtension(string filePath) {

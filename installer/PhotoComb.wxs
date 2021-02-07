@@ -3,19 +3,19 @@
 	<?define BuildFolder = "..\build\Release" ?>
 	<?if $(var.Platform) = x64 ?>
 	<?define PlatformProgramFilesFolder = "ProgramFiles64Folder" ?>
-	<?define ExternalBinFolder = "..\bin\64" ?>
+	<?define ExternalBinFolder = "..\ref\64" ?>
 	<?else ?>
 	<?define PlatformProgramFilesFolder = "ProgramFilesFolder" ?>
-	<?define ExternalBinFolder = "..\bin\32" ?>
+	<?define ExternalBinFolder = "..\ref\32" ?>
 	<?endif ?>
 
-	<Product Name="Photo Combine" Id="*" UpgradeCode="B1DD71E9-85D7-479F-9EAB-2DCEACDE6BC8" Language="1033" Codepage="1252" Version="2.1.0" Manufacturer="the analog underground">
-		<Package Id="*" Keywords="photo, camera, picture, organize" Description="Renames digital photos from multiple cameras for easier organization." Comments="the analog underground only releases free software" Manufacturer="the analog underground" InstallerVersion="200" Languages="1033" Compressed="yes" SummaryCodepage="1252" Platform="$(var.Platform)" />
+	<Product Name="Photo Combine" Id="*" UpgradeCode="B1DD71E9-85D7-479F-9EAB-2DCEACDE6BC8" Language="1033" Codepage="1252" Version="3.0.0" Manufacturer="the analog underground">
+		<Package Id="*" Keywords="photo, camera, picture, organize" Description="Renames digital photos from multiple cameras for easier organization." Comments="the analog underground only releases free software" Manufacturer="the analog underground" InstallerVersion="200" Languages="1033" Compressed="yes" SummaryCodepage="1252" />
 
 		<MajorUpgrade Schedule="afterInstallInitialize" DowngradeErrorMessage="A later version of [ProductName] is already installed. Setup will now exit." />
 		<Upgrade Id="8B035E15-98BC-4208-8F7D-B1CC37A1D8DD">
-			<UpgradeVersion Minimum="0.0.0" IncludeMinimum="yes" Maximum="2.1.0" IncludeMaximum="no" Property="OLDERVERSIONBEINGUPGRADED"/>
-			<UpgradeVersion Minimum="2.1.0" OnlyDetect="yes" Property="NEWERVERSIONDETECTED"/>
+			<UpgradeVersion Minimum="0.0.0" IncludeMinimum="yes" Maximum="3.0.0" IncludeMaximum="no" Property="OLDERVERSIONBEINGUPGRADED"/>
+			<UpgradeVersion Minimum="3.0.0" OnlyDetect="yes" Property="NEWERVERSIONDETECTED"/>
 		</Upgrade>
 		<Condition Message="A later version of [ProductName] is already installed. Setup will now exit">
 			NOT NEWERVERSIONDETECTED OR Installed
@@ -24,7 +24,7 @@
 		<Media Id="1" Cabinet="PhotoCmb.cab" EmbedCab="yes" DiskPrompt="binary" />
 
 		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="$(var.PlatformProgramFilesFolder)" Name="PFiles">
+			<Directory Id="$(var.PlatformProgramFilesFolder)">
 				<Directory Id="INSTALLDIR" Name="Photo Combine" />
 			</Directory>
 			<Directory Id="ProgramMenuFolder" Name="PMenu">
@@ -76,17 +76,12 @@
 			<Component Id="auUILatestVersiondll" Guid="C145F1C3-2A3F-44B4-AC51-D612E85B0CC1">
 				<File Id="au.UI.LatestVersion.dll" Name="au.UI.LatestVersion.dll" DiskId="1" Source="$(var.BuildFolder)\au.UI.LatestVersion.dll" />
 			</Component>
-			<Component Id="auUITaskDialogdll" Guid="ADA370E6-A05B-44AE-A3F6-FB39FC898AAB">
-				<File Id="au.UI.TaskDialog.dll" Name="au.UI.TaskDialog.dll" DiskId="1" Source="$(var.BuildFolder)\au.UI.TaskDialog.dll" />
-			</Component>
 			<Component Id="NewtonsoftJsondll" Guid="36177B21-C1D1-4F97-A111-1B064B8EB589">
 				<File Id="Newtonsoft.Json.dll" Name="Newtonsoft.Json.dll" DiskId="1" Source="$(var.BuildFolder)\Newtonsoft.Json.dll" />
 			</Component>
 			<Component Id="mediainfodll" Guid="FC9054A9-557D-405C-BBC1-B9C51A85AAE6">
 				<File Id="MediaInfo.dll" Name="MediaInfo.dll" DiskId="1" Source="$(var.ExternalBinFolder)\MediaInfo.dll" />
 			</Component>
-
-
 		</DirectoryRef>
 
 		<DirectoryRef Id="ProgramMenuDir">
@@ -120,7 +115,6 @@
 				<ComponentRef Id="auSettingsdll" />
 				<ComponentRef Id="auSettingsTypesdll" />
 				<ComponentRef Id="auUILatestVersiondll" />
-				<ComponentRef Id="auUITaskDialogdll" />
 				<ComponentRef Id="NewtonsoftJsondll" />
 				<ComponentRef Id="mediainfodll" />
 			</Feature>

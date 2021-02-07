@@ -44,20 +44,18 @@ namespace au.IO.Files.Camera.MetadataLookup.Tests {
 			Assert.IsInstanceOfType(lookup, typeof(UnknownMetadataLookup), "Files with unrecognized extensions should not look up metadata.");
 		}
 
-		private void EnsureProcessBitnessMatchesOperatingSystem() {
+		private static void EnsureProcessBitnessMatchesOperatingSystem()
 			// If this fails when running tests in Visual Studio, go to Test > Test
 			// Settings > Default Processor Architecture and choose X64.  The default
 			// is to run all tests in X86 even on 64-bit OS.
-			Assert.AreEqual(Environment.Is64BitOperatingSystem, Environment.Is64BitProcess, "This test requires the process bitness and OS bitness to agree.  Configure Visual Studio at Tests > Test Settings > Default Processor Architecture and choose your OS architecture.");
-		}
+			=> Assert.AreEqual(Environment.Is64BitOperatingSystem, Environment.Is64BitProcess, "This test requires the process bitness and OS bitness to agree.  Configure Visual Studio at Tests > Test Settings > Default Processor Architecture and choose your OS architecture.");
 
-		private MetadataLookupFactory GetMetadataLookupFactory() {
-			return new MetadataLookupFactory(
+		private static MetadataLookupFactory GetMetadataLookupFactory()
+			=> new MetadataLookupFactory(
 				new HashSet<string>(new string[] { "jpg", "jpeg" }, StringComparer.OrdinalIgnoreCase),
 				new HashSet<string>(new string[] { "mp4", "mov", "avi" }, StringComparer.OrdinalIgnoreCase));
-		}
 
-		private CameraFileInfo GetCameraFileInfo(string filePath, MetadataLookupFactory factory)
+		private static CameraFileInfo GetCameraFileInfo(string filePath, MetadataLookupFactory factory)
 			=> new CameraFileInfo(new FileInfo(filePath), A.Fake<IFilenameFormatSettings>(), factory);
 	}
 }

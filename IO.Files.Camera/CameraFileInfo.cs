@@ -29,7 +29,7 @@ namespace au.IO.Files.Camera {
 		public string FullName => _file.FullName;
 
 		/// <inheritdoc />
-		public string Extension => _file.Extension.Substring(1).ToLowerInvariant();
+		public string Extension => _file.Extension[1..].ToLowerInvariant();
 
 		/// <inheritdoc />
 		public string ErrorMessage { get; set; }
@@ -99,16 +99,16 @@ namespace au.IO.Files.Camera {
 #pragma warning disable IDE0046
 			// default camera filenames 
 			if((id.StartsWith("IMG_") || id.StartsWith("MVI_") || id.StartsWith("DSC")) && id.Length <= 12)
-				return id.Substring(4);
+				return id[4..];
 			// photo combine filename pattern (also contains date/time taken and camera nickname)
 			if(_fileFormat.OutputFormat.IsMatch(id)) {
 				string[] parts = id.Split('-');
-				return parts[parts.Length - 1];
+				return parts[^1];
 			}
 			// android motion photo export format
 			if(Regex.IsMatch(id, @"^(MV)?IMG_[0-9]{8}_[0-9]{6}(_[0-9]+)?_exported_[0-9]+_[0-9]+$")) {
 				string[] parts = id.Split('_');
-				return parts[parts.Length - 2];
+				return parts[^2];
 			}
 			// multiple photos in same second adds a counter after the time portion of the filename
 			if(Regex.IsMatch(id, @"^(MV)?IMG_[0-9]{8}_[0-9]{6}_[0-9]+")) {
@@ -140,7 +140,7 @@ namespace au.IO.Files.Camera {
 		/// <param name="obj">Another object to compare.</param>
 		/// <returns>Whether the objects reference the same file.</returns>
 		public override bool Equals(object obj)
-			=> obj is ICameraFileInfo cfi ? Equals(cfi) : false;
+			=> obj is ICameraFileInfo cfi && Equals(cfi);
 
 		/// <summary>
 		/// Returns the hash code for this CameraFileInfo.
