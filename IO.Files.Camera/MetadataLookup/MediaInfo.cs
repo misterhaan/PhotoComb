@@ -75,7 +75,7 @@ namespace au.IO.Files.Camera.MetadataLookup {
 		/// </summary>
 		/// <returns>Date and time taken, or null if not present.</returns>
 		public DateTime? GetDateTaken() {
-			string taken = GetGeneral("Encoded_Date", "Mastered_Date");
+			string taken = GetGeneral("Encoded date", "Encoded_Date", "Mastered_Date");
 			if(DateTime.TryParse(taken, out DateTime dt))
 				return dt;
 			// from Encoded_Date in iPhone and Canon QuickTime videos
