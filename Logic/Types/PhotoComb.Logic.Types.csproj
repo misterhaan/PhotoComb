@@ -1,10 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 		<AssemblyName>au.Applications.PhotoComb.Logic.Types</AssemblyName>
 		<RootNamespace>au.Applications.PhotoComb.Logic.Types</RootNamespace>
 		<Description>Types for Photo Combine logic</Description>
+		<Nullable>disable</Nullable>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -14,6 +15,7 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<OutputPath>..\..\build\Release\</OutputPath>
+		<DebugType>none</DebugType>
 	</PropertyGroup>
 
 	<Import Project="..\..\PackageInfo.Common.proj" />

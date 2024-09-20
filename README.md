@@ -3,6 +3,8 @@ Photo Combine renames photos from multiple cameras to avoid filename conflicts a
 
 ## Revision History
 
+* Update to .NET 8.0
+
 ### 3.0.1
 * Fix URL launching
 

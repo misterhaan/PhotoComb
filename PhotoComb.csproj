@@ -2,12 +2,13 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net5.0-windows</TargetFramework>
+		<TargetFramework>net8.0-windows7.0</TargetFramework>
 		<RootNamespace>au.Applications.PhotoComb</RootNamespace>
 		<UseWindowsForms>true</UseWindowsForms>
 		<Description>Renames digital photos from multiple cameras for easier organization</Description>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageIcon>Photo.ico</PackageIcon>
+		<Nullable>disable</Nullable>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -17,27 +18,35 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<OutputPath>build\Release\</OutputPath>
+		<DebugType>none</DebugType>
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="build\**" />
 	  <Compile Remove="installer\**" />
 	  <Compile Remove="IO.Files.Camera\**" />
 	  <Compile Remove="Logic\**" />
 	  <Compile Remove="ref\**" />
 	  <Compile Remove="Settings\**" />
 	  <Compile Remove="UI\**" />
+	  <EmbeddedResource Remove="build\**" />
 	  <EmbeddedResource Remove="installer\**" />
 	  <EmbeddedResource Remove="IO.Files.Camera\**" />
 	  <EmbeddedResource Remove="Logic\**" />
 	  <EmbeddedResource Remove="ref\**" />
 	  <EmbeddedResource Remove="Settings\**" />
 	  <EmbeddedResource Remove="UI\**" />
+	  <None Remove="build\**" />
 	  <None Remove="installer\**" />
 	  <None Remove="IO.Files.Camera\**" />
 	  <None Remove="Logic\**" />
 	  <None Remove="ref\**" />
 	  <None Remove="Settings\**" />
 	  <None Remove="UI\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Photo.ico" />
 	</ItemGroup>
 
 	<ItemGroup>

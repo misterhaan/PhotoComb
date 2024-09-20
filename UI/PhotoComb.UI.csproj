@@ -1,11 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net5.0-windows</TargetFramework>
+		<TargetFramework>net8.0-windows7.0</TargetFramework>
 		<UseWindowsForms>true</UseWindowsForms>
 		<AssemblyName>au.Applications.PhotoComb.UI</AssemblyName>
 		<RootNamespace>au.Applications.PhotoComb.UI</RootNamespace>
 		<Description>User interface components of the Photo Combine application</Description>
+		<Nullable>disable</Nullable>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -15,6 +16,7 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<OutputPath>..\build\Release\</OutputPath>
+		<DebugType>none</DebugType>
 	</PropertyGroup>
 
 	<ItemGroup>
