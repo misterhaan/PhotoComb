@@ -8,6 +8,8 @@
 		<Description>Renames digital photos from multiple cameras for easier organization</Description>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageIcon>Photo.ico</PackageIcon>
+		<ApplicationIcon>Photo.ico</ApplicationIcon>
+		<StartupObject>au.Applications.PhotoComb.PhotoCombApplication</StartupObject>
 		<Nullable>disable</Nullable>
 	</PropertyGroup>
 
