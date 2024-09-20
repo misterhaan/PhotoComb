@@ -91,9 +91,9 @@ namespace au.Applications.PhotoComb.Settings.Tests {
 
 		[TestMethod]
 		public void SaveLoad_PropertiesMatch() {
-			FileInfo file = new FileInfo(Path.Combine(Path.GetTempPath(), $"{nameof(PhotoCombSettingsTests)}.{nameof(SaveLoad_PropertiesMatch)}.test"));
+			FileInfo file = new(Path.Combine(Path.GetTempPath(), $"{nameof(PhotoCombSettingsTests)}.{nameof(SaveLoad_PropertiesMatch)}.test"));
 			try {
-				SettingsFileManager<PhotoCombSettings> saveManager = new SettingsFileManager<PhotoCombSettings>(file);
+				SettingsFileManager<PhotoCombSettings> saveManager = new(file);
 				saveManager.Settings.LastDestDir = Environment.CurrentDirectory;
 				saveManager.Settings.FilenameFormat = new FilenameFormatSettings {
 					DateSeparator = "-",
@@ -125,7 +125,7 @@ namespace au.Applications.PhotoComb.Settings.Tests {
 		}
 
 		private static PhotoCombSettings GetSettings()
-			=> new PhotoCombSettings();
+			=> new();
 
 		private static class PathAssert {
 			public static void AreSame(string expectedPath, string actualPath, string message)

@@ -11,7 +11,7 @@ namespace au.Applications.PhotoComb.Settings.Tests {
 		private const string _badSepSlash = "/";
 		private const string _badSepSpace = " ";
 		private const string _badSepNull = null;
-		private static readonly DateTime _taken = new DateTime(2016, 8, 4, 11, 22, 33);
+		private static readonly DateTime _taken = new(2016, 8, 4, 11, 22, 33);
 		private const string _cameraName = "iphone";
 		private const string _id = "1234";
 		private const string _extension = "jpg";
@@ -156,10 +156,10 @@ namespace au.Applications.PhotoComb.Settings.Tests {
 		}
 
 		private static FilenameFormatSettings GetSettings()
-			=> new FilenameFormatSettings();
+			=> new();
 
 		private static FilenameFormatSettings GetSettings(string sepDate, string sepTime, string sepOverall)
-			=> new FilenameFormatSettings {
+			=> new() {
 				DateSeparator = sepDate,
 				TimeSeparator = sepTime,
 				OverallSeparator = sepOverall

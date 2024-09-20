@@ -47,7 +47,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _cbModel_SelectedIndexChanged(object sender, System.EventArgs e) {
+		private void CbModel_SelectedIndexChanged(object sender, System.EventArgs e) {
 			if(string.IsNullOrEmpty(_txtCameraName.Text) || _cbModel.Items.Contains(_txtCameraName.Text))
 				_txtCameraName.Text = _cbModel.Text;
 		}

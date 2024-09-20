@@ -14,7 +14,7 @@ namespace au.IO.Files.Camera.MetadataLookup {
 
 		/// <inheritdoc />
 		protected override CameraFileMetadata Get() {
-			using MediaInfo mediaInfo = new MediaInfo();
+			using MediaInfo mediaInfo = new();
 			try {
 				mediaInfo.Open(_file.FullName);
 				try {

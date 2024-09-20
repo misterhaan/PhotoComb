@@ -89,7 +89,7 @@
 			this._lblFolder.TabIndex = 1;
 			this._lblFolder.Text = "Loading...";
 			this._lblFolder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this._lblFolder.DoubleClick += new System.EventHandler(this.folder_Click);
+			this._lblFolder.DoubleClick += new System.EventHandler(this.Folder_Click);
 			// 
 			// _cmnuMain
 			// 
@@ -135,7 +135,7 @@
 			this._lv.TabIndex = 13;
 			this._lv.UseCompatibleStateImageBehavior = false;
 			this._lv.View = System.Windows.Forms.View.Details;
-			this._lv.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this._lv_ItemChecked);
+			this._lv.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.Lv_ItemChecked);
 			// 
 			// _colOldName
 			// 
@@ -176,7 +176,7 @@
 			this._tsRescan.Size = new System.Drawing.Size(66, 22);
 			this._tsRescan.Text = "&Rescan";
 			this._tsRescan.ToolTipText = "Rescan files in the current folder";
-			this._tsRescan.Click += new System.EventHandler(this._tsRescan_Click);
+			this._tsRescan.Click += new System.EventHandler(this.TsRescan_Click);
 			// 
 			// _tsTimestamp
 			// 
@@ -192,7 +192,7 @@
 			this._tsTimestamp.Size = new System.Drawing.Size(113, 22);
 			this._tsTimestamp.Text = "Adjust &Time...";
 			this._tsTimestamp.ToolTipText = "Adjust time taken for all files in the folder";
-			this._tsTimestamp.ButtonClick += new System.EventHandler(this._tsTimestampAll_Click);
+			this._tsTimestamp.ButtonClick += new System.EventHandler(this.TsTimestampAll_Click);
 			// 
 			// _tsTimestampAll
 			// 
@@ -203,7 +203,7 @@
 			this._tsTimestampAll.Size = new System.Drawing.Size(157, 24);
 			this._tsTimestampAll.Text = "&All Files...";
 			this._tsTimestampAll.ToolTipText = "Adjust time taken for all files in the folder";
-			this._tsTimestampAll.Click += new System.EventHandler(this._tsTimestampAll_Click);
+			this._tsTimestampAll.Click += new System.EventHandler(this.TsTimestampAll_Click);
 			// 
 			// _tsTimestampSelected
 			// 
@@ -214,7 +214,7 @@
 			this._tsTimestampSelected.Size = new System.Drawing.Size(157, 24);
 			this._tsTimestampSelected.Text = "Chec&ked Files...";
 			this._tsTimestampSelected.ToolTipText = "Adjust time taken for files marked with a checkmark";
-			this._tsTimestampSelected.Click += new System.EventHandler(this._tsTimestampSelected_Click);
+			this._tsTimestampSelected.Click += new System.EventHandler(this.TsTimestampSelected_Click);
 			// 
 			// _tsTimestampCamera
 			// 
@@ -224,7 +224,7 @@
 			this._tsTimestampCamera.Size = new System.Drawing.Size(157, 24);
 			this._tsTimestampCamera.Text = "By &Camera...";
 			this._tsTimestampCamera.ToolTipText = "Adjust time taken for files with a specified camera name";
-			this._tsTimestampCamera.Click += new System.EventHandler(this._tsTimestampCamera_Click);
+			this._tsTimestampCamera.Click += new System.EventHandler(this.TsTimestampCamera_Click);
 			// 
 			// _tsModel
 			// 
@@ -240,7 +240,7 @@
 			this._tsModel.Size = new System.Drawing.Size(148, 22);
 			this._tsModel.Text = "Nickname &Camera...";
 			this._tsModel.ToolTipText = "Change camera name for all files in the folder";
-			this._tsModel.ButtonClick += new System.EventHandler(this._tsModelAll_Click);
+			this._tsModel.ButtonClick += new System.EventHandler(this.TsModelAll_Click);
 			// 
 			// _tsModelAll
 			// 
@@ -251,7 +251,7 @@
 			this._tsModelAll.Size = new System.Drawing.Size(157, 24);
 			this._tsModelAll.Text = "&All Files...";
 			this._tsModelAll.ToolTipText = "Change camera name for all files in the folder";
-			this._tsModelAll.Click += new System.EventHandler(this._tsModelAll_Click);
+			this._tsModelAll.Click += new System.EventHandler(this.TsModelAll_Click);
 			// 
 			// _tsModelSelected
 			// 
@@ -262,7 +262,7 @@
 			this._tsModelSelected.Size = new System.Drawing.Size(157, 24);
 			this._tsModelSelected.Text = "Chec&ked Files...";
 			this._tsModelSelected.ToolTipText = "Change camera name for files marked with a checkmark";
-			this._tsModelSelected.Click += new System.EventHandler(this._tsModelSelected_Click);
+			this._tsModelSelected.Click += new System.EventHandler(this.TsModelSelected_Click);
 			// 
 			// _tsModelCamera
 			// 
@@ -272,7 +272,7 @@
 			this._tsModelCamera.Size = new System.Drawing.Size(157, 24);
 			this._tsModelCamera.Text = "By &Camera...";
 			this._tsModelCamera.ToolTipText = "Change camera name for files with a specified camera name";
-			this._tsModelCamera.Click += new System.EventHandler(this._tsModelCamera_Click);
+			this._tsModelCamera.Click += new System.EventHandler(this.TsModelCamera_Click);
 			// 
 			// _tsRename
 			// 
@@ -286,7 +286,7 @@
 			this._tsRename.Name = "_tsRename";
 			this._tsRename.Size = new System.Drawing.Size(84, 22);
 			this._tsRename.Text = "Re&name";
-			this._tsRename.ButtonClick += new System.EventHandler(this._tsRenameAll_Click);
+			this._tsRename.ButtonClick += new System.EventHandler(this.TsRenameAll_Click);
 			// 
 			// _tsRenameAll
 			// 
@@ -296,7 +296,7 @@
 			this._tsRenameAll.Name = "_tsRenameAll";
 			this._tsRenameAll.Size = new System.Drawing.Size(122, 24);
 			this._tsRenameAll.Text = "&All";
-			this._tsRenameAll.Click += new System.EventHandler(this._tsRenameAll_Click);
+			this._tsRenameAll.Click += new System.EventHandler(this.TsRenameAll_Click);
 			// 
 			// _tsRenameSelected
 			// 
@@ -306,7 +306,7 @@
 			this._tsRenameSelected.Name = "_tsRenameSelected";
 			this._tsRenameSelected.Size = new System.Drawing.Size(122, 24);
 			this._tsRenameSelected.Text = "Chec&ked";
-			this._tsRenameSelected.Click += new System.EventHandler(this._tsRenameSelected_Click);
+			this._tsRenameSelected.Click += new System.EventHandler(this.TsRenameSelected_Click);
 			// 
 			// _tsExport
 			// 
@@ -320,7 +320,7 @@
 			this._tsExport.Name = "_tsExport";
 			this._tsExport.Size = new System.Drawing.Size(84, 22);
 			this._tsExport.Text = "E&xport...";
-			this._tsExport.ButtonClick += new System.EventHandler(this._tsExportAll_Click);
+			this._tsExport.ButtonClick += new System.EventHandler(this.TsExportAll_Click);
 			// 
 			// _tsExportAll
 			// 
@@ -330,7 +330,7 @@
 			this._tsExportAll.Name = "_tsExportAll";
 			this._tsExportAll.Size = new System.Drawing.Size(131, 24);
 			this._tsExportAll.Text = "&All...";
-			this._tsExportAll.Click += new System.EventHandler(this._tsExportAll_Click);
+			this._tsExportAll.Click += new System.EventHandler(this.TsExportAll_Click);
 			// 
 			// _tsExportSelected
 			// 
@@ -340,7 +340,7 @@
 			this._tsExportSelected.Name = "_tsExportSelected";
 			this._tsExportSelected.Size = new System.Drawing.Size(131, 24);
 			this._tsExportSelected.Text = "Chec&ked...";
-			this._tsExportSelected.Click += new System.EventHandler(this._tsExportSelected_Click);
+			this._tsExportSelected.Click += new System.EventHandler(this.TsExportSelected_Click);
 			// 
 			// _pbFolder
 			// 
@@ -353,7 +353,7 @@
 			this._pbFolder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this._pbFolder.TabIndex = 8;
 			this._pbFolder.TabStop = false;
-			this._pbFolder.Click += new System.EventHandler(this.folder_Click);
+			this._pbFolder.Click += new System.EventHandler(this.Folder_Click);
 			// 
 			// _pbMenu
 			// 
@@ -367,7 +367,7 @@
 			this._pbMenu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
 			this._pbMenu.TabIndex = 7;
 			this._pbMenu.TabStop = false;
-			this._pbMenu.Click += new System.EventHandler(this._pbMenu_Click);
+			this._pbMenu.Click += new System.EventHandler(this.PbMenu_Click);
 			// 
 			// _cmnuMainFolder
 			// 
@@ -376,7 +376,7 @@
 			this._cmnuMainFolder.Name = "_cmnuMainFolder";
 			this._cmnuMainFolder.Size = new System.Drawing.Size(182, 24);
 			this._cmnuMainFolder.Text = "Choose &Folder...";
-			this._cmnuMainFolder.Click += new System.EventHandler(this.folder_Click);
+			this._cmnuMainFolder.Click += new System.EventHandler(this.Folder_Click);
 			// 
 			// _cmnuMainSettings
 			// 
@@ -384,7 +384,7 @@
 			this._cmnuMainSettings.Name = "_cmnuMainSettings";
 			this._cmnuMainSettings.Size = new System.Drawing.Size(182, 24);
 			this._cmnuMainSettings.Text = "&Settings...";
-			this._cmnuMainSettings.Click += new System.EventHandler(this._cmnuMainSettings_Click);
+			this._cmnuMainSettings.Click += new System.EventHandler(this.CmnuMainSettings_Click);
 			// 
 			// _cmnuMainCheckUpdate
 			// 
@@ -392,7 +392,7 @@
 			this._cmnuMainCheckUpdate.Name = "_cmnuMainCheckUpdate";
 			this._cmnuMainCheckUpdate.Size = new System.Drawing.Size(182, 24);
 			this._cmnuMainCheckUpdate.Text = "Check for &Update...";
-			this._cmnuMainCheckUpdate.Click += new System.EventHandler(this._cmnuMainCheckUpdate_Click);
+			this._cmnuMainCheckUpdate.Click += new System.EventHandler(this.CmnuMainCheckUpdate_Click);
 			// 
 			// _cmnuMainAbout
 			// 
@@ -401,7 +401,7 @@
 			this._cmnuMainAbout.Name = "_cmnuMainAbout";
 			this._cmnuMainAbout.Size = new System.Drawing.Size(182, 24);
 			this._cmnuMainAbout.Text = "&About";
-			this._cmnuMainAbout.Click += new System.EventHandler(this._cmnuMainAbout_Click);
+			this._cmnuMainAbout.Click += new System.EventHandler(this.CmnuMainAbout_Click);
 			// 
 			// PhotoCombWindow
 			// 

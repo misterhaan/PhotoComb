@@ -12,10 +12,10 @@ namespace au.Applications.PhotoComb {
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 
-			SettingsManager settingsManager = new SettingsManager();
+			SettingsManager settingsManager = new();
 			PhotoCombSettings settings = settingsManager.Settings;
-			VersionManager versionManager = new VersionManager("misterhaan", "PhotoComb");
-			CameraFileCollection cameraFileCollection = new CameraFileCollection(settings);
+			VersionManager versionManager = new("misterhaan", "PhotoComb");
+			CameraFileCollection cameraFileCollection = new(settings);
 
 			Application.Run(new PhotoCombWindow(settings, versionManager, cameraFileCollection));
 

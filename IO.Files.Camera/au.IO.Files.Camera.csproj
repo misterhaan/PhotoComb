@@ -6,6 +6,7 @@
 		<UseWPF>true</UseWPF>
 		<Description>Access files from digital cameras including their metadata</Description>
 		<Nullable>disable</Nullable>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

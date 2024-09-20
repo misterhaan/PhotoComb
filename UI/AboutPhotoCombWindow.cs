@@ -21,7 +21,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _lnkURL_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		private void LnkURL_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 			=> Process.Start(new ProcessStartInfo(_lnkURL.Text) { UseShellExecute = true });
 	}
 }

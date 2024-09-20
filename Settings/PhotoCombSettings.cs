@@ -15,7 +15,7 @@ namespace au.Applications.PhotoComb.Settings {
 				return _lastSourceDir;
 			}
 			set {
-				DirectoryInfo dir = new DirectoryInfo(value);
+				DirectoryInfo dir = new(value);
 				while(!dir.Exists && dir.Parent != null)  // find nearest existing ancestor if possible
 					dir = dir.Parent;
 				if(dir.Exists)
@@ -30,7 +30,7 @@ namespace au.Applications.PhotoComb.Settings {
 				return _lastDestDir;
 			}
 			set {
-				DirectoryInfo dir = new DirectoryInfo(value);
+				DirectoryInfo dir = new(value);
 				while(!dir.Exists && dir.Parent != null)  // find nearest existing ancestor if possible
 					dir = dir.Parent;
 				if(dir.Exists)

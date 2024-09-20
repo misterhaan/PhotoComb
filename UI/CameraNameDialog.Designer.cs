@@ -59,7 +59,7 @@
 			this._cbModel.Size = new System.Drawing.Size(149, 21);
 			this._cbModel.TabIndex = 8;
 			this._cbModel.Visible = false;
-			this._cbModel.SelectedIndexChanged += new System.EventHandler(this._cbModel_SelectedIndexChanged);
+			this._cbModel.SelectedIndexChanged += new System.EventHandler(this.CbModel_SelectedIndexChanged);
 			// 
 			// _lblWhich
 			// 

@@ -11,7 +11,7 @@ namespace au.IO.Files.Camera {
 	/// <summary>
 	/// Information about a file from a digital camera.
 	/// </summary>
-	internal class CameraFileInfo : ICameraFileInfo {
+	internal partial class CameraFileInfo : ICameraFileInfo {
 		/// <summary>
 		/// Wrapped object (can't extend sealed class).
 		/// </summary>
@@ -94,7 +94,7 @@ namespace au.IO.Files.Camera {
 		/// </summary>
 		/// <returns>Unique part of the filename.</returns>
 		private string GetId() {
-			string id = Name.Substring(0, Name.Length - _file.Extension.Length);
+			string id = Name[..^_file.Extension.Length];
 
 #pragma warning disable IDE0046
 			// default camera filenames 
@@ -105,13 +105,12 @@ namespace au.IO.Files.Camera {
 				string[] parts = id.Split('-');
 				return parts[^1];
 			}
-			// android motion photo export format
-			if(Regex.IsMatch(id, @"^(MV)?IMG_[0-9]{8}_[0-9]{6}(_[0-9]+)?_exported_[0-9]+_[0-9]+$")) {
+			if(AndroidMotionPhotoExportRegex().IsMatch(id)) {
 				string[] parts = id.Split('_');
 				return parts[^2];
 			}
 			// multiple photos in same second adds a counter after the time portion of the filename
-			if(Regex.IsMatch(id, @"^(MV)?IMG_[0-9]{8}_[0-9]{6}_[0-9]+")) {
+			if(MultipleInSameSecondRegex().IsMatch(id)) {
 				string[] parts = id.Split('_');
 				return parts[3];
 			}
@@ -175,5 +174,11 @@ namespace au.IO.Files.Camera {
 		/// <returns>Whether the objects reference the same file.</returns>
 		public static bool operator !=(CameraFileInfo cfi1, ICameraFileInfo cfi2)
 			=> !cfi1.Equals(cfi2);
+
+		[GeneratedRegex(@"^(MV)?IMG_[0-9]{8}_[0-9]{6}(_[0-9]+)?_exported_[0-9]+_[0-9]+$")]
+		private static partial Regex AndroidMotionPhotoExportRegex();
+
+		[GeneratedRegex(@"^(MV)?IMG_[0-9]{8}_[0-9]{6}_[0-9]+")]
+		private static partial Regex MultipleInSameSecondRegex();
 	}
 }

@@ -93,7 +93,7 @@ namespace au.IO.Files.Camera {
 		/// <summary>
 		/// Create the instance for NotLookedUp the first time it's requested.
 		/// </summary>
-		private static readonly Lazy<ICameraFileMetadata> _notLookedUp = new Lazy<ICameraFileMetadata>(() => new NotLookedUpCameraFileMetadata());
+		private static readonly Lazy<ICameraFileMetadata> _notLookedUp = new(() => new NotLookedUpCameraFileMetadata());
 
 		/// <summary>
 		/// Special-case class for metadata that hasn't been looked up yet.
@@ -110,7 +110,7 @@ namespace au.IO.Files.Camera {
 		/// <summary>
 		/// Create the instance for Unknown the first time it's requested.
 		/// </summary>
-		private static readonly Lazy<CameraFileMetadata> _unknown = new Lazy<CameraFileMetadata>(() => new UnknownCameraFileMetadata());
+		private static readonly Lazy<CameraFileMetadata> _unknown = new(() => new UnknownCameraFileMetadata());
 
 		/// <summary>
 		/// Special-case class for metadata that could not be looked up.

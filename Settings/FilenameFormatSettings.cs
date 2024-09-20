@@ -5,8 +5,8 @@ using System.Xml.Serialization;
 using au.Applications.PhotoComb.Settings.Types;
 
 namespace au.Applications.PhotoComb.Settings {
-	public class FilenameFormatSettings : IFilenameFormatSettings {
-		private static readonly ISet<string> _allowedSeparators = new HashSet<string>(new string[] { "", ".", "-", "_" });
+	public partial class FilenameFormatSettings : IFilenameFormatSettings {
+		private static readonly HashSet<string> _allowedSeparators = new(["", ".", "-", "_"]);
 
 		/// <inheritdoc />
 		public string DateSeparator {
@@ -56,7 +56,7 @@ namespace au.Applications.PhotoComb.Settings {
 		/// <summary>
 		/// Non-interface member for serialization.
 		/// </summary>
-		public HashSet<string> PhotoExtensions { get; set; } = new HashSet<string>(new string[] { "jpeg", "jpg" }, StringComparer.OrdinalIgnoreCase);
+		public HashSet<string> PhotoExtensions { get; set; } = new HashSet<string>(["jpeg", "jpg"], StringComparer.OrdinalIgnoreCase);
 
 		/// <inheritdoc />
 		ISet<string> IFilenameFormatSettings.VideoExtensions => VideoExtensions;
@@ -64,7 +64,7 @@ namespace au.Applications.PhotoComb.Settings {
 		/// <summary>
 		/// Non-interface member for serialization.
 		/// </summary>
-		public HashSet<string> VideoExtensions { get; set; } = new HashSet<string>(new string[] { "mp4", "mov", "avi" }, StringComparer.OrdinalIgnoreCase);
+		public HashSet<string> VideoExtensions { get; set; } = new HashSet<string>(["mp4", "mov", "avi"], StringComparer.OrdinalIgnoreCase);
 
 		/// <inheritdoc />
 		[XmlIgnore]
@@ -72,7 +72,7 @@ namespace au.Applications.PhotoComb.Settings {
 
 		/// <inheritdoc />
 		[XmlIgnore]
-		public Regex OutputFormat { get; private set; } = new Regex(@"^\d{8}-\d{6}-.+-[^-]+$");
+		public Regex OutputFormat { get; private set; } = DefaultOutputFormatRegex();
 
 		/// <summary>
 		/// Rebuilds <cref>FormatString</cref> because a separator has changed.
@@ -85,5 +85,8 @@ namespace au.Applications.PhotoComb.Settings {
 		/// </summary>
 		private void UpdateOutputFormat()
 			=> OutputFormat = new Regex(string.Format(@"^\d{{4}}{0}\d{{2}}{0}\d{{2}}{2}\d{{2}}{1}\d{{2}}{1}\d{{2}}{2}.+{2}[^{2}]+$", DateSeparator, TimeSeparator, OverallSeparator));
+
+		[GeneratedRegex(@"^\d{8}-\d{6}-.+-[^-]+$")]
+		private static partial Regex DefaultOutputFormatRegex();
 	}
 }

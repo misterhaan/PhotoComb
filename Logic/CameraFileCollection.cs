@@ -11,29 +11,18 @@ namespace au.Applications.PhotoComb.Logic {
 	/// <summary>
 	/// Manages a collection of camera files.
 	/// </summary>
-	public class CameraFileCollection : ICameraFileCollection {
-		/// <summary>
-		/// Some settings affect how camera files are interpreted.
-		/// </summary>
-		private readonly IPhotoCombSettings _settings;
+	/// <param name="settings">Application settings.</param>
+	public class CameraFileCollection(IPhotoCombSettings settings) : ICameraFileCollection {
 
 		/// <summary>
 		/// Camera files indexed by filename.
 		/// </summary>
-		private readonly Dictionary<string, ICameraFileInfo> _filenameIndex = new Dictionary<string, ICameraFileInfo>(StringComparer.OrdinalIgnoreCase);
+		private readonly Dictionary<string, ICameraFileInfo> _filenameIndex = new(StringComparer.OrdinalIgnoreCase);
 
 		/// <summary>
 		/// Camera files grouped by camera model.
 		/// </summary>
-		private readonly Dictionary<string, List<ICameraFileInfo>> _modelIndex = new Dictionary<string, List<ICameraFileInfo>>();
-
-		/// <summary>
-		/// Create a camera file collection.
-		/// </summary>
-		/// <param name="settings">Application settings.</param>
-		public CameraFileCollection(IPhotoCombSettings settings) {
-			_settings = settings;
-		}
+		private readonly Dictionary<string, List<ICameraFileInfo>> _modelIndex = [];
 
 		/// <inheritdoc />
 		public ICollection<string> CameraNames => _modelIndex.Keys;
@@ -50,7 +39,7 @@ namespace au.Applications.PhotoComb.Logic {
 		public IEnumerable<ICameraFileInfo> ScanDirectory(string path) {
 			_filenameIndex.Clear();
 			_modelIndex.Clear();
-			ICameraDirectoryInfo cdi = new CameraDirectoryInfo(path, _settings.FilenameFormat);
+			CameraDirectoryInfo cdi = new(path, settings.FilenameFormat);
 			foreach(ICameraFileInfo cfi in cdi.EnumerateFiles()) {
 				_filenameIndex.Add(cfi.Name, cfi);
 				Task.Run(() => UpdateModelIndexAsync(cfi));
@@ -69,7 +58,7 @@ namespace au.Applications.PhotoComb.Logic {
 				lock(_modelIndex) {
 					string model = cfi.CameraNameOverride ?? cfi.Metadata.Model ?? "";
 					if(!_modelIndex.ContainsKey(model))
-						_modelIndex[model] = new List<ICameraFileInfo>();
+						_modelIndex[model] = [];
 					if(!_modelIndex[model].Contains(cfi))
 						_modelIndex[model].Add(cfi);
 				}
@@ -115,8 +104,8 @@ namespace au.Applications.PhotoComb.Logic {
 			foreach(ICameraFileInfo file in _modelIndex[oldCameraName])
 				file.CameraNameOverride = nickname;
 			lock(_modelIndex) {
-				if(_modelIndex.ContainsKey(nickname))
-					_modelIndex[nickname].AddRange(_modelIndex[oldCameraName]);
+				if(_modelIndex.TryGetValue(nickname, out List<ICameraFileInfo> nicknamedFiles))
+					nicknamedFiles.AddRange(_modelIndex[oldCameraName]);
 				else
 					_modelIndex[nickname] = _modelIndex[oldCameraName];
 				_modelIndex.Remove(oldCameraName);
@@ -128,7 +117,7 @@ namespace au.Applications.PhotoComb.Logic {
 			lock(_modelIndex) {
 				// make sure the nickname is in the index
 				if(!_modelIndex.ContainsKey(nickname))
-					_modelIndex.Add(nickname, new List<ICameraFileInfo>());
+					_modelIndex.Add(nickname, []);
 
 				foreach(ICameraFileInfo file in GetFilesFromNames(filenames)) {
 					// remove from index of old camera name
@@ -151,9 +140,9 @@ namespace au.Applications.PhotoComb.Logic {
 		/// <param name="model">Camera name the file might be indexed under.</param>
 		/// <param name="file">File to remove from index.</param>
 		private void RemoveFromModelIndex(string model, ICameraFileInfo file) {
-			if(_modelIndex.ContainsKey(model)) {
-				_modelIndex[model].Remove(file);
-				if(!_modelIndex[model].Any())
+			if(_modelIndex.TryGetValue(model, out List<ICameraFileInfo> modelFiles)) {
+				modelFiles.Remove(file);
+				if(modelFiles.Count == 0)
 					_modelIndex.Remove(model);
 			}
 		}

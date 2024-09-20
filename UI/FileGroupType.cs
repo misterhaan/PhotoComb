@@ -15,12 +15,12 @@ namespace au.Applications.PhotoComb.UI {
 	/// </summary>
 	internal static class FileGroupTypeExt {
 		internal static string ToLabel(this FileGroupType fileGroupType) {
-			switch(fileGroupType) {
-				case FileGroupType.All: return Labels.WhichAll;
-				case FileGroupType.CameraModel: return Labels.WhichCamera;
-				case FileGroupType.Checked: return Labels.WhichChecked;
-				default: throw new NotImplementedException($"No label defined for {nameof(FileGroupType)}.{fileGroupType}");
-			}
+			return fileGroupType switch {
+				FileGroupType.All => Labels.WhichAll,
+				FileGroupType.CameraModel => Labels.WhichCamera,
+				FileGroupType.Checked => Labels.WhichChecked,
+				_ => throw new NotImplementedException($"No label defined for {nameof(FileGroupType)}.{fileGroupType}"),
+			};
 		}
 	}
 }

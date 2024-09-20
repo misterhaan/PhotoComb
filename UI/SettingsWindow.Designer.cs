@@ -113,7 +113,7 @@
 			this._radDateSeparatorDash.Tag = "";
 			this._radDateSeparatorDash.Text = "2016-08-04";
 			this._radDateSeparatorDash.UseVisualStyleBackColor = true;
-			this._radDateSeparatorDash.CheckedChanged += new System.EventHandler(this._radDateSeparator_CheckedChanged);
+			this._radDateSeparatorDash.CheckedChanged += new System.EventHandler(this.RadDateSeparator_CheckedChanged);
 			// 
 			// _radDateSeparatorPeriod
 			// 
@@ -125,7 +125,7 @@
 			this._radDateSeparatorPeriod.Tag = "";
 			this._radDateSeparatorPeriod.Text = "2016.08.04";
 			this._radDateSeparatorPeriod.UseVisualStyleBackColor = true;
-			this._radDateSeparatorPeriod.CheckedChanged += new System.EventHandler(this._radDateSeparator_CheckedChanged);
+			this._radDateSeparatorPeriod.CheckedChanged += new System.EventHandler(this.RadDateSeparator_CheckedChanged);
 			// 
 			// _radDateSeparatorNone
 			// 
@@ -139,7 +139,7 @@
 			this._radDateSeparatorNone.Tag = "";
 			this._radDateSeparatorNone.Text = "20160804";
 			this._radDateSeparatorNone.UseVisualStyleBackColor = true;
-			this._radDateSeparatorNone.CheckedChanged += new System.EventHandler(this._radDateSeparator_CheckedChanged);
+			this._radDateSeparatorNone.CheckedChanged += new System.EventHandler(this.RadDateSeparator_CheckedChanged);
 			// 
 			// _pnlTimeSeparator
 			// 
@@ -161,7 +161,7 @@
 			this._radTimeSeparatorDash.TabIndex = 3;
 			this._radTimeSeparatorDash.Text = "22-33-44";
 			this._radTimeSeparatorDash.UseVisualStyleBackColor = true;
-			this._radTimeSeparatorDash.CheckedChanged += new System.EventHandler(this._radTimeSeparator_CheckedChanged);
+			this._radTimeSeparatorDash.CheckedChanged += new System.EventHandler(this.RadTimeSeparator_CheckedChanged);
 			// 
 			// _radTimeSeparatorPeriod
 			// 
@@ -172,7 +172,7 @@
 			this._radTimeSeparatorPeriod.TabIndex = 2;
 			this._radTimeSeparatorPeriod.Text = "22.33.44";
 			this._radTimeSeparatorPeriod.UseVisualStyleBackColor = true;
-			this._radTimeSeparatorPeriod.CheckedChanged += new System.EventHandler(this._radTimeSeparator_CheckedChanged);
+			this._radTimeSeparatorPeriod.CheckedChanged += new System.EventHandler(this.RadTimeSeparator_CheckedChanged);
 			// 
 			// _radTimeSeparatorNone
 			// 
@@ -185,7 +185,7 @@
 			this._radTimeSeparatorNone.TabStop = true;
 			this._radTimeSeparatorNone.Text = "223344";
 			this._radTimeSeparatorNone.UseVisualStyleBackColor = true;
-			this._radTimeSeparatorNone.CheckedChanged += new System.EventHandler(this._radTimeSeparator_CheckedChanged);
+			this._radTimeSeparatorNone.CheckedChanged += new System.EventHandler(this.RadTimeSeparator_CheckedChanged);
 			// 
 			// _lblTimeSeparator
 			// 
@@ -205,7 +205,7 @@
 			this._chkExpandJpeg.TabIndex = 3;
 			this._chkExpandJpeg.Text = "Expand JPEG extensions";
 			this._chkExpandJpeg.UseVisualStyleBackColor = true;
-			this._chkExpandJpeg.CheckedChanged += new System.EventHandler(this._chkExpandJpeg_CheckedChanged);
+			this._chkExpandJpeg.CheckedChanged += new System.EventHandler(this.ChkExpandJpeg_CheckedChanged);
 			// 
 			// _pnlOverallSeparator
 			// 
@@ -340,7 +340,7 @@
 			this._btnOk.TabIndex = 9;
 			this._btnOk.Text = "OK";
 			this._btnOk.UseVisualStyleBackColor = true;
-			this._btnOk.Click += new System.EventHandler(this._btnOk_Click);
+			this._btnOk.Click += new System.EventHandler(this.BtnOk_Click);
 			// 
 			// _btnCancel
 			// 

@@ -62,8 +62,10 @@ namespace au.IO.Files.Camera.Tests {
 
 		[TestMethod]
 		public void Equality_InterfaceLevelCreatedFromSamePath_Equal() {
+#pragma warning disable CA1859 // Use concrete types when possible for improved performance
 			ICameraFileInfo cfi1 = BuildCameraFileInfo(JpgFilename, false);
 			ICameraFileInfo cfi2 = BuildCameraFileInfo(JpgFilename, false);
+#pragma warning restore CA1859 // Use concrete types when possible for improved performance
 
 			Assert.AreEqual(cfi1, cfi2, "Two ICameraFileInfo objects created separately from the same path should be equal.");
 			Assert.IsTrue(cfi1.Equals(cfi2), "A CameraFileInfo object's Equals() method should return true for another ICameraFileInfo object created separately from the same path.");

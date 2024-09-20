@@ -9,35 +9,21 @@ namespace au.IO.Files.Camera {
 	/// <summary>
 	/// Information about a directory of files from a digital camera.
 	/// </summary>
-	public class CameraDirectoryInfo : ICameraDirectoryInfo {
+	/// <param name="path">Path to camera files.</param>
+	/// <param name="fileFormat">How to format sortable filenames.</param>
+	public class CameraDirectoryInfo(string path, IFilenameFormatSettings fileFormat) : ICameraDirectoryInfo {
 		/// <summary>
 		/// Wrapped instance (sealed class can't be extended).
 		/// </summary>
-		private readonly DirectoryInfo _dir;  // have to wrap this instead of extending it because it's sealed
-
-		/// <summary>
-		/// How sortable filenames are formatted.
-		/// </summary>
-		private readonly IFilenameFormatSettings _fileFormat;
-
-		/// <summary>
-		/// Initializes a new instance of the CameraDirectoryInfo class on the specified
-		/// path.
-		/// </summary>
-		/// <param name="path">Path to camera files.</param>
-		/// <param name="fileFormat">How to format sortable filenames.</param>
-		public CameraDirectoryInfo(string path, IFilenameFormatSettings fileFormat) {
-			_dir = new DirectoryInfo(path);
-			_fileFormat = fileFormat;
-		}
+		private readonly DirectoryInfo _dir = new(path);  // have to wrap this instead of extending it because it's sealed
 
 		/// <summary>
 		/// Returns an enumerable collection of file information in the current directory.
 		/// </summary>
 		/// <returns>Array of CameraFileInfo objects for the files in the current directory</returns>
 		public IEnumerable<ICameraFileInfo> EnumerateFiles() {
-			MetadataLookupFactory metadataLookup = new MetadataLookupFactory(_fileFormat.PhotoExtensions, _fileFormat.VideoExtensions);
-			return _dir.EnumerateFiles().Select(fi => new CameraFileInfo(fi, _fileFormat, metadataLookup));
+			MetadataLookupFactory metadataLookup = new(fileFormat.PhotoExtensions, fileFormat.VideoExtensions);
+			return _dir.EnumerateFiles().Select(fi => new CameraFileInfo(fi, fileFormat, metadataLookup));
 		}
 	}
 }

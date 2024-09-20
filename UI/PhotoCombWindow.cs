@@ -118,9 +118,9 @@ namespace au.Applications.PhotoComb.UI {
 			_lv.Items.Clear();
 			_lblFolder.Text = Labels.Loading;
 			_lv.BeginUpdate();
-			List<Task> metadataTasks = new List<Task>();
+			List<Task> metadataTasks = [];
 			foreach(ICameraFileInfo cfi in _files.ScanDirectory(path)) {
-				ListViewItem lvi = new ListViewItem(new string[] { cfi.Name, cfi.SortableName, cfi.ErrorMessage }, (int)cfi.Metadata.Type);
+				ListViewItem lvi = new(new string[] { cfi.Name, cfi.SortableName, cfi.ErrorMessage }, (int)cfi.Metadata.Type);
 				metadataTasks.Add(UpdateWithMetadataAsync(lvi, cfi));
 				_lv.Items.Add(lvi);
 			}
@@ -135,11 +135,11 @@ namespace au.Applications.PhotoComb.UI {
 		/// Refresh the list of files without loading them from disk again.
 		/// </summary>
 		private void RefreshData() {
-			ISet<string> checkedFilenames = new HashSet<string>(GetCheckedFilenames(true));
+			HashSet<string> checkedFilenames = new(GetCheckedFilenames(true));
 			_lv.BeginUpdate();
 			_lv.Items.Clear();
 			foreach(ICameraFileInfo cfi in _files.Files) {
-				ListViewItem lvi = new ListViewItem(new string[] { cfi.Name, cfi.SortableName, cfi.ErrorMessage }, (int)cfi.Metadata.Type) {
+				ListViewItem lvi = new(new string[] { cfi.Name, cfi.SortableName, cfi.ErrorMessage }, (int)cfi.Metadata.Type) {
 					Checked = checkedFilenames.Contains(cfi.Name)
 				};
 				_lv.Items.Add(lvi);
@@ -168,7 +168,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="fileGroupType">Which type of file group is being updated</param>
 		private void AdjustTimeTaken(FileGroupType fileGroupType) {
-			using TimespanDialog tsd = new TimespanDialog(fileGroupType);
+			using TimespanDialog tsd = new(fileGroupType);
 			if(fileGroupType == FileGroupType.CameraModel)
 				tsd.SetModelList(_files.CameraNames);
 			if(tsd.ShowDialog(this) != DialogResult.Cancel) {
@@ -193,7 +193,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="fileGroupType">Which type of file group is being updated.</param>
 		private void ChangeCameraName(FileGroupType fileGroupType) {
-			using CameraNameDialog cnd = new CameraNameDialog(fileGroupType);
+			using CameraNameDialog cnd = new(fileGroupType);
 			if(fileGroupType == FileGroupType.CameraModel)
 				cnd.SetModelList(_files.CameraNames);
 			if(cnd.ShowDialog(this) != DialogResult.Cancel) {
@@ -273,7 +273,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// <param name="destPath">Full path to the directory the files should be copied to.</param>
 		/// <param name="files">List of files to copy.</param>
 		private void CopyFiles(string destPath, IEnumerable<ICameraFileInfo> files) {
-			using(CopyFilesOperation copyFiles = new CopyFilesOperation())
+			using(CopyFilesOperation copyFiles = new())
 				foreach(ICameraFileInfo file in files)
 					if(file.Metadata.Taken.HasValue && !string.IsNullOrEmpty(file.CameraNameOverride ?? file.Metadata.Model))
 						copyFiles.Queue(file.FullName, destPath, file.SortableName);
@@ -331,7 +331,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private async void folder_Click(object sender, EventArgs e)
+		private async void Folder_Click(object sender, EventArgs e)
 			=> await ChooseFolder().ConfigureAwait(false);
 
 		/// <summary>
@@ -340,7 +340,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _lv_ItemChecked(object sender, ItemCheckedEventArgs e)
+		private void Lv_ItemChecked(object sender, ItemCheckedEventArgs e)
 			=> _tsTimestampSelected.Enabled = _tsModelSelected.Enabled = _tsRenameSelected.Enabled = _tsExportSelected.Enabled = _lv.CheckedItems.Count > 0;
 
 		/// <summary>
@@ -348,7 +348,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private async void _tsRescan_Click(object sender, EventArgs e)
+		private async void TsRescan_Click(object sender, EventArgs e)
 			=> await ScanFolder(_lblFolder.Text).ConfigureAwait(false);
 
 		/// <summary>
@@ -356,7 +356,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _tsTimestampAll_Click(object sender, EventArgs e)
+		private void TsTimestampAll_Click(object sender, EventArgs e)
 			=> AdjustTimeTaken(FileGroupType.All);
 
 		/// <summary>
@@ -364,7 +364,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _tsTimestampSelected_Click(object sender, EventArgs e)
+		private void TsTimestampSelected_Click(object sender, EventArgs e)
 			=> AdjustTimeTaken(FileGroupType.Checked);
 
 		/// <summary>
@@ -372,7 +372,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _tsTimestampCamera_Click(object sender, EventArgs e)
+		private void TsTimestampCamera_Click(object sender, EventArgs e)
 			=> AdjustTimeTaken(FileGroupType.CameraModel);
 
 		/// <summary>
@@ -380,7 +380,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _tsModelAll_Click(object sender, EventArgs e)
+		private void TsModelAll_Click(object sender, EventArgs e)
 			=> ChangeCameraName(FileGroupType.All);
 
 		/// <summary>
@@ -388,7 +388,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _tsModelSelected_Click(object sender, EventArgs e)
+		private void TsModelSelected_Click(object sender, EventArgs e)
 			=> ChangeCameraName(FileGroupType.Checked);
 
 		/// <summary>
@@ -396,7 +396,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _tsModelCamera_Click(object sender, EventArgs e)
+		private void TsModelCamera_Click(object sender, EventArgs e)
 			=> ChangeCameraName(FileGroupType.CameraModel);
 
 		/// <summary>
@@ -404,7 +404,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _tsRenameAll_Click(object sender, EventArgs e)
+		private void TsRenameAll_Click(object sender, EventArgs e)
 			=> RenameFiles(FileGroupType.All);
 
 		/// <summary>
@@ -412,7 +412,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _tsRenameSelected_Click(object sender, EventArgs e)
+		private void TsRenameSelected_Click(object sender, EventArgs e)
 			=> RenameFiles(FileGroupType.Checked);
 
 		/// <summary>
@@ -420,7 +420,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _tsExportAll_Click(object sender, EventArgs e)
+		private void TsExportAll_Click(object sender, EventArgs e)
 			=> CopyFiles(FileGroupType.All);
 
 		/// <summary>
@@ -428,7 +428,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _tsExportSelected_Click(object sender, EventArgs e)
+		private void TsExportSelected_Click(object sender, EventArgs e)
 			=> CopyFiles(FileGroupType.Checked);
 
 		/// <summary>
@@ -436,7 +436,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _pbMenu_Click(object sender, EventArgs e)
+		private void PbMenu_Click(object sender, EventArgs e)
 			=> _cmnuMain.Show(_pbMenu, -_cmnuMain.Width + _pbMenu.Width, _pbMenu.Height);
 
 		/// <summary>
@@ -444,8 +444,8 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void _cmnuMainSettings_Click(object sender, EventArgs e) {
-			using SettingsWindow settingsWindow = new SettingsWindow(_settings);
+		private void CmnuMainSettings_Click(object sender, EventArgs e) {
+			using SettingsWindow settingsWindow = new(_settings);
 			if(settingsWindow.ShowDialog(this) == DialogResult.OK)
 				RefreshData();
 		}
@@ -455,7 +455,7 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private async void _cmnuMainCheckUpdate_Click(object sender, EventArgs e)
+		private async void CmnuMainCheckUpdate_Click(object sender, EventArgs e)
 			=> await _versionManager.PromptForUpdate(this, true).ConfigureAwait(false);
 
 		/// <summary>
@@ -463,8 +463,8 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private void _cmnuMainAbout_Click(object sender, EventArgs e) {
-			using AboutPhotoCombWindow about = new AboutPhotoCombWindow();
+		private void CmnuMainAbout_Click(object sender, EventArgs e) {
+			using AboutPhotoCombWindow about = new();
 			about.ShowDialog(this);
 		}
 		#endregion event handlers

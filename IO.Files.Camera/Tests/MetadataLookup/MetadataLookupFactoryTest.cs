@@ -5,7 +5,9 @@ using au.Applications.PhotoComb.Settings.Types;
 using FakeItEasy;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace au.IO.Files.Camera.MetadataLookup.Tests {
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 	[TestClass]
 	public class MetadataLookupFactoryTest {
 		[DataTestMethod]
@@ -51,11 +53,11 @@ namespace au.IO.Files.Camera.MetadataLookup.Tests {
 			=> Assert.AreEqual(Environment.Is64BitOperatingSystem, Environment.Is64BitProcess, "This test requires the process bitness and OS bitness to agree.  Configure Visual Studio at Tests > Test Settings > Default Processor Architecture and choose your OS architecture.");
 
 		private static MetadataLookupFactory GetMetadataLookupFactory()
-			=> new MetadataLookupFactory(
-				new HashSet<string>(new string[] { "jpg", "jpeg" }, StringComparer.OrdinalIgnoreCase),
-				new HashSet<string>(new string[] { "mp4", "mov", "avi" }, StringComparer.OrdinalIgnoreCase));
+			=> new(
+				new HashSet<string>(["jpg", "jpeg"], StringComparer.OrdinalIgnoreCase),
+				new HashSet<string>(["mp4", "mov", "avi"], StringComparer.OrdinalIgnoreCase));
 
 		private static CameraFileInfo GetCameraFileInfo(string filePath, MetadataLookupFactory factory)
-			=> new CameraFileInfo(new FileInfo(filePath), A.Fake<IFilenameFormatSettings>(), factory);
+			=> new(new FileInfo(filePath), A.Fake<IFilenameFormatSettings>(), factory);
 	}
 }

@@ -7,7 +7,7 @@ namespace au.IO.Files.Camera.MetadataLookup {
 	/// <summary>
 	/// Interactions with the unmanaged MediaInfo DLL from https://mediaarea.net/.
 	/// </summary>
-	internal class MediaInfo : IDisposable {
+	internal partial class MediaInfo : IDisposable {
 		/// <summary>
 		/// Tested MediaInfo.DLL version
 		/// </summary>
@@ -128,18 +128,18 @@ namespace au.IO.Files.Camera.MetadataLookup {
 			Menu,
 		}
 
-		[DllImport("MediaInfo.dll")]
-		private static extern IntPtr MediaInfo_New();
-		[DllImport("MediaInfo.dll")]
-		private static extern IntPtr MediaInfo_Option(IntPtr Handle, [MarshalAs(UnmanagedType.LPWStr)] string Option, [MarshalAs(UnmanagedType.LPWStr)] string Value);
-		[DllImport("MediaInfo.dll")]
-		private static extern IntPtr MediaInfo_Open(IntPtr Handle, [MarshalAs(UnmanagedType.LPWStr)] string FileName);
-		[DllImport("MediaInfo.dll")]
-		private static extern IntPtr MediaInfo_Get(IntPtr Handle, IntPtr StreamKind, IntPtr StreamNumber, [MarshalAs(UnmanagedType.LPWStr)] string Parameter, IntPtr KindOfInfo, IntPtr KindOfSearch);
-		[DllImport("MediaInfo.dll")]
-		private static extern void MediaInfo_Close(IntPtr Handle);
-		[DllImport("MediaInfo.dll")]
-		private static extern void MediaInfo_Delete(IntPtr Handle);
+		[LibraryImport("MediaInfo.dll")]
+		private static partial IntPtr MediaInfo_New();
+		[LibraryImport("MediaInfo.dll")]
+		private static partial IntPtr MediaInfo_Option(IntPtr Handle, [MarshalAs(UnmanagedType.LPWStr)] string Option, [MarshalAs(UnmanagedType.LPWStr)] string Value);
+		[LibraryImport("MediaInfo.dll")]
+		private static partial IntPtr MediaInfo_Open(IntPtr Handle, [MarshalAs(UnmanagedType.LPWStr)] string FileName);
+		[LibraryImport("MediaInfo.dll")]
+		private static partial IntPtr MediaInfo_Get(IntPtr Handle, IntPtr StreamKind, IntPtr StreamNumber, [MarshalAs(UnmanagedType.LPWStr)] string Parameter, IntPtr KindOfInfo, IntPtr KindOfSearch);
+		[LibraryImport("MediaInfo.dll")]
+		private static partial void MediaInfo_Close(IntPtr Handle);
+		[LibraryImport("MediaInfo.dll")]
+		private static partial void MediaInfo_Delete(IntPtr Handle);
 		#endregion MediaInfo.dll imports
 	}
 }

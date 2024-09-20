@@ -2,7 +2,7 @@
 	<PropertyGroup>
 		<Company>the analog underground</Company>
 		<Authors>misterhaan</Authors>
-		<Copyright>© 2014 - 2021 the analog underground</Copyright>
+		<Copyright>© 2014 - 2024 the analog underground</Copyright>
 		<Product>Photo Combine</Product>
 		<PackageProjectUrl>https://www.track7.org/code/vs/photocomb</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/misterhaan/PhotoComb</RepositoryUrl>
