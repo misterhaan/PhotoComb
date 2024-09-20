@@ -163,7 +163,7 @@ namespace au.Applications.PhotoComb.Logic {
 		/// <param name="files">Files to rename.</param>
 		private void RenameFilesToSortable(IEnumerable<ICameraFileInfo> files) {
 			foreach(ICameraFileInfo file in files) {
-				if(file.Metadata.Taken.HasValue && !string.IsNullOrEmpty(file.CameraNameOverride ?? file.Metadata.Model)) {
+				if(file.Metadata.Taken.HasValue) {
 					string oldFilename = file.Name;
 					string newFilename = file.SortableName;
 					if(oldFilename != newFilename) {

@@ -49,7 +49,7 @@ namespace au.IO.Files.Camera {
 		/// <inheritdoc />
 		public string SortableName {
 			get {
-				if(Metadata.Taken.HasValue && !string.IsNullOrEmpty(CameraNameOverride ?? Metadata.Model)) {
+				if(Metadata.Taken.HasValue) {
 					string id = GetId();
 					if(!string.IsNullOrEmpty(id))
 						id = _fileFormat.OverallSeparator + id;
