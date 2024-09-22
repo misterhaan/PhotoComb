@@ -3,6 +3,7 @@ Photo Combine renames photos from multiple cameras to avoid filename conflicts a
 
 ## Revision History
 
+### 4.0.0
 * Update to .NET 8.0
 * Fix missing application icon
 * Support alternate casing for Encoded_Date
