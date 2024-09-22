@@ -29,16 +29,13 @@
             Save and load settings from a file.
             </summary>
             <typeparam name="TSettings">Settings type.</typeparam>
-        </member>
-        <member name="F:au.Settings.SettingsFileManager`1._file">
-            <summary>
-            File to save and load from.
-            </summary>
+            <param name="file">Settings file.</param>
         </member>
         <member name="M:au.Settings.SettingsFileManager`1.#ctor(System.IO.FileInfo)">
             <summary>
-            FileInfo constructor.
+            Save and load settings from a file.
             </summary>
+            <typeparam name="TSettings">Settings type.</typeparam>
             <param name="file">Settings file.</param>
         </member>
         <member name="M:au.Settings.SettingsFileManager`1.#ctor(System.String)">
