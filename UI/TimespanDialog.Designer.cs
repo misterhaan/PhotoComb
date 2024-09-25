@@ -24,200 +24,175 @@
 		/// </summary>
 		private void InitializeComponent() {
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TimespanDialog));
-			this._numOffsetHours = new System.Windows.Forms.NumericUpDown();
-			this._btnAccept = new System.Windows.Forms.Button();
-			this._btnCancel = new System.Windows.Forms.Button();
-			this._lblInstructions = new System.Windows.Forms.Label();
-			this._lblHoursAhead = new System.Windows.Forms.Label();
-			this._lblWhich = new System.Windows.Forms.Label();
-			this._cbModel = new System.Windows.Forms.ComboBox();
-			this._lblMinutesAhead = new System.Windows.Forms.Label();
-			this._numOffsetMinutes = new System.Windows.Forms.NumericUpDown();
-			this._numOffsetDays = new System.Windows.Forms.NumericUpDown();
-			this._lblDaysAhead = new System.Windows.Forms.Label();
-			((System.ComponentModel.ISupportInitialize)(this._numOffsetHours)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this._numOffsetMinutes)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this._numOffsetDays)).BeginInit();
-			this.SuspendLayout();
+			_numOffsetHours = new System.Windows.Forms.NumericUpDown();
+			_btnAccept = new System.Windows.Forms.Button();
+			_btnCancel = new System.Windows.Forms.Button();
+			_lblInstructions = new System.Windows.Forms.Label();
+			_lblHoursAhead = new System.Windows.Forms.Label();
+			_lblWhich = new System.Windows.Forms.Label();
+			_cbModel = new System.Windows.Forms.ComboBox();
+			_lblMinutesAhead = new System.Windows.Forms.Label();
+			_numOffsetMinutes = new System.Windows.Forms.NumericUpDown();
+			_numOffsetDays = new System.Windows.Forms.NumericUpDown();
+			_lblDaysAhead = new System.Windows.Forms.Label();
+			((System.ComponentModel.ISupportInitialize)_numOffsetHours).BeginInit();
+			((System.ComponentModel.ISupportInitialize)_numOffsetMinutes).BeginInit();
+			((System.ComponentModel.ISupportInitialize)_numOffsetDays).BeginInit();
+			SuspendLayout();
 			// 
 			// _numOffsetHours
 			// 
-			this._numOffsetHours.Location = new System.Drawing.Point(100, 38);
-			this._numOffsetHours.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-			this._numOffsetHours.Maximum = new decimal(new int[] {
-						24,
-						0,
-						0,
-						0});
-			this._numOffsetHours.Minimum = new decimal(new int[] {
-						24,
-						0,
-						0,
-						-2147483648});
-			this._numOffsetHours.Name = "_numOffsetHours";
-			this._numOffsetHours.Size = new System.Drawing.Size(48, 20);
-			this._numOffsetHours.TabIndex = 0;
-			this._numOffsetHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this._numOffsetHours.Value = new decimal(new int[] {
-						1,
-						0,
-						0,
-						0});
+			_numOffsetHours.Location = new System.Drawing.Point(117, 44);
+			_numOffsetHours.Margin = new System.Windows.Forms.Padding(0, 3, 4, 3);
+			_numOffsetHours.Maximum = new decimal(new int[] { 24, 0, 0, 0 });
+			_numOffsetHours.Minimum = new decimal(new int[] { 24, 0, 0, int.MinValue });
+			_numOffsetHours.Name = "_numOffsetHours";
+			_numOffsetHours.Size = new System.Drawing.Size(56, 23);
+			_numOffsetHours.TabIndex = 0;
+			_numOffsetHours.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			_numOffsetHours.Value = new decimal(new int[] { 1, 0, 0, 0 });
 			// 
 			// _btnAccept
 			// 
-			this._btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this._btnAccept.DialogResult = System.Windows.Forms.DialogResult.OK;
-			this._btnAccept.Location = new System.Drawing.Point(116, 125);
-			this._btnAccept.Name = "_btnAccept";
-			this._btnAccept.Size = new System.Drawing.Size(75, 23);
-			this._btnAccept.TabIndex = 6;
-			this._btnAccept.Text = "&Accept";
-			this._btnAccept.UseVisualStyleBackColor = true;
+			_btnAccept.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+			_btnAccept.DialogResult = System.Windows.Forms.DialogResult.OK;
+			_btnAccept.Location = new System.Drawing.Point(135, 144);
+			_btnAccept.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			_btnAccept.Name = "_btnAccept";
+			_btnAccept.Size = new System.Drawing.Size(88, 27);
+			_btnAccept.TabIndex = 6;
+			_btnAccept.Text = "&Accept";
+			_btnAccept.UseVisualStyleBackColor = true;
 			// 
 			// _btnCancel
 			// 
-			this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this._btnCancel.Location = new System.Drawing.Point(197, 125);
-			this._btnCancel.Name = "_btnCancel";
-			this._btnCancel.Size = new System.Drawing.Size(75, 23);
-			this._btnCancel.TabIndex = 7;
-			this._btnCancel.Text = "&Cancel";
-			this._btnCancel.UseVisualStyleBackColor = true;
+			_btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+			_btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			_btnCancel.Location = new System.Drawing.Point(230, 144);
+			_btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			_btnCancel.Name = "_btnCancel";
+			_btnCancel.Size = new System.Drawing.Size(88, 27);
+			_btnCancel.TabIndex = 7;
+			_btnCancel.Text = "&Cancel";
+			_btnCancel.UseVisualStyleBackColor = true;
 			// 
 			// _lblInstructions
 			// 
-			this._lblInstructions.AutoSize = true;
-			this._lblInstructions.Location = new System.Drawing.Point(12, 14);
-			this._lblInstructions.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-			this._lblInstructions.Name = "_lblInstructions";
-			this._lblInstructions.Size = new System.Drawing.Size(88, 13);
-			this._lblInstructions.TabIndex = 8;
-			this._lblInstructions.Text = "Adjust time taken";
+			_lblInstructions.AutoSize = true;
+			_lblInstructions.Location = new System.Drawing.Point(14, 16);
+			_lblInstructions.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
+			_lblInstructions.Name = "_lblInstructions";
+			_lblInstructions.Size = new System.Drawing.Size(100, 15);
+			_lblInstructions.TabIndex = 8;
+			_lblInstructions.Text = "Adjust time taken";
 			// 
 			// _lblHoursAhead
 			// 
-			this._lblHoursAhead.AutoSize = true;
-			this._lblHoursAhead.Location = new System.Drawing.Point(151, 40);
-			this._lblHoursAhead.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
-			this._lblHoursAhead.Name = "_lblHoursAhead";
-			this._lblHoursAhead.Size = new System.Drawing.Size(62, 13);
-			this._lblHoursAhead.TabIndex = 1;
-			this._lblHoursAhead.Text = "hour(s) later";
+			_lblHoursAhead.AutoSize = true;
+			_lblHoursAhead.Location = new System.Drawing.Point(176, 46);
+			_lblHoursAhead.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+			_lblHoursAhead.Name = "_lblHoursAhead";
+			_lblHoursAhead.Size = new System.Drawing.Size(71, 15);
+			_lblHoursAhead.TabIndex = 1;
+			_lblHoursAhead.Text = "hour(s) later";
 			// 
 			// _lblWhich
 			// 
-			this._lblWhich.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this._lblWhich.AutoSize = true;
-			this._lblWhich.Location = new System.Drawing.Point(12, 93);
-			this._lblWhich.Name = "_lblWhich";
-			this._lblWhich.Size = new System.Drawing.Size(104, 13);
-			this._lblWhich.TabIndex = 4;
-			this._lblWhich.Text = "for files from camera:";
+			_lblWhich.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+			_lblWhich.AutoSize = true;
+			_lblWhich.Location = new System.Drawing.Point(14, 107);
+			_lblWhich.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			_lblWhich.Name = "_lblWhich";
+			_lblWhich.Size = new System.Drawing.Size(120, 15);
+			_lblWhich.TabIndex = 4;
+			_lblWhich.Text = "for files from camera:";
 			// 
 			// _cbModel
 			// 
-			this._cbModel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this._cbModel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this._cbModel.FormattingEnabled = true;
-			this._cbModel.Location = new System.Drawing.Point(122, 90);
-			this._cbModel.Name = "_cbModel";
-			this._cbModel.Size = new System.Drawing.Size(150, 21);
-			this._cbModel.TabIndex = 5;
-			this._cbModel.Visible = false;
+			_cbModel.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+			_cbModel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			_cbModel.FormattingEnabled = true;
+			_cbModel.Location = new System.Drawing.Point(142, 104);
+			_cbModel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			_cbModel.Name = "_cbModel";
+			_cbModel.Size = new System.Drawing.Size(174, 23);
+			_cbModel.TabIndex = 5;
+			_cbModel.Visible = false;
 			// 
 			// _lblMinutesAhead
 			// 
-			this._lblMinutesAhead.AutoSize = true;
-			this._lblMinutesAhead.Location = new System.Drawing.Point(151, 14);
-			this._lblMinutesAhead.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
-			this._lblMinutesAhead.Name = "_lblMinutesAhead";
-			this._lblMinutesAhead.Size = new System.Drawing.Size(72, 13);
-			this._lblMinutesAhead.TabIndex = 10;
-			this._lblMinutesAhead.Text = "minute(s) later";
+			_lblMinutesAhead.AutoSize = true;
+			_lblMinutesAhead.Location = new System.Drawing.Point(176, 16);
+			_lblMinutesAhead.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+			_lblMinutesAhead.Name = "_lblMinutesAhead";
+			_lblMinutesAhead.Size = new System.Drawing.Size(84, 15);
+			_lblMinutesAhead.TabIndex = 10;
+			_lblMinutesAhead.Text = "minute(s) later";
 			// 
 			// _numOffsetMinutes
 			// 
-			this._numOffsetMinutes.Location = new System.Drawing.Point(100, 12);
-			this._numOffsetMinutes.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-			this._numOffsetMinutes.Maximum = new decimal(new int[] {
-						60,
-						0,
-						0,
-						0});
-			this._numOffsetMinutes.Minimum = new decimal(new int[] {
-						60,
-						0,
-						0,
-						-2147483648});
-			this._numOffsetMinutes.Name = "_numOffsetMinutes";
-			this._numOffsetMinutes.Size = new System.Drawing.Size(48, 20);
-			this._numOffsetMinutes.TabIndex = 9;
-			this._numOffsetMinutes.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			_numOffsetMinutes.Location = new System.Drawing.Point(117, 14);
+			_numOffsetMinutes.Margin = new System.Windows.Forms.Padding(0, 3, 4, 3);
+			_numOffsetMinutes.Maximum = new decimal(new int[] { 60, 0, 0, 0 });
+			_numOffsetMinutes.Minimum = new decimal(new int[] { 60, 0, 0, int.MinValue });
+			_numOffsetMinutes.Name = "_numOffsetMinutes";
+			_numOffsetMinutes.Size = new System.Drawing.Size(56, 23);
+			_numOffsetMinutes.TabIndex = 9;
+			_numOffsetMinutes.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// _numOffsetDays
 			// 
-			this._numOffsetDays.Location = new System.Drawing.Point(100, 64);
-			this._numOffsetDays.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-			this._numOffsetDays.Maximum = new decimal(new int[] {
-						1000,
-						0,
-						0,
-						0});
-			this._numOffsetDays.Minimum = new decimal(new int[] {
-						1000,
-						0,
-						0,
-						-2147483648});
-			this._numOffsetDays.Name = "_numOffsetDays";
-			this._numOffsetDays.Size = new System.Drawing.Size(48, 20);
-			this._numOffsetDays.TabIndex = 2;
-			this._numOffsetDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			_numOffsetDays.Location = new System.Drawing.Point(117, 74);
+			_numOffsetDays.Margin = new System.Windows.Forms.Padding(0, 3, 4, 3);
+			_numOffsetDays.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+			_numOffsetDays.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
+			_numOffsetDays.Name = "_numOffsetDays";
+			_numOffsetDays.Size = new System.Drawing.Size(56, 23);
+			_numOffsetDays.TabIndex = 2;
+			_numOffsetDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// _lblDaysAhead
 			// 
-			this._lblDaysAhead.AutoSize = true;
-			this._lblDaysAhead.Location = new System.Drawing.Point(151, 66);
-			this._lblDaysAhead.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
-			this._lblDaysAhead.Name = "_lblDaysAhead";
-			this._lblDaysAhead.Size = new System.Drawing.Size(58, 13);
-			this._lblDaysAhead.TabIndex = 3;
-			this._lblDaysAhead.Text = "day(s) later";
+			_lblDaysAhead.AutoSize = true;
+			_lblDaysAhead.Location = new System.Drawing.Point(176, 76);
+			_lblDaysAhead.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+			_lblDaysAhead.Name = "_lblDaysAhead";
+			_lblDaysAhead.Size = new System.Drawing.Size(65, 15);
+			_lblDaysAhead.TabIndex = 3;
+			_lblDaysAhead.Text = "day(s) later";
 			// 
 			// TimespanDialog
 			// 
-			this.AcceptButton = this._btnAccept;
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.CancelButton = this._btnCancel;
-			this.ClientSize = new System.Drawing.Size(284, 160);
-			this.ControlBox = false;
-			this.Controls.Add(this._lblMinutesAhead);
-			this.Controls.Add(this._numOffsetMinutes);
-			this.Controls.Add(this._cbModel);
-			this.Controls.Add(this._lblWhich);
-			this.Controls.Add(this._lblDaysAhead);
-			this.Controls.Add(this._lblHoursAhead);
-			this.Controls.Add(this._lblInstructions);
-			this.Controls.Add(this._btnCancel);
-			this.Controls.Add(this._btnAccept);
-			this.Controls.Add(this._numOffsetDays);
-			this.Controls.Add(this._numOffsetHours);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.MaximizeBox = false;
-			this.MinimizeBox = false;
-			this.Name = "TimespanDialog";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Adjust Time Taken";
-			((System.ComponentModel.ISupportInitialize)(this._numOffsetHours)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this._numOffsetMinutes)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this._numOffsetDays)).EndInit();
-			this.ResumeLayout(false);
-			this.PerformLayout();
-
+			AcceptButton = _btnAccept;
+			AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+			AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			CancelButton = _btnCancel;
+			ClientSize = new System.Drawing.Size(331, 185);
+			ControlBox = false;
+			Controls.Add(_lblMinutesAhead);
+			Controls.Add(_numOffsetMinutes);
+			Controls.Add(_cbModel);
+			Controls.Add(_lblWhich);
+			Controls.Add(_lblDaysAhead);
+			Controls.Add(_lblHoursAhead);
+			Controls.Add(_lblInstructions);
+			Controls.Add(_btnCancel);
+			Controls.Add(_btnAccept);
+			Controls.Add(_numOffsetDays);
+			Controls.Add(_numOffsetHours);
+			FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+			Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			MaximizeBox = false;
+			MinimizeBox = false;
+			Name = "TimespanDialog";
+			StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			Text = "Adjust Time Taken";
+			((System.ComponentModel.ISupportInitialize)_numOffsetHours).EndInit();
+			((System.ComponentModel.ISupportInitialize)_numOffsetMinutes).EndInit();
+			((System.ComponentModel.ISupportInitialize)_numOffsetDays).EndInit();
+			ResumeLayout(false);
+			PerformLayout();
 		}
 
 		#endregion
