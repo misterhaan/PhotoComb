@@ -66,7 +66,6 @@ namespace au.Applications.PhotoComb.UI {
 			WindowState = _settings.MainForm.WindowState;
 			ResizeEnd += new EventHandler(PhotoComb_ResizeEnd);
 			LocationChanged += new EventHandler(PhotoComb_LocationChanged);
-			_fbdOpen.SelectedPath = _settings.LastSourceDir;
 			_fbdExport.SelectedPath = _settings.LastDestDir;
 		}
 
@@ -75,11 +74,10 @@ namespace au.Applications.PhotoComb.UI {
 		/// </summary>
 		/// <param name="sender">Not used</param>
 		/// <param name="e">Not used</param>
-		private async void PhotoComb_Shown(object sender, EventArgs e)
-			=> await Task.WhenAll(
-					ChooseFolder(),
-					_versionManager.PromptForUpdate(this)
-				).ConfigureAwait(false);
+		private async void PhotoComb_Shown(object sender, EventArgs e) {
+			await _versionManager.PromptForUpdate(this).ConfigureAwait(true);
+			ShowFolderTree(_settings.LastSourceDir);
+		}
 
 		/// <summary>
 		/// Update the display size setting when it changes.
@@ -102,12 +100,34 @@ namespace au.Applications.PhotoComb.UI {
 		}
 		#endregion initialization
 
-		/// <summary>
-		/// Prompt for selection of a folder to scan.
-		/// </summary>
-		private async Task ChooseFolder() {
-			if(_fbdOpen.ShowDialog(this) == DialogResult.OK)
-				await ScanFolder(_fbdOpen.SelectedPath).ConfigureAwait(false);
+		private void ShowFolderTree(string path) {
+			_tvFolders.Nodes.Clear();
+			foreach(DriveInfo drive in DriveInfo.GetDrives()) {
+				TreeNode driveNode = new(drive.Name.TrimEnd(Path.DirectorySeparatorChar));
+				_tvFolders.Nodes.Add(driveNode);
+				if(PathContains(drive.RootDirectory, path))
+					ShowSubFolderTree(path, driveNode, drive.RootDirectory);
+			}
+		}
+
+		private void ShowSubFolderTree(string path, TreeNode parentNode, DirectoryInfo parentDir) {
+			parentNode.Nodes.Clear();
+			foreach(DirectoryInfo subdir in parentDir.GetDirectories()) {
+				bool onPath = PathContains(subdir, path);
+				if(onPath || !subdir.Attributes.HasFlag(FileAttributes.Hidden)) {
+					TreeNode dirNode = new(subdir.Name);
+					parentNode.Nodes.Add(dirNode);
+					if(onPath) {
+						ShowSubFolderTree(path, dirNode, subdir);
+						_tvFolders.SelectedNode ??= dirNode;
+					}
+				}
+			}
+		}
+
+		private static bool PathContains(DirectoryInfo possibleContainingPath, string possibleContainedPath) {
+			string relPath = Path.GetRelativePath(possibleContainingPath.FullName, possibleContainedPath);
+			return relPath == "." || !relPath.StartsWith("..") && !Path.IsPathRooted(relPath);
 		}
 
 		/// <summary>
@@ -326,13 +346,11 @@ namespace au.Applications.PhotoComb.UI {
 			}
 		}
 
-		/// <summary>
-		/// Prompt for a folder to scan.
-		/// </summary>
-		/// <param name="sender">Not used</param>
-		/// <param name="e">Not used</param>
-		private async void Folder_Click(object sender, EventArgs e)
-			=> await ChooseFolder().ConfigureAwait(false);
+		private async void TvFolders_AfterSelect(object sender, TreeViewEventArgs e) {
+			Task scan = ScanFolder(_tvFolders.SelectedNode.FullPath);
+			ShowSubFolderTree(_tvFolders.SelectedNode.FullPath, _tvFolders.SelectedNode, new DirectoryInfo(_tvFolders.SelectedNode.FullPath));
+			await scan.ConfigureAwait(false);
+		}
 
 		/// <summary>
 		/// Enable or disable buttons that act on the selection based on whether
