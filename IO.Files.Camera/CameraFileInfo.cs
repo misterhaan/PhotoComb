@@ -29,7 +29,10 @@ namespace au.IO.Files.Camera {
 		public string FullName => _file.FullName;
 
 		/// <inheritdoc />
-		public string Extension => _file.Extension[1..].ToLowerInvariant();
+		public string Extension
+			=> string.IsNullOrEmpty(_file.Extension)
+				? string.Empty
+				: _file.Extension[1..].ToLowerInvariant();
 
 		/// <inheritdoc />
 		public string ErrorMessage { get; set; }

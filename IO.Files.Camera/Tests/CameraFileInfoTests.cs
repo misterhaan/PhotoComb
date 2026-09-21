@@ -13,15 +13,20 @@ namespace au.IO.Files.Camera.Tests {
 		private const string JpgFilename = @"C:\IMG_1337.JPG";
 		private const string JpegFilename = @"C:\IMG_8008.JPEG";
 		private const string TxtFilename = @"C:\info.txt";
+		private const string HiddenFilename = @"U:\.profile";
+		private const string NoExtensionFilename = @"C:\README";
 
 		private const string JpgExt = "jpg";
 		private const string JpegExt = "jpeg";
 		private const string TxtExt = "txt";
+		private const string HiddenExt = "profile";
 
 		[TestMethod]
 		[DataRow(JpgFilename, JpgExt)]
 		[DataRow(JpegFilename, JpegExt)]
 		[DataRow(TxtFilename, TxtExt)]
+		[DataRow(HiddenFilename, HiddenExt)]
+		[DataRow(NoExtensionFilename, "")]
 		public void Extension_ReturnsLowerCaseWithoutDot(string filePath, string expectedExtension) {
 			CameraFileInfo cfi = BuildCameraFileInfo(filePath, false);
 

@@ -9,13 +9,13 @@
 	<?define ExternalBinFolder = "..\ref\32" ?>
 	<?endif ?>
 
-	<Product Name="Photo Combine" Id="*" UpgradeCode="B1DD71E9-85D7-479F-9EAB-2DCEACDE6BC8" Language="1033" Codepage="1252" Version="4.0.0" Manufacturer="the analog underground">
+	<Product Name="Photo Combine" Id="*" UpgradeCode="B1DD71E9-85D7-479F-9EAB-2DCEACDE6BC8" Language="1033" Codepage="1252" Version="4.0.1" Manufacturer="the analog underground">
 		<Package Id="*" Keywords="photo, camera, picture, organize" Description="Renames digital photos from multiple cameras for easier organization." Comments="the analog underground only releases free software" Manufacturer="the analog underground" InstallerVersion="200" Languages="1033" Compressed="yes" SummaryCodepage="1252" />
 
 		<MajorUpgrade Schedule="afterInstallInitialize" DowngradeErrorMessage="A later version of [ProductName] is already installed. Setup will now exit." />
 		<Upgrade Id="8B035E15-98BC-4208-8F7D-B1CC37A1D8DD">
-			<UpgradeVersion Minimum="0.0.0" IncludeMinimum="yes" Maximum="4.0.0" IncludeMaximum="no" Property="OLDERVERSIONBEINGUPGRADED"/>
-			<UpgradeVersion Minimum="4.0.0" OnlyDetect="yes" Property="NEWERVERSIONDETECTED"/>
+			<UpgradeVersion Minimum="0.0.0" IncludeMinimum="yes" Maximum="4.0.1" IncludeMaximum="no" Property="OLDERVERSIONBEINGUPGRADED"/>
+			<UpgradeVersion Minimum="4.0.1" OnlyDetect="yes" Property="NEWERVERSIONDETECTED"/>
 		</Upgrade>
 		<Condition Message="A later version of [ProductName] is already installed. Setup will now exit">
 			NOT NEWERVERSIONDETECTED OR Installed
@@ -36,6 +36,12 @@
 		<DirectoryRef Id="INSTALLDIR">
 			<Component Id="photocombexe" Guid="7AA5DB3C-94AC-49BC-8941-F50032C2629A">
 				<File Id="PhotoComb.exe" Name="PhotoComb.exe" DiskId="1" Source="$(var.BuildFolder)\PhotoComb.exe" />
+			</Component>
+			<Component Id="photocombdll" Guid="0E700BD3-A9EE-4A4A-BE30-834394DE750F">
+				<File Id="PhotoComb.dll" Name="PhotoComb.dll" DiskId="1" Source="$(var.BuildFolder)\PhotoComb.dll" />
+			</Component>
+			<Component Id="photocombruntimeconfigjson" Guid="A2EE10C2-0C61-4103-BDF0-A64C3E021B52">
+				<File Id="PhotoComb.runtimeconfig.json" Name="PhotoComb.runtimeconfig.json" DiskId="1" Source="$(var.BuildFolder)\PhotoComb.runtimeconfig.json" />
 			</Component>
 			<Component Id="auApplicationsPhotoCombLogicdll" Guid="2A1D5CA6-1467-46AD-A116-2B71FC004C5B">
 				<File Id="au.Applications.PhotoComb.Logic.dll" Name="au.Applications.PhotoComb.Logic.dll" DiskId="1" Source="$(var.BuildFolder)\au.Applications.PhotoComb.Logic.dll" />
@@ -102,6 +108,8 @@
 		<Feature Id="Binaries" Level="1" Title="Photo Combine" Description="Binary files needed to run Photo Combine" ConfigurableDirectory="INSTALLDIR">
 			<Feature Id="photocombfeat" Title="PhotoComb" Description="The actual application along with libraries (required to run the application)" Level="1">
 				<ComponentRef Id="photocombexe" />
+				<ComponentRef Id="photocombdll" />
+				<ComponentRef Id="photocombruntimeconfigjson"/>
 				<ComponentRef Id="auApplicationsPhotoCombLogicdll" />
 				<ComponentRef Id="auApplicationsPhotoCombLogicTypesdll" />
 				<ComponentRef Id="auApplicationsPhotoCombSettingsdll" />

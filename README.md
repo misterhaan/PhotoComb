@@ -5,6 +5,9 @@ Photo Combine renames photos from multiple cameras to avoid filename conflicts a
 
 * Replace source folder select dialog with folder pane
 
+### 4.0.1
+* Fix crash from reading files with no extension
+
 ### 4.0.0
 * Update to .NET 8.0
 * Fix missing application icon
