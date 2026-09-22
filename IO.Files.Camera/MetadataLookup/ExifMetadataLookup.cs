@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Windows.Media.Imaging;
 using au.IO.Files.Camera.Types;
 
 namespace au.IO.Files.Camera.MetadataLookup {
@@ -17,20 +15,14 @@ namespace au.IO.Files.Camera.MetadataLookup {
 		/// <inheritdoc />
 		protected override CameraFileMetadata Get() {
 			try {
-				using FileStream stream = _file.Open(FileMode.Open, FileAccess.Read, FileShare.Read);
+				Exif exif = new(_file.FullName);
 				try {
-					BitmapSource bmp = BitmapFrame.Create(stream);
-					try {
-						BitmapMetadata meta = (BitmapMetadata)bmp.Metadata;
-						return CameraFileMetadata.Create(CameraFileType.Photo, meta.CameraModel, meta.DateTaken);
-					} catch(Exception exifException) {
-						return new CameraFileMetadata(Messages.ExifReadError, exifException);
-					}
-				} catch(Exception bmpException) {
-					return new CameraFileMetadata(Messages.ImageReadError, bmpException);
+					return new CameraFileMetadata(CameraFileType.Photo, exif.GetCameraModel(), exif.GetDateTaken());
+				} catch(Exception exifException) {
+					return new CameraFileMetadata(Messages.ExifReadError, exifException);
 				}
-			} catch(Exception fileException) {
-				return new CameraFileMetadata(Messages.FileReadError, fileException);
+			} catch(Exception imageException) {
+				return new CameraFileMetadata(Messages.ImageReadError, imageException);
 			}
 		}
 	}

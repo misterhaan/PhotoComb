@@ -46,19 +46,6 @@ namespace au.IO.Files.Camera {
 		}
 
 		/// <summary>
-		/// Create camera file metadata.
-		/// </summary>
-		/// <param name="type">Type of camera file.</param>
-		/// <param name="model">Camera model that took the picture or video.</param>
-		/// <param name="taken">Date and time the picture or video was taken.</param>
-		/// <returns>Camera file metadata.</returns>
-		internal static CameraFileMetadata Create(CameraFileType type, string model, string taken) {
-			return DateTime.TryParse(taken, out DateTime dateTimeTaken)
-				? new CameraFileMetadata(type, model, dateTimeTaken)
-				: new CameraFileMetadata(type, model);
-		}
-
-		/// <summary>
 		/// Success constructor.
 		/// </summary>
 		/// <param name="model">Camera model that took the picture or video.</param>

@@ -5,6 +5,9 @@ Photo Combine renames photos from multiple cameras to avoid filename conflicts a
 
 * Replace source folder select dialog with folder pane
 
+### 4.1.0
+* Use `MetadataExtractor` library to read photo metadata instead of `System.Windows.Media.Imaging`
+
 ### 4.0.1
 * Fix crash from reading files with no extension
 
@@ -32,7 +35,7 @@ Photo Combine renames photos from multiple cameras to avoid filename conflicts a
 * Add unit tests
 
 ### 1.1.0
-* Add minutes and days options for adjusting time taken, since sometimes people don’t set the date on their cameras
+* Add minutes and days options for adjusting time taken, since sometimes people donï¿½t set the date on their cameras
 
 #### 1.1.1
 * Support photos and videos from Google Pixel 3 phones
@@ -46,7 +49,7 @@ Photo Combine renames photos from multiple cameras to avoid filename conflicts a
 * Update to Visual Studio 2017
 
 #### 1.0.1
-* Fix crash when video camera model isn’t found
+* Fix crash when video camera model isnï¿½t found
 * Find camera model for videos from Fuji cameras
 
 ### 0.1.0

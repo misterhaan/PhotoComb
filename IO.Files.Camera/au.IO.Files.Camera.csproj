@@ -47,6 +47,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+   <PackageReference Include="MetadataExtractor" Version="2.9.0" />
 		<EmbeddedResource Update="Messages.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>Messages.Designer.cs</LastGenOutput>

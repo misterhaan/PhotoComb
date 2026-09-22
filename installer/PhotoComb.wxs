@@ -9,13 +9,13 @@
 	<?define ExternalBinFolder = "..\ref\32" ?>
 	<?endif ?>
 
-	<Product Name="Photo Combine" Id="*" UpgradeCode="B1DD71E9-85D7-479F-9EAB-2DCEACDE6BC8" Language="1033" Codepage="1252" Version="4.0.1" Manufacturer="the analog underground">
+	<Product Name="Photo Combine" Id="*" UpgradeCode="B1DD71E9-85D7-479F-9EAB-2DCEACDE6BC8" Language="1033" Codepage="1252" Version="4.1.0" Manufacturer="the analog underground">
 		<Package Id="*" Keywords="photo, camera, picture, organize" Description="Renames digital photos from multiple cameras for easier organization." Comments="the analog underground only releases free software" Manufacturer="the analog underground" InstallerVersion="200" Languages="1033" Compressed="yes" SummaryCodepage="1252" />
 
 		<MajorUpgrade Schedule="afterInstallInitialize" DowngradeErrorMessage="A later version of [ProductName] is already installed. Setup will now exit." />
 		<Upgrade Id="8B035E15-98BC-4208-8F7D-B1CC37A1D8DD">
-			<UpgradeVersion Minimum="0.0.0" IncludeMinimum="yes" Maximum="4.0.1" IncludeMaximum="no" Property="OLDERVERSIONBEINGUPGRADED"/>
-			<UpgradeVersion Minimum="4.0.1" OnlyDetect="yes" Property="NEWERVERSIONDETECTED"/>
+			<UpgradeVersion Minimum="0.0.0" IncludeMinimum="yes" Maximum="4.1.0" IncludeMaximum="no" Property="OLDERVERSIONBEINGUPGRADED"/>
+			<UpgradeVersion Minimum="4.1.0" OnlyDetect="yes" Property="NEWERVERSIONDETECTED"/>
 		</Upgrade>
 		<Condition Message="A later version of [ProductName] is already installed. Setup will now exit">
 			NOT NEWERVERSIONDETECTED OR Installed
@@ -88,6 +88,12 @@
 			<Component Id="mediainfodll" Guid="FC9054A9-557D-405C-BBC1-B9C51A85AAE6">
 				<File Id="MediaInfo.dll" Name="MediaInfo.dll" DiskId="1" Source="$(var.ExternalBinFolder)\MediaInfo.dll" />
 			</Component>
+			<Component Id="metadataextractordll" Guid="f01e4cef-21e0-4bae-adce-9ea1d3042562">
+				<File Id="MetadataExtractor.dll" Name="MetadataExtractor.dll" DiskId="1" Source="$(var.ExternalBinFolder)\MetadataExtractor.dll" />
+			</Component>
+			<Component Id="xmpcoredll" Guid="8f4b64f0-a8d1-4fbf-b356-3a254c01dd9e">
+				<File Id="XmpCore.dll" Name="XmpCore.dll" DiskId="1" Source="$(var.ExternalBinFolder)\XmpCore.dll" />
+			</Component>
 		</DirectoryRef>
 
 		<DirectoryRef Id="ProgramMenuDir">
@@ -125,6 +131,8 @@
 				<ComponentRef Id="auUILatestVersiondll" />
 				<ComponentRef Id="NewtonsoftJsondll" />
 				<ComponentRef Id="mediainfodll" />
+				<ComponentRef Id="metadataextractordll" />
+				<ComponentRef Id="xmpcoredll" />
 			</Feature>
 			<Feature Id="photocombshortcuts" Level="1" Title="Shortcuts" Description="Shortcuts for launching Photo Combine">
 				<Feature Id="startmenushortcutfeat" Level="1" Title="Start Menu" Description="Create a shortcut to Photo Combine in the Start Menu">
